@@ -789,16 +789,6 @@
   dependencies:
     aphrodite "^2.3.1"
 
-"@drongo/ux@file:.yalc/@drongo/ux":
-  version "0.0.0-d56d30da"
-  dependencies:
-    "@types/color" "^3.0.0"
-    color "^3.1.2"
-    font-awesome "^4.7.0"
-    ulid "^2.3.0"
-    vue-compose "^0.7.3"
-    vue-hoc "^0.4.7"
-
 "@rollup/plugin-commonjs@^11.0.0":
   version "11.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-11.0.2.tgz#837cc6950752327cb90177b608f0928a4e60b582"
@@ -855,24 +845,10 @@
   dependencies:
     "@types/babel-types" "*"
 
-"@types/color-convert@*":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-1.9.0.tgz#bfa8203e41e7c65471e9841d7e306a7cd8b5172d"
-  integrity sha512-OKGEfULrvSL2VRbkl/gnjjgbbF7ycIlpSsX7Nkab4MOWi5XxmgBYvuiQ7lcCFY5cPDz7MUNaKgxte2VRmtr4Fg==
-  dependencies:
-    "@types/color-name" "*"
-
-"@types/color-name@*", "@types/color-name@^1.1.1":
+"@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
-
-"@types/color@^3.0.0":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@types/color/-/color-3.0.1.tgz#2900490ed04da8116c5058cd5dba3572d5a25071"
-  integrity sha512-oeUWVaAwI+xINDUx+3F2vJkl/vVB03VChFF/Gl3iQCdbcakjuoJyMOba+3BXRtnBhxZ7uBYqQBi9EpLnvSoztA==
-  dependencies:
-    "@types/color-convert" "*"
 
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
@@ -2096,7 +2072,7 @@ color-string@^1.5.2:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.0.0, color@^3.1.2:
+color@^3.0.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/color/-/color-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
   integrity sha512-vXTJhHebByxZn3lDvDJYw4lR5+uB3vuoHsuYA5AKuxRVn5wzzIfQKGLBmgdVRHKTJYeK5rvJcHnrd0Li49CFpg==
@@ -3319,11 +3295,6 @@ flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
   integrity sha512-a1hQMktqW9Nmqr5aktAux3JMNqaucxGcjtjWnZLHX7yyPCmlSV3M54nGYbqT8K+0GhF3NBgmJCc3ma+WOgX8Jg==
-
-font-awesome@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
-  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
@@ -7094,11 +7065,6 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
-ulid@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/ulid/-/ulid-2.3.0.tgz#93063522771a9774121a84d126ecd3eb9804071f"
-  integrity sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==
-
 umd@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/umd/-/umd-3.0.3.tgz#aa9fe653c42b9097678489c01000acb69f0b26cf"
@@ -7308,17 +7274,10 @@ vue-component-router@^0.1.17:
     path-to-regexp "^2.1.0"
     query-string "^5.0.1"
 
-vue-compose@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/vue-compose/-/vue-compose-0.7.3.tgz#8cece8dbb0ca785046760c84c17264261afbf80a"
-  integrity sha512-R2Uwz/yy/P5/9SzdRGe4F/QyOVneQ+27vioMzjZgLdsDwJoiZiYajBV89dK+1OVdaQBikt0ZIEx1ugpsTZPOMA==
-  dependencies:
-    vue-hoc "0.x.x"
-
-vue-hoc@0.x.x, vue-hoc@^0.4.7:
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/vue-hoc/-/vue-hoc-0.4.7.tgz#4d3322ba89b8b0e42b19045ef536c21d948a4fac"
-  integrity sha512-bFHE7mf1bBBQSYg36Zg3ON0BawtRSxhiVS2wkDXq4LldSyBoH84WmfR+JijYenICiZTv81dbrYVFTf8S/FT1aQ==
+vue-material@^1.0.0-beta-11:
+  version "1.0.0-beta-11"
+  resolved "https://registry.yarnpkg.com/vue-material/-/vue-material-1.0.0-beta-11.tgz#11baf0cdb22a35d35859c619099d6c3cb3cc2cc3"
+  integrity sha512-1+dIVkQafMIA/zNONb7OwGaTjAxaWk/JhUA2/FInQvbArxf1ToKB+yIdeSfzopQ1KICnBTAmk9E0Vdr5p4MWNA==
 
 vue-runtime-helpers@^1.1.1:
   version "1.1.2"

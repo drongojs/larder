@@ -48,10 +48,10 @@
   },
   "dependencies": {
     "@drongo/styles": "file:.yalc/@drongo/styles",
-    "@drongo/ux": "file:.yalc/@drongo/ux",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/composition-api": "^0.4.0",
     "vue": "^2.6.11",
-    "vue-component-router": "^0.1.17"
+    "vue-component-router": "^0.1.17",
+    "vue-material": "^1.0.0-beta-11"
   }
 }

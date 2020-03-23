@@ -1,8 +1,7 @@
 import { RouterLink } from 'vue-component-router';
-import { Kind } from '@drongo/ux/theme/index.js';
-import { Grid } from '@drongo/ux/grid/index.js';
-import { Icon } from '@drongo/ux/icon/index.js';
-import { Button } from '@drongo/ux/button/index.js';
+// import { MdButton } from 'vue-material/dist/vue-material.js';
+// import Button from 'vue-material/dist/components/MdButton/index.js';
+// import Icon from 'vue-material/dist/components/MdIcon/index.js';
 
 const Link = ({ props }: {
   to: string,
@@ -16,54 +15,36 @@ const Link = ({ props }: {
   } = props;
 
   return (
-    <div>
-      <Button
-        kind={Kind.PRIMARY}
-        invert={true}
-        component={RouterLink}
-        block={true}
-        to={to}
-        style="border-width: 0 !important;"
-      >
-        <div style="display: flex; align-items: center; justify-content: center;">
-          <Icon
-            icon={icon}
-            size="xxl"
-            invert={false}
-          />
-          <span>{text}</span>
-        </div>
-      </Button>
+    <div class="md-layout-item md-size-33 md-medium-size-100" style="margin-top: 2rem;">
+      <RouterLink to={to} class="md-layout md-alignment-center-center">
+        <md-button style="height:auto;">
+          <md-icon class="md-size-4x">{icon}</md-icon>
+        </md-button>
+      </RouterLink>
     </div>
   );
 };
 
 export default () => (
-  <div>
-    <Grid
-      xs="12"
-      sm="10"
-      md="6"
-      lg="4"
-      xl="1"
-      align="center"
-      justify="center"
-    >
-      <Link
-        icon="archive"
-        text="Larder"
-        to="/larder"
-      />
-      <Link
-        icon="shopping-cart"
-        text="shopping"
-        to="/shopping"
-      />
-      <Link
-        icon="bookmark"
-        text="Recipes"
-        to="/recipes"
-      />
-    </Grid>
-  </div>
+  <md-app>
+    <md-app-content>
+      <div class="md-layout">
+        <Link
+          icon="receipt"
+          text="Larder"
+          to="/larder"
+        />
+        <Link
+          icon="shopping_cart"
+          text="Shopping"
+          to="/shopping"
+        />
+        <Link
+          icon="bookmark"
+          text="Recipes"
+          to="/recipes"
+        />
+      </div>
+    </md-app-content>
+  </md-app>
 );

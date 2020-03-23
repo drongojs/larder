@@ -1,4 +1,4 @@
-const withScope = (fn) => ({
+export const withScope = (fn) => ({
   scopedSlots: {
     default: fn,
   },
