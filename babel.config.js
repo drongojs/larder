@@ -1,8 +1,9 @@
+const { resolve } = require('path');
 const isTest = process.env.NODE_ENV === 'test';
 
 module.exports = {
   presets: [
-    "@vue/babel-preset-jsx",
+    '@babel/preset-react',
     '@babel/preset-typescript',
     [
       '@babel/preset-env',
@@ -14,17 +15,10 @@ module.exports = {
     ],
   ],
   plugins: [
-    [
-      "snowpack/assets/babel-plugin.js",
-      {
-        optionalExtensions: true,
-      },
-    ],
-    [
-      '@babel/plugin-proposal-class-properties',
-      { loose: true },
-    ],
-    '@babel/plugin-transform-classes',
+    [ 'babel-plugin-module-resolver', {
+      root: [ resolve('./src') ],
+      extensions: [ '.ts', '.tsx' ],
+    } ],
   ],
   sourceMaps: isTest ? 'inline' : true,
 };

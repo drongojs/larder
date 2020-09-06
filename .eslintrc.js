@@ -5,6 +5,12 @@ module.exports = {
     "@typescript-eslint",
     "babel",
   ],
+  'parserOptions': {
+    'ecmaFeatures': {
+      'experimentalObjectRestSpread': true,
+      'jsx': true,
+    },
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -13,6 +19,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:react/recommended",
   ],
   "parserOptions": {
     "sourceType": "module",
@@ -38,6 +45,7 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
+      "babel-module": {},
       "node": {
         "extensions": [ ".ts", ".tsx", ".js" ],
       },
