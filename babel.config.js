@@ -19,6 +19,7 @@ module.exports = {
       root: [ resolve('./src') ],
       extensions: [ '.ts', '.tsx' ],
     } ],
+    'jpex/babel-plugin',
   ],
   sourceMaps: isTest ? 'inline' : true,
 };

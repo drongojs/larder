@@ -6,12 +6,10 @@
     "allowJs": false,
     "moduleResolution": "node",
     "noEmit": true,
-    "alwaysStrict": true,
     "declaration": false,
     "esModuleInterop": true,
     "types": [ "node" ],
     "sourceMap": true,
-    "strict": true,
     "baseUrl": ".",
     "paths": {
       "*": [ "src/*" ]

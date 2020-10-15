@@ -1,5 +1,6 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssLoader = require('mini-css-extract-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -13,7 +14,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: [ '.js', '.ts', '.tsx' ],
+    extensions: [ '.js', '.ts', '.tsx', '.css' ],
   },
   devtool: prod ? 'source-map' : 'inline-source-map',
   module: {
@@ -22,10 +23,26 @@ module.exports = {
         test: /\.tsx?/,
         use: [ 'babel-loader' ],
       },
+      {
+        test: /\.css/,
+        use: [
+          {
+            loader: MiniCssLoader.loader,
+            options: {
+              esModule: true,
+            },
+          },
+          'css-loader',
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin(),
+    new MiniCssLoader({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
   ],
   devServer: prod ? void 0 : {
     historyApiFallback: true,
