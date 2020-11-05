@@ -2,14 +2,11 @@ import React, { ReactNode } from 'react';
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Typography,
   Drawer,
-  Icon,
   Container,
   Hidden,
 } from '@material-ui/core';
-import { useToggle } from 'presentation/hooks';
 import { enhance } from 'presentation/hocs';
 
 interface Props {
@@ -18,8 +15,6 @@ interface Props {
 }
 
 const Page = ({ options, children }: Props) => {
-  const [ showMenu, toggleMenu, , closeMenu ] = useToggle();
-
   return (
     <div
       style={{
@@ -34,17 +29,6 @@ const Page = ({ options, children }: Props) => {
         }}
       >
         <Toolbar>
-          {options && (
-            <Hidden mdUp>
-              <IconButton
-                edge="start"
-                color="inherit"
-                onClick={toggleMenu}
-              >
-                <Icon>menu</Icon>
-              </IconButton>
-            </Hidden>
-          )}
           <Typography variant="h6">
             Title
           </Typography>
@@ -69,24 +53,6 @@ const Page = ({ options, children }: Props) => {
                     width: 300,
                   },
                 }}
-                onClose={closeMenu}
-              >
-                {options}
-              </Drawer>
-            </Hidden>
-            <Hidden mdUp>
-              <Drawer
-                anchor="top"
-                variant="persistent"
-                open={showMenu}
-                PaperProps={{
-                  style: {
-                    width: '100%',
-                    top: 48,
-                  },
-                }}
-                transitionDuration={0}
-                onClose={closeMenu}
               >
                 {options}
               </Drawer>

@@ -1,6 +1,9 @@
 export default {
-  compileEnhancements: false,
-  files: [ '**/*.test.ts' ],
+  files: [ 'src/**/*.test.ts' ],
+  extensions: [ 'ts' ],
   require: [ './test-setup.js' ],
-  extensions: [ 'ts', 'tsx' ],
+  verbose: true,
+  babel: {
+    compileEnhancements: false,
+  },
 };

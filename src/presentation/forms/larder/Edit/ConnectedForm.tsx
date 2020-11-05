@@ -1,25 +1,24 @@
 import React, { useCallback } from 'react';
 import Form from './Form';
 import { enhance } from 'presentation/hocs';
-import { useStock } from 'domain/queries/stock';
-import { useIngredient } from 'domain/queries/ingredients';
-import { useCategory } from 'domain/queries/categories';
+import { useStock } from 'application/queries/stock';
+import { useIngredient } from 'application/queries/ingredients';
+import { useCategory } from 'application/queries/categories';
 import { useId, parseSearch } from 'domain/selectors';
-import { usePatchStock, useDeleteStock } from 'application/stock';
+import { usePatchStock, useDeleteStock } from 'application/actions/stock';
 import { useHistory } from 'react-router';
 import { QueryStatus } from 'react-query';
+import { StockType } from 'domain/constants';
 
 const ConnectedForm = () => {
   const history = useHistory();
   const id = useId();
   const {
-    data: [
-      stock,
-    ] = [],
+    data: stock,
   } = useStock(
     {
       id,
-      type: 'larder',
+      type: StockType.LARDER,
     },
     {
       suspense: true,
@@ -58,7 +57,7 @@ const ConnectedForm = () => {
     } = parseSearch(amount);
     // TODO: handle errors
     await mutate({
-      type: 'larder',
+      type: StockType.LARDER,
       id,
       name,
       category,
@@ -71,7 +70,7 @@ const ConnectedForm = () => {
 
   const onDelete = useCallback(async() => {
     await deleteStock({
-      type: 'larder',
+      type: StockType.LARDER,
       id,
     });
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Stock } from 'core';
 import { Filter } from 'core/larder';
-import { usePatchStock } from 'application/stock';
-import { useCategory } from 'domain/queries/categories';
-import { useIngredient } from 'domain/queries/ingredients';
+import { usePatchStock } from 'application/actions/stock';
+import { useCategory } from 'application/queries/categories';
+import { useIngredient } from 'application/queries/ingredients';
 import { enhance } from 'presentation/hocs';
 import Item from './Item';
 

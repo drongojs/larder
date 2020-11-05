@@ -5,23 +5,19 @@ import {
   useGrouped,
   useSearch,
 } from './hooks';
-import { useRegister } from 'react-jpex';
-import larder from 'infrastructure/stock';
-import ingredients from 'infrastructure/ingredients';
-import categories from 'infrastructure/categories';
 import { enhance } from 'presentation/hocs';
-import { useStock } from 'domain/queries/stock';
+import { useSearchStock } from 'application/queries/stock';
 import { useId, parseSearch } from 'domain/selectors';
 import { useHistory } from 'react-router';
+import { StockType } from 'domain/constants';
 
 const ConnectedHome = () => {
-  useRegister(larder, ingredients, categories);
   const [ filter, setFilter ] = useFilter();
   const [ grouped, toggleGrouped ] = useGrouped();
   const [ search, setSearch ] = useSearch();
   const { name: query } = useMemo(() => parseSearch(search), [ search ]);
-  const stockQuery = useStock({
-    type: 'larder',
+  const stockQuery = useSearchStock({
+    type: StockType.LARDER,
     search: query,
   });
   const id = useId();

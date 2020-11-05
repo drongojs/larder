@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Modal, CircularProgress, useTheme } from '@material-ui/core';
 import { enhance } from 'presentation/hocs';
-import Form from 'presentation/modules/larder/update/Form';
+import Form from 'presentation/forms/larder/Update';
 
 const Loader = () => (
   <div

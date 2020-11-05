@@ -10,13 +10,12 @@ import {
   Formik,
   Form,
   Field,
-  useFormikContext,
 } from 'formik';
 import { Link } from 'react-router-dom';
 import { Stock } from 'core/larder';
 import { enhance } from 'presentation/hocs';
 import { formatQuantity } from 'domain/selectors';
-import CategoryField from '../CategoryField';
+import CategoryField from './CategoryField';
 import { QueryStatus } from 'react-query';
 
 interface Props extends Omit<Stock, 'type'> {
@@ -25,14 +24,8 @@ interface Props extends Omit<Stock, 'type'> {
   onDelete: () => any,
 }
 
-const Temp = () => {
-  const { values } = useFormikContext();
-  return (
-    <pre>
-      {JSON.stringify(values, null, 2)}
-    </pre>
-  );
-};
+// TODO: disable fields/buttons when submitting
+// TODO: disable fields/buttons when deleting
 
 const EditForm = (props: Props) => {
   const initialValues = {
@@ -44,7 +37,7 @@ const EditForm = (props: Props) => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={props.onSubmit }
+      onSubmit={props.onSubmit}
     >
       <Form>
         <Box mb={2}>
@@ -82,7 +75,8 @@ const EditForm = (props: Props) => {
           </Grid>
           <Box>
             <Grid container>
-              <Grid item xs={12}>
+              <Grid item xs={false} md={3}/>
+              <Grid item xs={12} md={3}>
                 <Button
                   type="submit"
                   variant="contained"
@@ -93,7 +87,7 @@ const EditForm = (props: Props) => {
                   Save
                 </Button>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={3}>
                 <Button
                   variant="outlined"
                   fullWidth
@@ -104,7 +98,7 @@ const EditForm = (props: Props) => {
                   Cancel
                 </Button>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={3}>
                 <Button
                   variant="text"
                   fullWidth
@@ -117,7 +111,6 @@ const EditForm = (props: Props) => {
               </Grid>
             </Grid>
           </Box>
-          <Temp/>
         </Box>
       </Form>
     </Formik>

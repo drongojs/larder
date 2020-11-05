@@ -22,6 +22,8 @@ interface Props extends Omit<Stock, 'type'> {
   onClose: () => any,
 }
 
+// TODO: on modal view, push buttons to the bottom of the container
+
 const Form = ({
   hasOwnUnit,
   value,
@@ -39,12 +41,19 @@ const Form = ({
 
   return (
     <form
+      style={{ height: '100%' }}
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit(true);
       }}
     >
-      <Box>
+      <Box
+        style={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <Typography variant="h4">
           <Grid container>
             <Grid item xs md={1}>
@@ -64,7 +73,7 @@ const Form = ({
             marginBottom: 12,
           }}
         />
-        <Box mb={2}>
+        <Box mb={2} style={{ flexGrow: 1 }}>
           <TextField
             fullWidth
             label="Amount"
@@ -74,7 +83,7 @@ const Form = ({
             InputProps={{
               endAdornment: !hasOwnUnit && (
                 <InputAdornment position="end">
-                  <span>g</span>
+                  <span>{unit}</span>
                 </InputAdornment>
               ),
             }}

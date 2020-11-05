@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCategory } from 'domain/queries/categories';
+import { useCategory } from 'application/queries/categories';
 import { ListSubheader } from '@material-ui/core';
 import { Stock } from 'core';
 import { enhance } from 'presentation/hocs';

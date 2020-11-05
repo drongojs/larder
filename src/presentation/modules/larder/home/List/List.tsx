@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { List as MuiList } from '@material-ui/core';
+import { List as MuiList, ListItemText, ListItem } from '@material-ui/core';
 import { Stock } from 'core';
 import Item from './ConnectedItem';
 import ItemPending from './ItemPending';
@@ -12,6 +12,16 @@ interface Props {
 }
 
 const List = ({ stock, filter }: Props) => {
+  if (!stock.length) {
+    return (
+      <MuiList>
+        <ListItem>
+          <ListItemText primary="No results"/>
+        </ListItem>
+      </MuiList>
+    );
+  }
+
   return (
     <MuiList>
       {stock.map((stock) => (

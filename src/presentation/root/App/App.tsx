@@ -3,18 +3,14 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 import {
-  Switch,
-  Route,
-} from 'react-router';
-import {
   Provider as JpexProvider,
 } from 'react-jpex';
 import {
   ReactQueryConfigProvider,
 } from 'react-query';
 import baseJpex from 'jpex';
-import Larder from 'presentation/pages/Larder';
 import { enhance } from 'presentation/hocs';
+import Core from './Core';
 
 const jpex = baseJpex.extend({
   inherit: false,
@@ -36,11 +32,7 @@ const App = () => (
   >
     <JpexProvider value={jpex}>
       <Router>
-        <Switch>
-          <Route path="/larder">
-            <Larder/>
-          </Route>
-        </Switch>
+        <Core/>
       </Router>
     </JpexProvider>
   </ReactQueryConfigProvider>

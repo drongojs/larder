@@ -4,5 +4,3 @@ export interface Ingredient {
   name: string,
   unit?: string,
 }
-
-export type FetchIngredient = (args: { id: string }) => Promise<Ingredient>;

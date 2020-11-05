@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from 'presentation/modules/Page';
-import Form from 'presentation/modules/larder/edit/Form';
+import Form from 'presentation/forms/larder/Edit';
 import { enhance } from 'presentation/hocs';
 
 const Edit = () => (

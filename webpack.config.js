@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssLoader = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -42,6 +43,14 @@ module.exports = {
     new MiniCssLoader({
       filename: '[name].[hash].css',
       chunkFilename: '[id].[hash].css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/assets',
+          to: '',
+        },
+      ],
     }),
   ],
   devServer: prod ? void 0 : {

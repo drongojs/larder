@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import Form from './Form';
 import { enhance } from 'presentation/hocs';
-import { useStock } from 'domain/queries/stock';
-import { useIngredient } from 'domain/queries/ingredients';
-import { useCategory } from 'domain/queries/categories';
+import { useStock } from 'application/queries/stock';
+import { useIngredient } from 'application/queries/ingredients';
+import { useCategory } from 'application/queries/categories';
 import { useId, parseSearch } from 'domain/selectors';
-import { useAddQuantity } from 'application/stock';
+import { useAddQuantity } from 'application/actions/stock';
+import { StockType } from 'domain/constants';
 
 interface Props {
   onClose: () => any,
@@ -14,12 +15,10 @@ interface Props {
 const ConnectedForm = ({ onClose }: Props) => {
   const id = useId();
   const {
-    data: [
-      stock,
-    ] = [],
+    data: stock,
   } = useStock(
     {
-      type: 'larder',
+      type: StockType.LARDER,
       id,
     },
     {
@@ -29,7 +28,10 @@ const ConnectedForm = ({ onClose }: Props) => {
   const { data: category } = useCategory({ id: stock.category }, { suspense: true });
   const { data: ingredient } = useIngredient({ id: stock.id }, { suspense: true });
   const [ value, setValue ] = useState('');
-  const [ mutate, { status } ] = useAddQuantity();
+  const [ mutate, { status } ] = useAddQuantity({
+    id: stock.id,
+    type: StockType.LARDER,
+  });
   const onChange = useCallback((evt: any) => {
     setValue(evt.target.value);
   }, [ setValue ]);
@@ -40,8 +42,6 @@ const ConnectedForm = ({ onClose }: Props) => {
   
   const onSubmit = useCallback(async(positive: boolean) => {
     await mutate({
-      type: 'larder',
-      id,
       unit,
       quantity: positive ? quantity : 0 - quantity,
     });

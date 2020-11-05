@@ -11,10 +11,10 @@ export const useId = () => {
 const allUnits: string[] = convert().possibilities();
 
 export const formatQuantity = (quantity: number, fromUnit?: string, toUnit?: string) => {
-  if (fromUnit == null) {
+  if (!fromUnit) {
     return `${quantity}`;
   }
-  if (toUnit == null) {
+  if (!toUnit) {
     const {
       unit: outUnit,
       val,
@@ -38,7 +38,7 @@ export const parseSearch = (search: string): ParsedSearch => {
   return search
     .split(' ')
     .reduce((acc, part) => {
-      if (acc.unit == null && allUnits.includes(part)) {
+      if (!acc.unit && allUnits.includes(part)) {
         acc.unit = part;
         return acc;
       }
@@ -55,7 +55,7 @@ export const parseSearch = (search: string): ParsedSearch => {
       if (acc.quantity == null) {
         acc.quantity = Number(match[1]);
       }
-      if (match[2] && acc.unit == null && allUnits.includes(match[2])) {
+      if (match[2] && !acc.unit && allUnits.includes(match[2])) {
         acc.unit = match[2];
       }
       return acc;

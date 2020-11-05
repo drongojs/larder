@@ -3,12 +3,12 @@ import { enhance } from 'presentation/hocs';
 import {
   useCreateStock,
   useAddQuantity,
-} from 'application/stock';
+} from 'application/actions/stock';
 import { parseSearch } from 'domain/selectors';
-import { useStock } from 'domain/queries/stock';
 import Search from './Search';
 import { QueryStatus, QueryResult } from 'react-query';
 import { Stock } from 'core';
+import { StockType } from 'domain/constants';
 
 interface Props {
   stockQuery: QueryResult<Stock[]>,
@@ -19,7 +19,10 @@ interface Props {
 const ConnectedSearch = (props: Props) => {
   const [ waitingToSubmit, setWaitingToSubmit ] = useState(false);
   const [ create, { status: createStatus, reset: resetCreate } ] = useCreateStock();
-  const [ update, { status: updateStatus, reset: resetUpdate} ] = useAddQuantity();
+  const [ update, { status: updateStatus, reset: resetUpdate} ] = useAddQuantity({
+    type: StockType.LARDER,
+    id: props.stockQuery.data?.[0]?.id,
+  });
   const status = createStatus === QueryStatus.Idle ? updateStatus : createStatus;
   const {
     name,
@@ -47,15 +50,13 @@ const ConnectedSearch = (props: Props) => {
     }
     if (results?.length) {
       await update({
-        type: 'larder',
-        id: results[0].id,
         quantity,
         unit,
       });
       resetUpdate();
     } else {
       await create({
-        type: 'larder',
+        type: StockType.LARDER,
         name,
         quantity,
         unit,

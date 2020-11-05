@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from 'presentation/modules/Page';
-import Form from 'presentation/modules/larder/update/Form';
+import Form from 'presentation/forms/larder/Update';
 
 interface Props {
   onClose: () => any,

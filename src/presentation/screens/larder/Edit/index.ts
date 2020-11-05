@@ -1,1 +1,1 @@
-export { default } from './ConnectedEdit';
+export { default } from './Edit';

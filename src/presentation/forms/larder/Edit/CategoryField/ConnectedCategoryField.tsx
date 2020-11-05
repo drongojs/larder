@@ -1,8 +1,8 @@
 import React from 'react';
 import CategoryField, { Props as InnerProps } from './CategoryField';
 import { enhance } from 'presentation/hocs';
-import { useCreateCategory } from 'application/categories';
-import { useCategories } from 'domain/queries/categories';
+import { useCreateCategory } from 'application/actions/categories';
+import { useCategories } from 'application/queries/categories';
 import { useFormikContext } from 'formik';
 
 type OuterProps = Omit<InnerProps, 'categories' | 'onCreate'>

@@ -1,11 +1,9 @@
-import React, { useMemo } from 'react';
-import { useStock } from 'domain/queries/stock';
+import React from 'react';
 import { enhance } from 'presentation/hocs';
 import { Filter } from 'core/larder';
 import List from './List';
 import GroupList from './GroupList';
-import { parseSearch } from 'domain/selectors';
-import { QueryResult, QueryStatus } from 'react-query';
+import { QueryResult } from 'react-query';
 import { Stock } from 'core';
 
 interface Props {

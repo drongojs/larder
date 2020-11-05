@@ -5,7 +5,7 @@ import { Filter } from 'core/larder';
 import { useQueryState } from 'presentation/hooks';
 
 export const useGrouped = () => {
-  const [ state, setState ] = useQueryState<string>('grouped', 'false');
+  const [ state, setState ] = useQueryState('grouped', 'false');
 
   const grouped = state === 'true';
   const toggleGrouped = useCallback(() => {
@@ -19,9 +19,9 @@ export const useGrouped = () => {
 };
 
 export const useFilter = () => {
-  return useQueryState<Filter>('filter', 'everything');
+  return useQueryState('filter', 'everything') as any as Filter;
 };
 
 export const useSearch = () => {
-  return useQueryState<string>('q', '');
+  return useQueryState('q', '');
 };
