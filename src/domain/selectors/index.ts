@@ -14,6 +14,9 @@ export const formatQuantity = (quantity: number, fromUnit?: string, toUnit?: str
   if (!fromUnit) {
     return `${quantity}`;
   }
+  if (quantity === 0) {
+    return `${quantity}${toUnit || fromUnit}`;
+  }
   if (!toUnit) {
     const {
       unit: outUnit,
@@ -35,29 +38,22 @@ type ParsedSearch = {
   unit: string,
 };
 export const parseSearch = (search: string): ParsedSearch => {
-  return search
-    .split(' ')
-    .reduce((acc, part) => {
-      if (!acc.unit && allUnits.includes(part)) {
-        acc.unit = part;
-        return acc;
-      }
-      const match = part.match(/^(-?\d+)(.*)$/i);
-      if (match == null) {
-        acc.name = `${acc.name || ''} ${part}`.trim();
-        return acc;
-      }
-      if (match[2] && !allUnits.includes(match[2])) {
-        acc.name = `${acc.name || ''} ${part}`.trim();
-        return acc;
-      }
-      
-      if (acc.quantity == null) {
-        acc.quantity = Number(match[1]);
-      }
-      if (match[2] && !acc.unit && allUnits.includes(match[2])) {
-        acc.unit = match[2];
-      }
-      return acc;
-    }, { search } as ParsedSearch);
+  const result = { search } as ParsedSearch;
+  const match = search.match(/^(.*? ?)(-?(?:[\d./])+)([a-zA-Z]*)( ?.*)$/);
+  if (match == null) {
+    result.name = search;
+    return result;
+  }
+  if (match[1] || match[4]) {
+    result.name = `${match[1]}${match[4]}`.trim();
+  }
+  if (match[2]) {
+    const arr = match[2].split('/');
+    const quantity = Number(arr[0]) / Number(arr[1] ?? 1);
+    result.quantity = quantity;
+  }
+  if (match[3] && allUnits.includes(match[3])) {
+    result.unit = match[3];
+  }
+  return result;
 };

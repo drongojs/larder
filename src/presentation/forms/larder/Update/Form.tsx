@@ -9,7 +9,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core';
-import { Stock } from 'core/larder';
+import { Stock } from 'domain/core/larder';
 import { formatQuantity } from 'domain/selectors';
 import { QueryStatus } from 'react-query';
 

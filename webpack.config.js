@@ -22,7 +22,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?/,
-        use: [ 'babel-loader' ],
+        use: [ 'babel-loader', 'linaria/loader' ],
       },
       {
         test: /\.css/,

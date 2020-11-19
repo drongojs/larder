@@ -8,7 +8,7 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core';
-import { Filter } from 'core/larder';
+import { Filter } from 'domain/core/larder';
 
 const GroupItem = ({
   grouped,

@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { enhance } from 'presentation/hocs';
 import { List as MuiList } from '@material-ui/core';
-import { Stock } from 'core';
-import { Filter } from 'core/larder';
+import { Stock } from 'domain/core';
+import { Filter } from 'domain/core/larder';
 import Group from './Group';
 
 interface Props {

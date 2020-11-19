@@ -13,6 +13,7 @@ module.exports = {
 
       },
     ],
+    'linaria/babel',
   ],
   plugins: [
     [ 'babel-plugin-module-resolver', {

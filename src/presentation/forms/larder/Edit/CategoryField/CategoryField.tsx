@@ -8,7 +8,7 @@ import {
   Icon,
   InputAdornment,
 } from '@material-ui/core';
-import { Category } from 'core';
+import { Category } from 'domain/core';
 import { enhance } from 'presentation/hocs';
 
 const filter = createFilterOptions<Category>();

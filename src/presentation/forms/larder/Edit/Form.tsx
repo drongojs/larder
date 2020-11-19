@@ -12,7 +12,7 @@ import {
   Field,
 } from 'formik';
 import { Link } from 'react-router-dom';
-import { Stock } from 'core/larder';
+import { Stock } from 'domain/core/larder';
 import { enhance } from 'presentation/hocs';
 import { formatQuantity } from 'domain/selectors';
 import CategoryField from './CategoryField';

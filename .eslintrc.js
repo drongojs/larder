@@ -52,4 +52,10 @@ module.exports = {
       "extensions": [ ".ts", ".tsx", ".js" ],
     },
   },
+  "globals": {
+    "test": "readonly",
+    "describe": "readonly",
+    "expect": "readonly",
+    "jest": "readonly",
+  },
 };

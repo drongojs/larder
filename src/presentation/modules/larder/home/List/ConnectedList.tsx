@@ -1,10 +1,10 @@
 import React from 'react';
 import { enhance } from 'presentation/hocs';
-import { Filter } from 'core/larder';
+import { Filter } from 'domain/core/larder';
 import List from './List';
 import GroupList from './GroupList';
 import { QueryResult } from 'react-query';
-import { Stock } from 'core';
+import { Stock } from 'domain/core';
 
 interface Props {
   filter: Filter,

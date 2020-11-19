@@ -5,9 +5,9 @@ import List, { ListPending } from 'presentation/modules/larder/home/List';
 import renderOptions from 'presentation/modules/larder/home/Options';
 import UpdateModal from 'presentation/modules/larder/update/Modal';
 import { enhance } from 'presentation/hocs';
-import { Filter } from 'core/larder';
+import { Filter } from 'domain/core/larder';
 import { QueryResult } from 'react-query';
-import { Stock } from 'core';
+import { Stock } from 'domain/core';
 
 interface Props {
   id?: string,

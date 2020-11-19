@@ -3,11 +3,11 @@ import { enhance } from 'presentation/hocs';
 import {
   useCreateStock,
   useAddQuantity,
-} from 'application/actions/stock';
+} from 'adapters/actions/stock/xindex';
 import { parseSearch } from 'domain/selectors';
 import Search from './Search';
 import { QueryStatus, QueryResult } from 'react-query';
-import { Stock } from 'core';
+import { Stock } from 'domain/core';
 import { StockType } from 'domain/constants';
 
 interface Props {

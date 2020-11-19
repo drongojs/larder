@@ -6,7 +6,7 @@ import {
   useSearch,
 } from './hooks';
 import { enhance } from 'presentation/hocs';
-import { useSearchStock } from 'application/queries/stock';
+import { useSearchStock } from 'adapters/queries/stock';
 import { useId, parseSearch } from 'domain/selectors';
 import { useHistory } from 'react-router';
 import { StockType } from 'domain/constants';

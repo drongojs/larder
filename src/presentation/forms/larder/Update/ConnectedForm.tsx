@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import Form from './Form';
 import { enhance } from 'presentation/hocs';
-import { useStock } from 'application/queries/stock';
-import { useIngredient } from 'application/queries/ingredients';
-import { useCategory } from 'application/queries/categories';
+import { useStock } from 'adapters/queries/stock';
+import { useIngredient } from 'adapters/queries/ingredients';
+import { useCategory } from 'adapters/queries/categories';
 import { useId, parseSearch } from 'domain/selectors';
-import { useAddQuantity } from 'application/actions/stock';
+import { useAddQuantity } from 'adapters/actions/stock/xindex';
 import { StockType } from 'domain/constants';
 
 interface Props {

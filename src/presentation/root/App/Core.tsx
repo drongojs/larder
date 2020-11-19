@@ -5,7 +5,7 @@ import {
 } from 'react-router';
 import Larder from 'presentation/pages/Larder';
 import { enhance } from 'presentation/hocs';
-import driverDi from 'infrastructure/driver';
+import driverDi from 'ports/driver';
 import { useRegister } from 'react-jpex';
 
 const Core = () => {

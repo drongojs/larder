@@ -1,7 +1,7 @@
 import {
   useCallback,
 } from 'react';
-import { Filter } from 'core/larder';
+import { Filter } from 'domain/core/larder';
 import { useQueryState } from 'presentation/hooks';
 
 export const useGrouped = () => {

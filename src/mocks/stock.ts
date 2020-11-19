@@ -1,25 +1,30 @@
 import { rest } from 'msw';
 import { categories } from './categories';
-import { ingredients } from './ingredients';
+import { Stock } from 'domain/core';
+import convert from 'convert-units';
 
-const stock = [
+const stock: Stock[] = [
   {
-    type: 'larder' as const,
     id: 'peas',
-    category: 'frozen',
+    categoryId: 'frozen',
     quantity: 500,
+    unit: 'g',
+    name: 'Peas',
+    image: 'http://lorempixel.com/100/100/food/',
   },
   {
-    type: 'larder' as const,
     id: 'chips',
-    category: 'frozen',
+    categoryId: 'frozen',
     quantity: 1,
+    unit: 'kg',
+    name: 'Chips',
+    image: 'http://lorempixel.com/100/100/food/',
   },
 ];
 
-const getOne = rest.get('/api/stock/:type/item/:id', (req, res, ctx) => {
-  const { type, id } = req.params;
-  const s = stock.find((s) => s.type === type && s.id === id);
+const getOne = rest.get('/api/stock/item/:id', (req, res, ctx) => {
+  const { id } = req.params;
+  const s = stock.find((s) => s.id === id);
 
   return res(
     ctx.delay(500),
@@ -28,17 +33,15 @@ const getOne = rest.get('/api/stock/:type/item/:id', (req, res, ctx) => {
   );
 });
 
-const getAll = rest.get('/api/stock/:type/items', (req, res, ctx) => {
-  const { type } = req.params;
+const getAll = rest.get('/api/stock/items', (req, res, ctx) => {
   const search = req.url.searchParams.get('q');
 
-  let filtered = stock.filter((s) => s.type === type);
+  let filtered = stock;
 
   if (search) {
     filtered = filtered.filter((stock) => {
-      const ingredient = ingredients.find((i) => i.id === stock.id);
-      const category = categories.find((c) => c.id === ingredient?.category);
-      if (ingredient?.name.toLowerCase().includes(search.toLowerCase())) {
+      const category = categories.find((c) => c.id === stock?.categoryId);
+      if (stock?.name.toLowerCase().includes(search.toLowerCase())) {
         return true;
       }
       if (category?.name.toLowerCase().includes(search.toLowerCase())) {
@@ -55,32 +58,39 @@ const getAll = rest.get('/api/stock/:type/items', (req, res, ctx) => {
   );
 });
 
-const post = rest.post<any>('/api/stock/:type/items', (req, res, ctx) => {
-  const { type } = req.params;
-  const {
-    name,
+const post = rest.post<any>('/api/stock/items', (req, res, ctx) => {
+  let {
+    categoryId = '',
+    image = 'http://lorempixel.com/100/100/food/',
+    name = 'Unknown',
     quantity = 1,
-    unit,
+    unit = null,
   } = req.body;
 
-  let ingredient = ingredients.find((i) => i.name.toLowerCase() === name.toLowerCase());
-  if (ingredient == null) {
-    ingredient = {
+  let item = stock.find((s) => s.name.toLowerCase() === name.toLowerCase());
+
+  if (item == null) {
+    item = {
       id: name.toLowerCase(),
       name,
       unit,
-      category: '',
+      quantity,
+      categoryId,
+      image,
     };
-    ingredients.push(ingredient);
-  }
-  const item = {
-    type,
-    id: ingredient.id,
-    category: ingredient.category,
-    quantity,
-  };
+    stock.push(item);
+  } else {
+    if (!unit) {
+      unit = item.unit;
+    }
+    if (unit !== item.unit) {
+      quantity = convert(quantity).from(unit).to(item.unit as any);
+    }
 
-  stock.push(item);
+    quantity += item.quantity;
+
+    item.quantity = quantity;
+  }
 
   return res(
     ctx.delay(500),
@@ -89,32 +99,25 @@ const post = rest.post<any>('/api/stock/:type/items', (req, res, ctx) => {
   );
 });
 
-const patch = rest.patch<any>('/api/stock/:type/item/:id', (req, res, ctx) => {
-  const { id, type } = req.params;
+const patch = rest.patch<any>('/api/stock/item/:id', (req, res, ctx) => {
+  const { id } = req.params;
   const {
-    category,
+    categoryId,
     name,
     quantity,
     unit,
   } = req.body;
 
-  const item = stock.find((s) => s.type === type && s.id === id);
+  const item = stock.find((s) => s.id === id);
   if (item == null) {
     return res(
       ctx.status(404),
     );
   }
-  const ingredient = ingredients.find((i) => i.id === item.id);
-  if (ingredient == null) {
-    return res(
-      ctx.status(404),
-    );
-  }
 
-  ingredient.category = category ?? ingredient.category;
-  ingredient.name = name ?? ingredient.name;
-  ingredient.unit = unit ?? ingredient.unit;
-  item.category = ingredient.category;
+  item.categoryId = categoryId ?? item.categoryId;
+  item.name = name ?? item.name;
+  item.unit = unit ?? item.unit;
   item.quantity = quantity ?? item.quantity;
 
   return res(
@@ -124,9 +127,9 @@ const patch = rest.patch<any>('/api/stock/:type/item/:id', (req, res, ctx) => {
   );
 });
 
-const deleteOne = rest.delete('/api/stock/:type/item/:id', (req, res, ctx) => {
-  const { type, id } = req.params;
-  const item = stock.find((s) => s.type === type && s.id === id);
+const deleteOne = rest.delete('/api/stock/item/:id', (req, res, ctx) => {
+  const { id } = req.params;
+  const item = stock.find((s) => s.id === id);
   if (item == null) {
     return res(ctx.status(404));
   }

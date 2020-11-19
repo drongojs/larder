@@ -8,7 +8,7 @@
     "noEmit": true,
     "declaration": false,
     "esModuleInterop": true,
-    "types": [ "node" ],
+    "types": [ "node", "jest" ],
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {

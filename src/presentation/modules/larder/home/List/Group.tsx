@@ -1,10 +1,10 @@
 import React from 'react';
-import { useCategory } from 'application/queries/categories';
+import { useCategory } from 'adapters/queries/categories';
 import { ListSubheader } from '@material-ui/core';
-import { Stock } from 'core';
+import { Stock } from 'domain/core';
 import { enhance } from 'presentation/hocs';
 import Item from './ConnectedItem';
-import { Filter } from 'core/larder';
+import { Filter } from 'domain/core/larder';
 
 interface Props {
   id: string,

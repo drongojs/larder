@@ -10,7 +10,7 @@ import {
   Link,
 } from 'react-router-dom';
 import Menu from './Menu';
-import { Stock, Filter } from 'core/larder';
+import { Stock, Filter } from 'domain/core/larder';
 import { formatQuantity } from 'domain/selectors';
 import { enhance } from 'presentation/hocs';
 

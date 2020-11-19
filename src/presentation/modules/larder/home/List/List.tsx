@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import { List as MuiList, ListItemText, ListItem } from '@material-ui/core';
-import { Stock } from 'core';
+import { Stock } from 'domain/core';
 import Item from './ConnectedItem';
 import ItemPending from './ItemPending';
 import { enhance } from 'presentation/hocs';
-import { Filter } from 'core/larder';
+import { Filter } from 'domain/core/larder';
 
 interface Props {
   stock: Stock[],

@@ -1,21 +1,20 @@
-import test from 'ava';
 import { formatQuantity } from '../';
 
-test('formats a quantity', (t) => {
-  t.is(formatQuantity(50), '50');
+test('formats a quantity', () => {
+  expect(formatQuantity(50)).toBe('50');
 });
 
-test('formats a quantity and unit to "best"', (t) => {
-  t.is(formatQuantity(50, 'g'), '50g');
-  t.is(formatQuantity(1000, 'g'), '1kg');
-  t.is(formatQuantity(0.5, 'kg'), '500g');
+test('formats a quantity and unit to "best"', () => {
+  expect(formatQuantity(50, 'g')).toBe('50g');
+  expect(formatQuantity(1000, 'g')).toBe('1kg');
+  expect(formatQuantity(0.5, 'kg')).toBe('500g');
 });
 
-test('formats a quantity to a specific unit', (t) => {
-  t.is(formatQuantity(500, 'g', 'kg'), '0.5kg');
-  t.is(formatQuantity(2, 'kg', 'g'), '2000g');
+test('formats a quantity to a specific unit', () => {
+  expect(formatQuantity(500, 'g', 'kg')).toBe('0.5kg');
+  expect(formatQuantity(2, 'kg', 'g')).toBe('2000g');
 });
 
-test('formats a quantity to the same unit', (t) => {
-  t.is(formatQuantity(1000, 'g', 'g'), '1000g');
+test('formats a quantity to the same unit', () => {
+  expect(formatQuantity(1000, 'g', 'g')).toBe('1000g');
 });
