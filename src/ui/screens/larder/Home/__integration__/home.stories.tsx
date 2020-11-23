@@ -15,11 +15,11 @@ export const larder = () => {
   return (
     <Provider
       url="/larder"
-      inject={(jpex) => {
+      inject={jpex => {
         jpex.constant<Search>(() => {
           return Promise.resolve(stock);
         });
-        jpex.constant<Create>((args) => new Promise((res) => {
+        jpex.constant<Create>(args => new Promise(res => {
           stock = [
             ...stock,
             {

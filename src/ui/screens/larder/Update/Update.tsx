@@ -6,6 +6,7 @@ import { Resource, Status } from '@drongo/recess';
 import { Stock } from 'domain/core';
 import { Spinner } from 'ui/elements/Progress';
 import UpdateForm from 'ui/forms/larder/Update';
+import { Flex } from 'ui/elements/Flex';
 
 interface Props {
   resource: Resource<Stock>,
@@ -20,16 +21,13 @@ const styles = {
     width: 100%;
     height: 100%;
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   `,
 };
 
 const Loading = () => (
-  <div className={styles.loading}>
+  <Flex justify="center" align="center" className={styles.loading}>
     <Spinner/>
-  </div>
+  </Flex>
 );
 
 const UpdateScreen = ({

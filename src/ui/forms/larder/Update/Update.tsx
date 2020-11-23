@@ -1,20 +1,9 @@
 import React from 'react';
-import { css } from 'linaria';
 import { Form } from 'formik';
 import AmountField from 'ui/modules/larder/update/AmountField';
 import Buttons from 'ui/modules/larder/update/Buttons';
 import Summary from 'ui/modules/larder/update/Summary';
-
-const styles = {
-  root: css`
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  `,
-  form: css`
-    flex-grow: 1;
-  `,
-};
+import { Flex, Child } from 'ui/elements/Flex';
 
 interface Props {
   negate: boolean,
@@ -34,8 +23,12 @@ const UpdateForm = ({
   onNegateClick,
 }: Props) => {
   return (
-    <Form className={styles.root}>
-      <div className={styles.form}>
+    <Flex
+      as={Form}
+      direction="column"
+      grow={true}
+    >
+      <Child>
         <AmountField
           baseUnit={baseUnit}
           submitting={submitting}
@@ -48,9 +41,9 @@ const UpdateForm = ({
           baseUnit={baseUnit}
           quantity={quantity}
         />
-      </div>
+      </Child>
       <Buttons submitting={submitting}/>
-    </Form>
+    </Flex>
   );
 };
 

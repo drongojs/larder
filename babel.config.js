@@ -16,6 +16,7 @@ module.exports = {
     'linaria/babel',
   ],
   plugins: [
+    'babel-plugin-jsx-control-statements',
     [ 'babel-plugin-module-resolver', {
       root: [ resolve('./src') ],
       extensions: [ '.ts', '.tsx' ],

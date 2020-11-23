@@ -72,7 +72,9 @@ function withRipple<P extends BaseProps>(C: ComponentType<P>) {
         {...props}
         onClick={handleClick}
       >
-        {clicked && <span className={styles.root}/>}
+        <If condition={clicked}>
+          <span className={styles.root}/>
+        </If>
         {children}
       </C>
     );

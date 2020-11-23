@@ -5,14 +5,14 @@ export default {
   title: 'modules/larder/home/Search',
 };
 
-export const basic = (props) => {
+export const basic = props => {
   const [ value, setValue ] = useState('');
   return (
     <div>
       <Search
         value={value}
         onChange={setValue}
-        onSubmit={(e) => e.preventDefault}
+        onSubmit={e => e.preventDefault}
         {...props}
       />
     </div>

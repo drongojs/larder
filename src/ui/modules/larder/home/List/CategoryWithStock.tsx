@@ -17,7 +17,7 @@ const CategoryWithStock = ({
   stock,
   onClick,
 }: Props) => {
-  const category = resource.data.find((category) => category.id === id);
+  const category = resource.data.find(category => category.id === id);
   const name = category?.name || id || 'Misc';
 
   return (

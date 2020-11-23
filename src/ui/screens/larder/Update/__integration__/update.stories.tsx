@@ -14,9 +14,9 @@ export const larder_peas = () => {
     <Provider
       url="/larder/peas"
       route="/larder/:id"
-      inject={(jpex) => {
+      inject={jpex => {
         jpex.constant<Read>(({ id }) => {
-          return Promise.resolve(stock.find((stock) => stock.id === id));
+          return Promise.resolve(stock.find(stock => stock.id === id));
         });
         jpex.constant<IUpdate>(() => {
           return Promise.resolve(void 0);

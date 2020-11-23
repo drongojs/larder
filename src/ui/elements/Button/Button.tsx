@@ -125,6 +125,7 @@ const Button = ({
   kind = Kind.CTA,
   pending,
   children,
+  onClick,
   ...props
 }: Props) => {
   const styles = getStyles({
@@ -139,6 +140,11 @@ const Button = ({
   return (
     <Component
       className={styles.root}
+      onClick={(e: any) => {
+        if (!pending) {
+          onClick?.(e);
+        }
+      }}
       {...props}
     >
       {children}

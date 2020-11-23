@@ -2,12 +2,12 @@ import React from 'react';
 import { css } from 'linaria';
 import { useSpring, animated } from 'react-spring';
 import { formatQuantity } from 'domain/selectors';
+import { Flex } from 'ui/elements/Flex';
+import { toPrecision } from 'crosscutting/utils';
 
 const styles = {
   root: css`
     margin-top: 2rem;
-    display: flex;
-    align-items: center;
     font-size: 2rem;
   `,
 };
@@ -24,11 +24,11 @@ const Summary = ({
   const spring = useSpring({ quantity });
 
   return (
-    <div className={styles.root}>
+    <Flex align="center" className={styles.root}>
       <animated.span>
-        {spring.quantity.interpolate((quantity) => formatQuantity(Math.round(quantity), baseUnit))}
+        {spring.quantity.interpolate(quantity => formatQuantity(toPrecision(quantity, 2), baseUnit))}
       </animated.span>
-    </div>
+    </Flex>
   );
 };
 

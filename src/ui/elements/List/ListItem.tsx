@@ -1,5 +1,5 @@
 import React, { LiHTMLAttributes } from 'react';
-import { css } from 'linaria';
+import { css, cx } from 'linaria';
 import theme from 'ui/theme';
 import Color from 'color';
 import { withRipple } from 'ui/elements/Ripple';
@@ -29,7 +29,7 @@ const ListItem = (props: LiHTMLAttributes<HTMLLIElement>) => {
     <li
       tabIndex={0}
       {...props}
-      className={[ styles.root, props.className ].join(' ')}
+      className={cx(styles.root, props.className)}
     >
       {props.children}
     </li>

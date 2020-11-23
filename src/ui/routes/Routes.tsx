@@ -5,24 +5,27 @@ import Larder from './Larder';
 
 const Routes = () => {
   const location = useLocation();
-  const transitions = useTransition(location, (location) => location.pathname, {
+  const transitions = useTransition(location, location => location.pathname, {
     from: {
       position: 'absolute',
       width: '100%',
       opacity: 0,
       transform: 'translate3d(100%,0,0)',
+      height: '100%',
     },
     enter: {
       position: 'absolute',
       width: '100%',
       opacity: 1,
       transform: 'translate3d(0%,0,0)',
+      height: '100%',
     },
     leave: {
       position: 'absolute',
       width: '100%',
       opacity: 0,
       transform: 'translate3d(-50%,0,0)',
+      height: '100%',
     },
   });
 
@@ -41,7 +44,7 @@ const Routes = () => {
         </Route>
       </Switch>
     </animated.div>
-  ));
+  )) as any as JSX.Element;
 };
 
 export default Routes;

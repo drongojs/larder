@@ -24,7 +24,7 @@ const stock: Stock[] = [
 
 const getOne = rest.get('/api/stock/item/:id', (req, res, ctx) => {
   const { id } = req.params;
-  const s = stock.find((s) => s.id === id);
+  const s = stock.find(s => s.id === id);
 
   return res(
     ctx.delay(500),
@@ -39,8 +39,8 @@ const getAll = rest.get('/api/stock/items', (req, res, ctx) => {
   let filtered = stock;
 
   if (search) {
-    filtered = filtered.filter((stock) => {
-      const category = categories.find((c) => c.id === stock?.categoryId);
+    filtered = filtered.filter(stock => {
+      const category = categories.find(c => c.id === stock?.categoryId);
       if (stock?.name.toLowerCase().includes(search.toLowerCase())) {
         return true;
       }
@@ -67,7 +67,7 @@ const post = rest.post<any>('/api/stock/items', (req, res, ctx) => {
     unit = null,
   } = req.body;
 
-  let item = stock.find((s) => s.name.toLowerCase() === name.toLowerCase());
+  let item = stock.find(s => s.name.toLowerCase() === name.toLowerCase());
 
   if (item == null) {
     item = {
@@ -106,9 +106,10 @@ const patch = rest.patch<any>('/api/stock/item/:id', (req, res, ctx) => {
     name,
     quantity,
     unit,
+    image,
   } = req.body;
 
-  const item = stock.find((s) => s.id === id);
+  const item = stock.find(s => s.id === id);
   if (item == null) {
     return res(
       ctx.status(404),
@@ -119,6 +120,7 @@ const patch = rest.patch<any>('/api/stock/item/:id', (req, res, ctx) => {
   item.name = name ?? item.name;
   item.unit = unit ?? item.unit;
   item.quantity = quantity ?? item.quantity;
+  item.image = image ?? item.image;
 
   return res(
     ctx.delay(500),
@@ -129,7 +131,7 @@ const patch = rest.patch<any>('/api/stock/item/:id', (req, res, ctx) => {
 
 const deleteOne = rest.delete('/api/stock/item/:id', (req, res, ctx) => {
   const { id } = req.params;
-  const item = stock.find((s) => s.id === id);
+  const item = stock.find(s => s.id === id);
   if (item == null) {
     return res(ctx.status(404));
   }

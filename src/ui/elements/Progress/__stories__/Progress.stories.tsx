@@ -7,7 +7,7 @@ export default {
   component: Progress,
 };
 
-export const basic = (props) => {
+export const basic = props => {
   return (
     <div>
       <Progress {...props}/>
@@ -21,7 +21,7 @@ basic.args = {
   size: 41,
 };
 
-export const spinner = (props) => {
+export const spinner = props => {
   return (
     <Spinner {...props}/>
   );

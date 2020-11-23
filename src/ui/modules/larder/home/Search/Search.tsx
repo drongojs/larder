@@ -47,7 +47,7 @@ const Search = ({
         placeholder="Search or add"
         autoComplete="off"
         value={value}
-        onChange={(evt) => onChange(evt.target.value)}
+        onChange={evt => onChange(evt.target.value)}
         suffix={(
           <Suffix className={submitting && styles.root}>
             <Icon submitting={submitting}/>

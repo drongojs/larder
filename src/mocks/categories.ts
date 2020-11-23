@@ -28,7 +28,7 @@ const getAll = rest.get('/api/categories', (req, res, ctx) => {
 
 const getOne = rest.get('/api/category/:id', (req, res, ctx) => {
   const { id } = req.params;
-  const category = categories.find((c) => c.id === id);
+  const category = categories.find(c => c.id === id);
   
   return res(
     ctx.delay(500),

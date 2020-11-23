@@ -2,6 +2,7 @@
 module.exports = {
   "parser": "@typescript-eslint/parser",
   "plugins": [
+    'jsx-control-statements',
     "@typescript-eslint",
     "babel",
   ],
@@ -14,12 +15,14 @@ module.exports = {
   "env": {
     "browser": true,
     "es6": true,
+    'jsx-control-statements/jsx-control-statements': true,
   },
   "extends": [
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:react/recommended",
+    "plugin:jsx-control-statements/recommended"
   ],
   "parserOptions": {
     "sourceType": "module",
@@ -29,19 +32,18 @@ module.exports = {
       "linebreak-style": [ "error", "unix" ],
       "quotes": [ "error", "single" ],
       "semi": [ "error", "always" ],
-      "arrow-parens": 0,
-      "comma-dangle": [ "error", "always-multiline" ],
+      "arrow-parens": [ "error", "as-needed" ],
       "curly": [ "error", "all" ],
       "no-invalid-this": "error",
-      "no-param-reassign": [ "error", { "props": true } ],
       "array-bracket-spacing": [ "error", "always" ],
       "comma-dangle": [ "error", "always-multiline" ],
       "max-len": [ "error", {
-        "code": 100,
+        "code": 120,
         "ignoreComments": true,
         "ignoreTemplateLiterals": true,
       } ],
       "@typescript-eslint/no-unused-vars": "error",
+      "react/jsx-no-undef": [ "error", { "allowGlobals": true }]
   },
   "settings": {
     "import/resolver": {
@@ -50,6 +52,9 @@ module.exports = {
         "extensions": [ ".ts", ".tsx", ".js" ],
       },
       "extensions": [ ".ts", ".tsx", ".js" ],
+    },
+    "react": {
+      "version": "detect",
     },
   },
   "globals": {

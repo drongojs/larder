@@ -6,6 +6,9 @@ import Image from 'ui/elements/Image';
 import { css } from 'linaria';
 import { useSpring, animated } from 'react-spring';
 import theme from 'ui/theme';
+import { Flex } from 'ui/elements/Flex';
+import PaddingBox from 'ui/elements/PaddingBox';
+import { toPrecision } from 'crosscutting/utils';
 
 type ListItemProps = Parameters<typeof ListItem>[0];
 
@@ -14,13 +17,6 @@ interface Props extends Stock, Omit<ListItemProps, 'id' | 'onClick'> {
 }
 
 const styles = {
-  content: css`
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    padding-left: 2rem;
-    justify-content: space-around;
-  `,
   title: css`
     font-size: 1.5rem;
   `,
@@ -45,7 +41,7 @@ const Item = ({
     <ListItem
       className="stock-item"
       onClick={() => onClick(id)}
-      onKeyDown={(e) => {
+      onKeyDown={e => {
         if (e.key === 'Enter') {
           onClick(id);
         }
@@ -57,14 +53,19 @@ const Item = ({
         width={100}
         height={100}
       />
-      <div className={styles.content}>
+      <Flex
+        as={(props: any) => <PaddingBox left={2} {...props}/>}
+        grow={true}
+        direction="column"
+        justify="space-around"
+      >
         <span className={styles.title}>
           {name}
         </span>
         <animated.span className={styles.subtitle}>
-          {spring.quantity.interpolate((quantity) => formatQuantity(Math.round(quantity), unit))}
+          {spring.quantity.interpolate(quantity => formatQuantity(toPrecision(quantity, 2), unit))}
         </animated.span>
-      </div>
+      </Flex>
     </ListItem>
   );
 };

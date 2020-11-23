@@ -8,7 +8,7 @@ const makeQuery = <T>(t: T) => {
   const params = new URLSearchParams();
   Object.entries(t).forEach(([ key, value ]) => {
     if (Array.isArray(value)) {
-      value.forEach((el, i) => {
+      value.forEach(el => {
         params.append(`${key}[]`, el);
       });
     } else {

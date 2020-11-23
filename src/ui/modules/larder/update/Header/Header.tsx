@@ -6,6 +6,7 @@ import theme from 'ui/theme';
 import Color from 'color';
 import { Resource } from '@drongo/recess';
 import { Stock } from 'domain/core';
+import PaddingBox from 'ui/elements/PaddingBox';
 
 interface Props {
   resource: Resource<Stock>,
@@ -23,10 +24,6 @@ const styles = {
     color: ${theme.palette.white.color};
     background-color: ${Color(theme.palette.white.contrast).alpha(0.5).toString()};
     font-size: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
     text-decoration: none;
     border-radius: ${theme.curvature}px;
   `,
@@ -47,9 +44,11 @@ const Header = ({
       className={styles.link}
       to={`/larder/${id}/edit`}
     >
-      <i className="fas fa-edit"/>
-      {' '}
-      <span>Edit</span>
+      <PaddingBox x={0.5} y={0.25}>
+        <i className="fas fa-edit"/>
+        {' '}
+        <span>Edit</span>
+      </PaddingBox>
     </Link>
   </div>
 );

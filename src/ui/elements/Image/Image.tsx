@@ -9,7 +9,7 @@ interface Props {
 
 export default styled.span<Props>`
   display: inline-block;
-  width: ${(props) => {
+  width: ${props => {
     if (props.width == null) {
       return '100%';
     }
@@ -18,7 +18,7 @@ export default styled.span<Props>`
     }
     return props.width;
   }};
-  height: ${(props) => {
+  height: ${props => {
     if (props.height == null) {
       return '0';
     }
@@ -29,8 +29,8 @@ export default styled.span<Props>`
   }};
   background-size: cover;
   background-position: center;
-  background-image: ${(props) => `url("${props.src}")`};
+  background-image: ${props => `url("${props.src}")`};
   border-radius: ${theme.curvature}px;
 
-  padding-top: ${(props) => props.width == null && props.height == null ? '66.64%' : '0'};
+  padding-top: ${props => props.width == null && props.height == null ? '66.64%' : '0'};
 `;

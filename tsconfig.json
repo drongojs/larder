@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "jsx": "preserve",
     "module": "ESNext",
     "target": "ESNext",
@@ -8,12 +9,13 @@
     "noEmit": true,
     "declaration": false,
     "esModuleInterop": true,
-    "types": [ "node", "jest" ],
+    "types": [ "node", "jest", "long" ],
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "*": [ "src/*" ]
     }
   },
-  "include": [ "src/**/*", "@types/**/*" ]
+  "include": [ "src/**/*", "@types/**/*" ],
+  "exclude": [ "node_modules/@cucumber/**/*" ]
 }

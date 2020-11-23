@@ -44,7 +44,7 @@ const useAction = <T, F extends (...args: any[]) => (Promise<T> | T)>(
     }
     
     if (mountedRef.current) {
-      resources.forEach((resource) => resource.invalidate());
+      resources.forEach(resource => resource.invalidate());
     }
 
     return result;

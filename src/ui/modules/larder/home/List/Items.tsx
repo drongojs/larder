@@ -14,7 +14,7 @@ const Items = ({
   stock,
   onClick,
 }: Props) => {
-  const transitions = useTransition(stock, (stock) => stock.id, {
+  const transitions = useTransition(stock, stock => stock.id, {
     config: config.gentle,
     from: {
       opacity: 0,

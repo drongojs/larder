@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, ReactNode } from 'react';
-import { css } from 'linaria';
+import { css, cx } from 'linaria';
 import theme from 'ui/theme';
 import { makeGetClassNames } from '@drongo/class-names';
 
@@ -81,8 +81,8 @@ const TextInput = ({
     <div className={styles.root}>
       {prefix}
       <input
-        className={styles.input}
         {...props}
+        className={cx(styles.input, props.className)}
       />
       {suffix}
     </div>

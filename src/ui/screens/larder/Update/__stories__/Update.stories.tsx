@@ -11,7 +11,7 @@ export default {
 export const basic = () => {
   return (
     <JpexProvider
-      onMount={(jpex) => {
+      onMount={jpex => {
         jpex.constant<Read>(({ id }) => {
           return Promise.resolve({
             id,
@@ -23,7 +23,7 @@ export const basic = () => {
           });
         });
         jpex.constant<UpdateStock>(() => {
-          return new Promise((res) => {
+          return new Promise(res => {
             setTimeout(res, 3000);
           });
         });
@@ -48,12 +48,12 @@ export const basic = () => {
 export const loading = () => {
   return (
     <JpexProvider
-      onMount={(jpex) => {
+      onMount={jpex => {
         jpex.constant<Read>(() => {
           return new Promise(() => {});
         });
         jpex.constant<UpdateStock>(() => {
-          return new Promise((res) => {
+          return new Promise(res => {
             setTimeout(res, 3000);
           });
         });
@@ -78,7 +78,7 @@ export const loading = () => {
 export const submitting = () => {
   return (
     <JpexProvider
-      onMount={(jpex) => {
+      onMount={jpex => {
         jpex.constant<Read>(({ id }) => {
           return Promise.resolve({
             id,

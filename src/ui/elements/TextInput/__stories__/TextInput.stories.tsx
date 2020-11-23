@@ -9,9 +9,9 @@ export default {
   component: TextInput,
 };
 
-export const basic = (props) => {
+export const basic = props => {
   const [ value, setValue ] = useState('');
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
 
@@ -33,7 +33,7 @@ basic.args = {
 
 export const withTextSuffix = () => {
   const [ value, setValue ] = useState('');
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
 
@@ -52,7 +52,7 @@ export const withTextSuffix = () => {
 
 export const withTextPrefix = () => {
   const [ value, setValue ] = useState('');
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
 
@@ -69,9 +69,9 @@ export const withTextPrefix = () => {
   );
 };
 
-export const withPrefixAndSuffix = (props) => {
+export const withPrefixAndSuffix = props => {
   const [ value, setValue ] = useState('');
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
 
@@ -99,7 +99,7 @@ withPrefixAndSuffix.args = {
 
 export const withButton = () => {
   const [ value, setValue ] = useState('');
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
 

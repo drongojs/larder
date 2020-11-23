@@ -5,7 +5,6 @@ import {
   ThenableWebDriver,
 } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome';
-import { resolve } from 'path';
 
 export class World {
   driver: ThenableWebDriver;

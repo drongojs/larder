@@ -5,6 +5,7 @@ import Page from 'ui/modules/Page';
 import { Resource } from '@drongo/recess';
 import { Stock, Category } from 'domain/core';
 import { css } from 'linaria';
+import PaddingBox from 'ui/elements/PaddingBox';
 
 interface Props {
   search: string,
@@ -19,7 +20,6 @@ interface Props {
 const styles = {
   list: css`
     flex-grow: 1;
-    margin-top: 1rem;
   `,
 };
 
@@ -41,7 +41,7 @@ const Home = ({
         submitting={submitting}
       />
     </div>
-    <div className={styles.list}>
+    <PaddingBox top={1} className={styles.list}>
       <Suspense fallback={<ListLoading/>}>
         <List
           stockResource={stockResource}
@@ -49,7 +49,7 @@ const Home = ({
           onClick={onClick}
         />
       </Suspense>
-    </div>
+    </PaddingBox>
   </Page>
 );
 

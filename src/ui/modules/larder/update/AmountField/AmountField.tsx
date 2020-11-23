@@ -34,9 +34,12 @@ const AmountField = ({
     });
   }, [ quantity ]);
 
-  const suffix = unit ? null : (
-    <Suffix>{baseUnit}</Suffix>
+  const suffix = (
+    <If condition={!unit}>
+      <Suffix>{baseUnit}</Suffix>
+    </If>
   );
+
   const prefix = (
     <Button
       type="button"

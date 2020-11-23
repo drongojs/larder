@@ -2,8 +2,6 @@ import React, { useState, Suspense, createContext, useContext } from 'react';
 import {
   useResource,
   Resource,
-  Provider,
-  useResourceContext,
 } from '..';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -31,7 +29,7 @@ const people = [
 ];
 
 let attempt = 0;
-const fetchStuff = (index, childIndex) => new Promise<Person>((res) => {
+const fetchStuff = (index, childIndex) => new Promise<Person>(res => {
   setTimeout(res, 1000);
 }).then(() => {
   attempt++;
@@ -97,7 +95,7 @@ export const Basic = () => {
         <input
           type="number"
           value={id}
-          onChange={(e) => {
+          onChange={e => {
             setId(Number(e.target.value));
             setCid(0);
           }}
@@ -108,7 +106,7 @@ export const Basic = () => {
         <input
           type="number"
           value={cid}
-          onChange={(e) => {
+          onChange={e => {
             setCid(Number(e.target.value));
           }}
         />
@@ -179,7 +177,7 @@ export const provider = () => {
           <input
             type="number"
             value={id}
-            onChange={(e) => {
+            onChange={e => {
               setId(Number(e.target.value));
               setCid(0);
             }}
@@ -190,7 +188,7 @@ export const provider = () => {
           <input
             type="number"
             value={cid}
-            onChange={(e) => {
+            onChange={e => {
               setCid(Number(e.target.value));
             }}
           />

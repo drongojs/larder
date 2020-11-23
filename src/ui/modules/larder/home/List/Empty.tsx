@@ -1,13 +1,10 @@
 import React from 'react';
-import { ListItem } from 'ui/elements/List';
 import { css } from 'linaria';
+import { ListItem } from 'ui/elements/List';
+import { Flex } from 'ui/elements/Flex';
 
 const styles = {
   root: css`
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100px;
     font-size: 1.5rem;
   `,
@@ -15,9 +12,9 @@ const styles = {
 
 const Empty = () => (
   <ListItem>
-    <div className={styles.root}>
+    <Flex align="center" justify="center" grow={true} className={styles.root}>
       Nothing found
-    </div>
+    </Flex>
   </ListItem>
 );
 export default Empty;

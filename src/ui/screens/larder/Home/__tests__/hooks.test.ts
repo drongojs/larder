@@ -43,7 +43,7 @@ describe('useOnSubmit', () => {
     }, {
       wrapper: Jpex,
       initialProps: {
-        onMount: (jpex) => {
+        onMount: jpex => {
           jpex.constant<Create>(create);
         },
       },
@@ -74,7 +74,7 @@ describe('useOnSubmit', () => {
     }, {
       wrapper: Jpex,
       initialProps: {
-        onMount: (jpex) => {
+        onMount: jpex => {
           jpex.constant<Create>(create);
         },
       },
@@ -102,7 +102,7 @@ describe('useOnSubmit', () => {
     }, {
       wrapper: Jpex,
       initialProps: {
-        onMount: (jpex) => {
+        onMount: jpex => {
           jpex.constant<Create>(create);
         },
       },
@@ -129,7 +129,7 @@ describe('useOnSubmit', () => {
       }, {
         wrapper: Jpex,
         initialProps: {
-          onMount: (jpex) => {
+          onMount: jpex => {
             jpex.constant<Create>(create);
           },
         },

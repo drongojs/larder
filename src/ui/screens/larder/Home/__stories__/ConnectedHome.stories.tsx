@@ -37,7 +37,7 @@ const categories = [
 export const connected = () => {
   return (
     <JpexProvider
-      onMount={(jpex) => {
+      onMount={jpex => {
         jpex.constant<Search>(async() => {
           await after(500);
           return stock;
@@ -46,7 +46,7 @@ export const connected = () => {
           await after(500);
           return categories;
         });
-        jpex.constant<Create>(async(args) => {
+        jpex.constant<Create>(async args => {
           await after(500);
           stock = [
             ...stock,

@@ -6,9 +6,9 @@ import { wrap } from 'ui/hocs';
 
 const ConnectedUpdate = wrap(UpdateScreen, () => {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
   const resource = useStock({ id });
   const [ update, submitting ] = useUpdate();
-  const history = useHistory();
   
   const handleSubmit = async(values: any) => {
     await update({
