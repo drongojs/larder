@@ -60,7 +60,7 @@ export const Example = () => (
       <ListHeader>Frozen</ListHeader>
       <ListItem>
         <Image
-          src="http://lorempixel.com/100/100/food/"
+          src="http://lorempixel.com/100/100/food/1"
           width={100}
           height={100}
         />

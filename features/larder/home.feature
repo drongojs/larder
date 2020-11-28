@@ -7,7 +7,7 @@ Feature: Home
 
   Scenario: View an Item
     Given I have "500g Peas" in stock
-    And I am on "/larder"   
+    And I am on "/larder"
     When I click on "Peas"
     Then I should be on "/larder/peas"
   

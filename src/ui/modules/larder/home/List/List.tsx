@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 import { Stock, Category } from 'domain/core';
 import { List } from 'ui/elements/List';
 import Empty from './Empty';
@@ -11,8 +11,8 @@ import Items from './Items';
 
 interface Props {
   onClick: (id: string) => void,
-  stockResource: Resource<Stock[]>,
-  categoryResource: Resource<Category[]>,
+  stockQuery: Query<Stock[]>,
+  categoryQuery: Query<Category[]>,
 }
 
 const styles = {
@@ -40,11 +40,11 @@ const InlineLoader = ({ isFetching }: { isFetching: boolean }) => {
 };
 
 const StockList = ({
-  stockResource,
-  categoryResource,
+  stockQuery,
+  categoryQuery,
   onClick,
 }: Props) => {
-  const { data: stock, isFetching } = stockResource;
+  const { data: stock, isFetching } = stockQuery;
 
   // TODO: maybe extract this logic
   const categories = useMemo(() => {
@@ -82,7 +82,7 @@ const StockList = ({
               <CategoryWithStock
                 key={categoryId}
                 id={categoryId}
-                resource={categoryResource}
+                query={categoryQuery}
                 stock={stock}
                 onClick={onClick}
               />

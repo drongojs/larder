@@ -2,12 +2,12 @@ import React, { ReactNode } from 'react';
 import { Form, Formik } from 'formik';
 import Buttons from 'ui/modules/larder/edit/Buttons';
 import { Flex, Child } from 'ui/elements/Flex';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 import { Stock } from 'domain/core';
 import { formatQuantity } from 'domain/selectors';
 
 interface Props {
-  stockResource: Resource<Stock>,
+  stockResource: Query<Stock>,
   submitting: boolean,
   children?: ReactNode,
   onSubmit: (...args: any[]) => any,

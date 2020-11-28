@@ -1,9 +1,8 @@
 import React, { ReactNode } from 'react';
 import { css } from 'linaria';
-import theme from 'ui/theme';
+import theme, { tabletLandscapeUp, desktopUp } from 'ui/theme';
 import { Flex } from 'ui/elements/Flex';
 import Color from 'color';
-import PaddingBox from 'ui/elements/PaddingBox';
 
 interface Props {
   title: string,
@@ -12,7 +11,7 @@ interface Props {
 
 const styles = {
   root: css`
-    height: 100%;
+    min-height: 100%;
     background-color: ${theme.palette.white.color};
     position: relative;
   `,
@@ -22,6 +21,22 @@ const styles = {
     color: ${theme.palette.primary.contrast};
     font-size: 2rem;
     border-bottom: 2px solid ${Color(theme.palette.primary.color).darken(0.2).toString()};
+    padding: 0.5rem;
+
+    ${tabletLandscapeUp()} {
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+  `,
+  content: css`
+    padding: 1rem;
+    ${tabletLandscapeUp()} {
+      width: 75%;
+      margin: auto;
+    }
+    ${desktopUp()} {
+      /* width: 50%; */
+    }
   `,
 };
 
@@ -31,11 +46,9 @@ const Page = ({
 }: Props) => (
   <Flex direction="column" className={styles.root}>
     <Flex justify="center" align="center"  className={styles.title}>
-      <PaddingBox all={0.5}>
-        {title}
-      </PaddingBox>
+      {title}
     </Flex>
-    <Flex direction="column" grow={true} as={PaddingBox} all={1}>
+    <Flex direction="column" grow={true} className={styles.content}>
       {children}
     </Flex>
   </Flex>

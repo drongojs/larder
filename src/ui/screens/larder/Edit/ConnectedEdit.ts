@@ -17,10 +17,10 @@ interface Values {
 export default wrap(Edit, () => {
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
-  const stockResource = useStock({ id });
-  const categoryResource = useCategories();
-  const [ update, stockSubmitting ] = useUpdate([ stockResource, categoryResource ]);
-  const [ create, categorySubmitting ] = useCreate([ categoryResource ]);
+  const stockQuery = useStock({ id });
+  const categoryQuery = useCategories();
+  const [ update, stockSubmitting ] = useUpdate([ stockQuery ]);
+  const [ create, categorySubmitting ] = useCreate();
 
   const onCreateCategory = (name: string) => create({ name });
 
@@ -49,8 +49,8 @@ export default wrap(Edit, () => {
   const submitting = stockSubmitting || categorySubmitting;
 
   return {
-    categoryResource,
-    stockResource,
+    categoryQuery,
+    stockQuery,
     submitting,
     onCreateCategory,
     onSubmit,

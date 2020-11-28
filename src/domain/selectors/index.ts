@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import convert from 'convert-units';
 import { useRouteMatch } from 'react-router';
+import { toPrecision } from 'crosscutting/utils';
 
 export const useId = () => {
   const { params: { id }  } = useRouteMatch<{ id: string }>();
@@ -22,13 +23,13 @@ export const formatQuantity = (quantity: number, fromUnit?: string, toUnit?: str
       unit: outUnit,
       val,
     } = convert(quantity).from(fromUnit as any).toBest();
-    return `${val}${outUnit}`;
+    return `${toPrecision(val, 2)}${outUnit}`;
   }
   if (fromUnit === toUnit) {
     return `${quantity}${fromUnit}`;
   }
   const val = convert(quantity).from(fromUnit as any).to(toUnit as any);
-  return `${val}${toUnit}`;
+  return `${toPrecision(val, 2)}${toUnit}`;
 };
 
 type ParsedSearch = {

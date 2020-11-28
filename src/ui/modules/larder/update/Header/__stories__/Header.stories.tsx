@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from '../Header';
-import { useResource } from '@drongo/recess';
+import { useQuery } from '@drongo/respite';
 
 export default {
   title: 'modules/larder/update/Header',
@@ -12,14 +12,14 @@ export const basic = () => (
   <BrowserRouter>
     <Suspense fallback={<div/>}>
       <Header
-        resource={useResource(() => ({
+        query={useQuery(() => ({
           id: 'peas',
           name: 'Peas',
           categoryId: '',
-          image: 'http://lorempixel.com/300/300/food/',
+          image: 'http://lorempixel.com/300/300/food/1',
           quantity: 500,
           unit: 'g',
-        }), [])}
+        }), [ 'stock' ])}
       />
     </Suspense>
   </BrowserRouter>

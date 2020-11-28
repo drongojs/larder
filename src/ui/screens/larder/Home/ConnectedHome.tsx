@@ -5,16 +5,16 @@ import {
   useOnClick,
   useOnSubmit,
   useSearch,
-} from './hooks';
+} from 'domain/selectors/larder/home';
 import { wrap } from 'ui/hocs';
 
 const ConnectedHome = wrap(Home, () => {
   const [ search, setSearch, name ] = useSearch();
   
-  const stockResource = useSearchStock({ search: name });
-  const categoryResource = useCategories();
+  const stockQuery = useSearchStock({ search: name });
+  const categoryQuery = useCategories();
 
-  const [ onSubmit, submitting ] = useOnSubmit(search, setSearch, stockResource);
+  const [ onSubmit, submitting ] = useOnSubmit(search, setSearch);
 
   const onClick = useOnClick();
   
@@ -27,8 +27,8 @@ const ConnectedHome = wrap(Home, () => {
   return {
     search,
     submitting,
-    stockResource,
-    categoryResource,
+    stockQuery,
+    categoryQuery,
     onSubmit,
     onClick,
     onSearch,

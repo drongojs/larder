@@ -2,22 +2,22 @@ import React from 'react';
 import { Stock, Category } from 'domain/core';
 import { ListHeader } from 'ui/elements/List';
 import Items from './Items';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 
 interface Props {
   id: string,
-  resource: Resource<Category[]>,
+  query: Query<Category[]>,
   stock: Stock[],
   onClick: (id: string) => void,
 }
 
 const CategoryWithStock = ({
   id,
-  resource,
+  query,
   stock,
   onClick,
 }: Props) => {
-  const category = resource.data.find(category => category.id === id);
+  const category = query.data.find(category => category.id === id);
   const name = category?.name || id || 'Misc';
 
   return (

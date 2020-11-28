@@ -10,7 +10,10 @@ const NameField = () => {
     <div>
       <Label>
         Name
-        <TextInput {...input}/>
+        <TextInput
+          id="stock-name-input"
+          {...input}
+        />
       </Label>
     </div>
   );

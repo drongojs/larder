@@ -11,6 +11,8 @@ const getSelector = (x: string) => {
     return By.id(x.substr(1));
   case '.':
     return By.className(x.substr(1));
+  case '<':
+    return By.tagName(x.replace(/[<>]/g, ''));
   default:
     return By.xpath(`//*[contains(text(), '${x}')]`);
   }
@@ -21,14 +23,14 @@ When('I click on {string}', async function(this: World, id: string) {
   await this.driver.wait(until.elementLocated(selector));
   const element = await this.driver.findElement(selector);
   await element.click();
-  await after(500);
+  await after(1000);
 });
 
 When('I focus on {string}', async function(this: World, id: string) {
   const selector = getSelector(id);
   await this.driver.wait(until.elementLocated(selector));
   const element = await (await this.driver).findElement(selector);
-  element.click();
+  await element.click();
 });
 
 When('I type {string}', async function(this: World, text: string) {
@@ -38,7 +40,7 @@ When('I type {string}', async function(this: World, text: string) {
 
 When('I press enter', async function(this: World) {
   (await (await this.driver).switchTo().activeElement()).sendKeys(Key.ENTER);
-  await after(500);
+  await after(1000);
 });
 
 // eslint-disable-next-line max-len
@@ -54,4 +56,13 @@ Then('I should see {string}', async function(this: World, test: string) {
   const elements = await this.driver.findElements(selector);
 
   expect(elements).to.have.length.above(0);
+});
+
+// eslint-disable-next-line max-len
+Then('{string} should have a {string} attribute of {string}', async function(this: World, test: string, key: string, value: string) {
+  const selector = getSelector(test);
+  const element = await this.driver.findElement(selector);
+  const attribute = await element.getAttribute(key);
+
+  expect(attribute).to.equal(value);
 });

@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import List from '../List';
 import ListLoading from '../ListLoading';
-import { useResource } from '@drongo/recess';
+import { useQuery } from '@drongo/respite';
 import { Stock } from 'domain/core';
 
 export default {
@@ -9,14 +9,14 @@ export default {
 };
 
 export const loading = () => {
-  const stockResource = useResource(() => new Promise<any>(() => {}), []);
-  const categoryResource = useResource(() => new Promise<any>(() => {}), []);
+  const stockQuery = useQuery(() => new Promise<any>(() => {}), [ 'stock' ]);
+  const categoryQuery = useQuery(() => new Promise<any>(() => {}), [ 'categories' ]);
 
   return (
     <Suspense fallback={<ListLoading/>}>
       <List
-        categoryResource={categoryResource}
-        stockResource={stockResource}
+        categoryQuery={categoryQuery}
+        stockQuery={stockQuery}
         onClick={() => {}}
       />
     </Suspense>
@@ -24,14 +24,14 @@ export const loading = () => {
 };
 
 export const empty = () => {
-  const stockResource = useResource(() => [], []);
-  const categoryResource = useResource(() => [], []);
+  const stockQuery = useQuery(() => [], [ 'stock' ]);
+  const categoryQuery = useQuery(() => [], [ 'categories' ]);
 
   return (
     <Suspense fallback={<div/>}>
       <List
-        stockResource={stockResource}
-        categoryResource={categoryResource}
+        stockQuery={stockQuery}
+        categoryQuery={categoryQuery}
         onClick={() => {}}
       />
     </Suspense>
@@ -46,7 +46,7 @@ export const SingleCategory = () => {
       name: 'peas',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/1',
     },
     {
       id: 'chips',
@@ -54,17 +54,17 @@ export const SingleCategory = () => {
       name: 'chips',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/1',
     },
   ];
-  const stockResource = useResource(() => stock, []);
-  const categoryResource = useResource(() => [], []);
+  const stockQuery = useQuery(() => stock, [ 'stock' ]);
+  const categoryQuery = useQuery(() => [], [ 'categories' ]);
 
   return (
     <Suspense fallback={<div/>}>
       <List
-        stockResource={stockResource}
-        categoryResource={categoryResource}
+        stockQuery={stockQuery}
+        categoryQuery={categoryQuery}
         onClick={() => {}}
       />
     </Suspense>
@@ -79,7 +79,7 @@ export const ManyItems = () => {
       name: 'peas',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/1',
     },
     {
       id: 'chips',
@@ -87,7 +87,7 @@ export const ManyItems = () => {
       name: 'chips',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/2',
     },
     {
       id: 'curry',
@@ -95,7 +95,7 @@ export const ManyItems = () => {
       name: 'Curry',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/3',
     },
     {
       id: 'tuna',
@@ -103,7 +103,7 @@ export const ManyItems = () => {
       name: 'Tuna',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/4',
     },
     {
       id: 'lettuce',
@@ -111,7 +111,7 @@ export const ManyItems = () => {
       name: 'lettuce',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/5',
     },
     {
       id: 'cucumber',
@@ -119,7 +119,7 @@ export const ManyItems = () => {
       name: 'cucumber',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/6',
     },
   ];
   const categories = [
@@ -136,14 +136,14 @@ export const ManyItems = () => {
       name: 'Fruit / Veg',
     },
   ];
-  const stockResource = useResource(() => stock, []);
-  const categoryResource = useResource(() => categories, []);
+  const stockQuery = useQuery(() => stock, [ 'stock' ]);
+  const categoryQuery = useQuery(() => categories, [ 'categories' ]);
 
   return (
     <Suspense fallback={<div/>}>
       <List
-        stockResource={stockResource}
-        categoryResource={categoryResource as any}
+        stockQuery={stockQuery}
+        categoryQuery={categoryQuery as any}
         onClick={() => {}}
       />
     </Suspense>
@@ -159,7 +159,7 @@ export const refreshing = () => {
       name: 'peas',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/1',
     },
     {
       id: 'chips',
@@ -167,7 +167,7 @@ export const refreshing = () => {
       name: 'chips',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/2',
     },
     {
       id: 'curry',
@@ -175,7 +175,7 @@ export const refreshing = () => {
       name: 'Curry',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/3',
     },
     {
       id: 'tuna',
@@ -183,7 +183,7 @@ export const refreshing = () => {
       name: 'Tuna',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/4',
     },
     {
       id: 'lettuce',
@@ -191,7 +191,7 @@ export const refreshing = () => {
       name: 'lettuce',
       quantity: 500,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/5',
     },
     {
       id: 'cucumber',
@@ -199,7 +199,7 @@ export const refreshing = () => {
       name: 'cucumber',
       quantity: 1,
       unit: 'kg',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/6',
     },
   ];
   const categories = [
@@ -216,21 +216,22 @@ export const refreshing = () => {
       name: 'Fruit / Veg',
     },
   ];
-  const [ p, setP ] = useState(Promise.resolve(stock));
-  const stockResource = useResource(() => p, [ p ]);
-  const categoryResource = useResource(() => categories, []);
+  const [ p, setP ] = useState(() => Promise.resolve(stock));
+  const stockResource = useQuery(() => p, [ 'stock', p ]);
+  const categoryResource = useQuery(() => categories, [ 'categories' ]);
 
   useEffect(() => {
     setTimeout(() => {
       setP(new Promise(() => {}));
-    }, 1000);
+      stockResource.invalidate();
+    }, 50);
   }, []);
 
   return (
     <Suspense fallback={<div/>}>
       <List
-        stockResource={stockResource}
-        categoryResource={categoryResource as any}
+        stockQuery={stockResource}
+        categoryQuery={categoryResource}
         onClick={() => {}}
       />
     </Suspense>
@@ -243,34 +244,33 @@ export const ChangeQuantity = () => {
       id: 'peas',
       categoryId: 'frozen',
       name: 'peas',
-      quantity: 500,
+      quantity: 200,
       unit: 'g',
-      image: 'http://lorempixel.com/100/100/food/',
+      image: 'http://lorempixel.com/100/100/food/1',
     },
   ]);
-  const stockResource = useResource(() => stock, [ stock ]);
-  const categoryResource = useResource(() => [], []);
+  const stockResource = useQuery(() => stock, [ 'stock', stock ]);
+  const categoryResource = useQuery(() => [], [ 'categories' ]);
 
-  const onAddMore = () => {
-    setStock([
-      {
-        ...stock[0],
-        quantity: stock[0].quantity + 100,
-      },
-    ]);
-    stockResource.invalidate();
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setStock([
+        {
+          ...stock[0],
+          quantity: stock[0].quantity + 200,
+        },
+      ]);
+    }, 1500);
+    // stockResource.invalidate();
+  }, [ stock ]);
 
   return (
     <Suspense fallback={<div/>}>
       <List
-        stockResource={stockResource}
-        categoryResource={categoryResource}
+        stockQuery={stockResource}
+        categoryQuery={categoryResource}
         onClick={() => {}}
       />
-      <div>
-        <button onClick={onAddMore}>Add more!</button>
-      </div>
     </Suspense>
   );
 };

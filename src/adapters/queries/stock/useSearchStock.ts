@@ -1,7 +1,8 @@
 import { useResolve } from 'react-jpex';
 import { useDebounce } from 'use-debounce';
 import { Search } from 'domain/core/stock';
-import { useResource } from '@drongo/recess';
+import { useQuery } from '@drongo/respite';
+import { Queries } from 'domain/constants';
 
 export const useSearchStock = (
   args: {
@@ -11,7 +12,7 @@ export const useSearchStock = (
   const [ search ] = useDebounce(args.search, 250);
   const fetch = useResolve<Search>();
 
-  return useResource(() => fetch({ search }), [ search ]);
+  return useQuery(() => fetch({ search }), [ Queries.SEARCH_STOCK, search ]);
 };
 
 export default useSearchStock;

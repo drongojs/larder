@@ -10,7 +10,7 @@ Feature: Larder Update
     And I am on "/larder/peas"
     When I focus on "#stock-amount-input"
     And I type "500"
-    And I wait 1000
+    And I wait 1500
     Then I should see "1kg"
 
   Scenario: Update Item

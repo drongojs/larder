@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import Search from 'ui/modules/larder/home/Search';
 import List, { ListLoading } from 'ui/modules/larder/home/List';
 import Page from 'ui/modules/Page';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 import { Stock, Category } from 'domain/core';
 import { css } from 'linaria';
 import PaddingBox from 'ui/elements/PaddingBox';
@@ -10,8 +10,8 @@ import PaddingBox from 'ui/elements/PaddingBox';
 interface Props {
   search: string,
   submitting: boolean,
-  stockResource: Resource<Stock[]>,
-  categoryResource: Resource<Category[]>,
+  stockQuery: Query<Stock[]>,
+  categoryQuery: Query<Category[]>,
   onSearch: (v: string) => void,
   onSubmit: (v: string) => void,
   onClick: (id: string) => void,
@@ -26,8 +26,8 @@ const styles = {
 const Home = ({
   search,
   submitting,
-  stockResource,
-  categoryResource,
+  stockQuery,
+  categoryQuery,
   onSearch,
   onSubmit,
   onClick,
@@ -44,8 +44,8 @@ const Home = ({
     <PaddingBox top={1} className={styles.list}>
       <Suspense fallback={<ListLoading/>}>
         <List
-          stockResource={stockResource}
-          categoryResource={categoryResource}
+          stockQuery={stockQuery}
+          categoryQuery={categoryQuery}
           onClick={onClick}
         />
       </Suspense>

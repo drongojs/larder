@@ -15,7 +15,7 @@ let stock = {
   id: 'peas',
   name: 'Peas',
   categoryId: 'frozen',
-  image: 'http://lorempixel.com/300/300/food/',
+  image: 'http://lorempixel.com/300/300/food/1',
   quantity: 500,
   unit: 'g',
 };

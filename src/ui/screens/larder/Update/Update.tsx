@@ -2,14 +2,14 @@ import React, { Suspense } from 'react';
 import Page from 'ui/modules/Page';
 import Header from 'ui/modules/larder/update/Header';
 import { css } from 'linaria';
-import { Resource, Status } from '@drongo/recess';
+import { Query, Status } from '@drongo/respite';
 import { Stock } from 'domain/core';
 import { Spinner } from 'ui/elements/Progress';
 import UpdateForm from 'ui/forms/larder/Update';
 import { Flex } from 'ui/elements/Flex';
 
 interface Props {
-  resource: Resource<Stock>,
+  query: Query<Stock>,
   submitting: boolean,
   onSubmit: (...args: any[]) => any,
 }
@@ -31,21 +31,23 @@ const Loading = () => (
 );
 
 const UpdateScreen = ({
-  resource,
+  query,
   submitting,
   onSubmit,
 }: Props) => {
-  const title = resource.status === Status.SUCCESS ? resource.data.name : '...';
+  const title = query.status === Status.SUCCESS ? query.data.name : '...';
   return (
     <Page title={title}>
       <Suspense fallback={<Loading/>}>
-        <Header resource={resource}/>
+        <Header query={query}/>
         <UpdateForm
-          resource={resource}
+          query={query}
           submitting={submitting}
           onSubmit={onSubmit}
         />
-        {submitting && <Loading/>}
+        <If condition={submitting}>
+          <Loading/>
+        </If>
       </Suspense>
     </Page>
   );

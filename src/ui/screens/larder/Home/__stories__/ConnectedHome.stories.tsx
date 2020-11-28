@@ -16,7 +16,7 @@ let stock = [
     name: 'peas',
     quantity: 500,
     unit: 'g',
-    image: 'http://lorempixel.com/100/100/food/',
+    image: 'http://lorempixel.com/100/100/food/1',
   },
   {
     id: 'chips',
@@ -24,7 +24,7 @@ let stock = [
     name: 'chips',
     quantity: 1,
     unit: 'kg',
-    image: 'http://lorempixel.com/100/100/food/',
+    image: 'http://lorempixel.com/100/100/food/2',
   },
 ];
 const categories = [
@@ -54,7 +54,7 @@ export const connected = () => {
               id: args.name,
               name: args.name,
               categoryId: '',
-              image: 'http://lorempixel.com/100/100/food/',
+              image: 'http://lorempixel.com/100/100/food/3',
               quantity: args.quantity ?? 1,
               unit: args.unit,
             },

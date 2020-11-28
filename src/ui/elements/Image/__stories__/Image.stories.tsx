@@ -12,7 +12,7 @@ export const basic = ({
   srcHeight,
   ...props
 }) => {
-  const src = `http://lorempixel.com/${srcWidth}/${srcHeight}/food/`;
+  const src = `http://lorempixel.com/${srcWidth}/${srcHeight}/food/1`;
 
   return (
     <Image
@@ -31,7 +31,7 @@ basic.args = {
 export const landscape = () => (
   <div style={{ width: '600px', margin: 'auto' }}>
     <Image
-      src="http://lorempixel.com/640/480/food/"
+      src="http://lorempixel.com/640/480/food/1"
     />
   </div>
 );

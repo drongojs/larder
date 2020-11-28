@@ -1,5 +1,8 @@
 /public
 storybook-static
+backstop-static
+integration-static
+bundle-report
 
 # Logs
 logs

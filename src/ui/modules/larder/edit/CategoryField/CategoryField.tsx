@@ -3,15 +3,15 @@ import { useField } from 'formik';
 import Select from 'ui/elements/Select';
 import { Category } from 'domain/core';
 import Label from 'ui/elements/Label';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 
 interface Props {
-  categoryResource: Resource<Category[]>,
+  query: Query<Category[]>,
   onCreate: (name: string) => any,
 }
 
 const CategoryField = ({
-  categoryResource: {
+  query: {
     data: categories,
   },
   onCreate,

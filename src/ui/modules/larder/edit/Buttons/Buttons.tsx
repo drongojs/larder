@@ -1,14 +1,23 @@
 import React from 'react';
 import { css } from 'linaria';
 import Button from 'ui/elements/Button';
-import { Kind } from 'ui/theme';
+import { Kind, tabletLandscapeUp } from 'ui/theme';
 import { Link } from 'react-router-dom';
 
 const styles = {
   root: css`
     display: flex;
+
+    ${tabletLandscapeUp()} {
+      justify-content: flex-end;
+    }
+
     & > * {
       flex-basis: 100%;
+
+      ${tabletLandscapeUp()} {
+        flex-basis: 25%;
+      }
     }
   `,
 };
@@ -29,7 +38,7 @@ const Buttons = ({
         kind={Kind.CTA}
         pending={submitting}
       >
-        Ok
+        Save
       </Button>
       <Button
         kind={Kind.SECONDARY}

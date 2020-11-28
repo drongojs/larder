@@ -10,7 +10,10 @@ const AmountField = () => {
     <div>
       <Label>
         Amount
-        <TextInput {...input}/>
+        <TextInput
+          id="stock-amount-input"
+          {...input}
+        />
       </Label>
     </div>
   );

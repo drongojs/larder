@@ -2,7 +2,7 @@ const glob = require('glob');
 const fs = require('fs');
 
 // I can't be bothered to write a scenario for every single story so lets just grep for all stories
-const files = glob.sync('src/**/__stories__/**.stories.tsx');
+const files = glob.sync('src/ui/{modules,screens}/**/__stories__/**.stories.tsx');
 const scenarios = files.reduce((acc, file) => {
   // to work out the url path to each story we need to examine both the default export
   // and then each exported constant from the story file
@@ -26,7 +26,9 @@ const scenarios = files.reduce((acc, file) => {
     const scenario = {
       label: id,
       url: `http://localhost:6006/iframe.html?id=${encodeURIComponent(id)}`,
-      delay: 500,
+      delay: 1000,
+      // misMatchThreshold: 1,
+      requireSameDimensions: false,
     };
 
     scenarios.push(scenario);
@@ -38,6 +40,8 @@ const scenarios = files.reduce((acc, file) => {
 
   return acc.concat(scenarios);
 }, []);
+
+console.log(`Found ${scenarios.length} scenarios`);
 
 module.exports = {
   id: 'backstop_default',

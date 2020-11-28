@@ -13,6 +13,9 @@ interface Props {
 
 const styles = {
   root: css`
+    margin-bottom: 1rem;
+  `,
+  suffix: css`
     display: flex;
     align-items: center;
     padding-top: 0;
@@ -41,7 +44,7 @@ const Search = ({
   onChange,
 }: Props) => (
   <form onSubmit={onSubmit}>
-    <div>
+    <div className={styles.root}>
       <TextInput
         id="stock-search-input"
         placeholder="Search or add"
@@ -49,7 +52,7 @@ const Search = ({
         value={value}
         onChange={evt => onChange(evt.target.value)}
         suffix={(
-          <Suffix className={submitting && styles.root}>
+          <Suffix className={submitting && styles.suffix}>
             <Icon submitting={submitting}/>
           </Suffix>
         )}

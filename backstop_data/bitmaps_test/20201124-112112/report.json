@@ -1,0 +1,495 @@
+{
+  "testSuite": "BackstopJS",
+  "tests": [
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-edit-categoryfield--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-edit-categoryfield--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-edit-categoryfield--basic_0_document_0_phone.png",
+        "label": "modules-larder-edit-categoryfield--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-edit-categoryfield--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-edit-imagefield--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-edit-imagefield--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-edit-imagefield--basic_0_document_0_phone.png",
+        "label": "modules-larder-edit-imagefield--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-edit-imagefield--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-list--loading_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-list--loading_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-list--loading_0_document_0_phone.png",
+        "label": "modules-larder-home-list--loading",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-list--loading",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-list--empty_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-list--empty_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-list--empty_0_document_0_phone.png",
+        "label": "modules-larder-home-list--empty",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-list--empty",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-list--single-category_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-list--single-category_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-list--single-category_0_document_0_phone.png",
+        "label": "modules-larder-home-list--single-category",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-list--single-category",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-list--many-items_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-list--many-items_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-list--many-items_0_document_0_phone.png",
+        "label": "modules-larder-home-list--many-items",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-list--many-items",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-list--refreshing_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-list--refreshing_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-list--refreshing_0_document_0_phone.png",
+        "label": "modules-larder-home-list--refreshing",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-list--refreshing",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.06",
+          "analysisTime": 24
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-list--change-quantity_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-list--change-quantity_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-list--change-quantity_0_document_0_phone.png",
+        "label": "modules-larder-home-list--change-quantity",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-list--change-quantity",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-search--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-search--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-search--basic_0_document_0_phone.png",
+        "label": "modules-larder-home-search--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-search--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-home-search--submitting_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-home-search--submitting_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-home-search--submitting_0_document_0_phone.png",
+        "label": "modules-larder-home-search--submitting",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-home-search--submitting",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-update-amountfield--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-update-amountfield--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-update-amountfield--basic_0_document_0_phone.png",
+        "label": "modules-larder-update-amountfield--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-update-amountfield--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-update-amountfield--submitting_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-update-amountfield--submitting_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-update-amountfield--submitting_0_document_0_phone.png",
+        "label": "modules-larder-update-amountfield--submitting",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-update-amountfield--submitting",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-update-amountfield--negative_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-update-amountfield--negative_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-update-amountfield--negative_0_document_0_phone.png",
+        "label": "modules-larder-update-amountfield--negative",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-update-amountfield--negative",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-update-amountfield--custom-unit_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-update-amountfield--custom-unit_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-update-amountfield--custom-unit_0_document_0_phone.png",
+        "label": "modules-larder-update-amountfield--custom-unit",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-update-amountfield--custom-unit",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-update-header--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-update-header--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-update-header--basic_0_document_0_phone.png",
+        "label": "modules-larder-update-header--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-update-header--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-larder-update-summary--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-larder-update-summary--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-larder-update-summary--basic_0_document_0_phone.png",
+        "label": "modules-larder-update-summary--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-larder-update-summary--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_modules-page--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_modules-page--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_modules-page--basic_0_document_0_phone.png",
+        "label": "modules-page--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=modules-page--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_screens-larder-edit--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_screens-larder-edit--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_screens-larder-edit--basic_0_document_0_phone.png",
+        "label": "screens-larder-edit--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=screens-larder-edit--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.03",
+          "analysisTime": 21
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_screens-larder-home--connected_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_screens-larder-home--connected_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_screens-larder-home--connected_0_document_0_phone.png",
+        "label": "screens-larder-home--connected",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=screens-larder-home--connected",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "4.49",
+          "analysisTime": 34
+        },
+        "diffImage": "../bitmaps_test/20201124-112112/failed_diff_backstop_default_screens-larder-home--connected_0_document_0_phone.png"
+      },
+      "status": "fail"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_screens-larder-update--basic_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_screens-larder-update--basic_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_screens-larder-update--basic_0_document_0_phone.png",
+        "label": "screens-larder-update--basic",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=screens-larder-update--basic",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_screens-larder-update--loading_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_screens-larder-update--loading_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_screens-larder-update--loading_0_document_0_phone.png",
+        "label": "screens-larder-update--loading",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=screens-larder-update--loading",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_screens-larder-update--submitting_0_document_0_phone.png",
+        "test": "../bitmaps_test/20201124-112112/backstop_default_screens-larder-update--submitting_0_document_0_phone.png",
+        "selector": "document",
+        "fileName": "backstop_default_screens-larder-update--submitting_0_document_0_phone.png",
+        "label": "screens-larder-update--submitting",
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:6006/iframe.html?id=screens-larder-update--submitting",
+        "expect": 0,
+        "viewportLabel": "phone",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00",
+          "analysisTime": 22
+        }
+      },
+      "status": "pass"
+    }
+  ],
+  "id": "backstop_default"
+}

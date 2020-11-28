@@ -1,23 +1,23 @@
 import Update from './Update';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 import { Stock } from 'domain/core';
 import { useToggle } from 'ui/hooks';
-import { usePreview } from './hooks';
+import { usePreview } from 'domain/selectors/larder/update';
 import { wrap } from 'ui/hocs';
 
 interface Props {
   submitting: boolean,
-  resource: Resource<Stock>,
+  query: Query<Stock>,
 }
 
 const ConnectedUpdate = wrap(Update, ({
-  resource,
+  query,
   submitting,
 }: Props) => {
   const {
     unit: baseUnit,
     quantity: baseQuantity,
-  } = resource.data;
+  } = query.data;
   const [ negate, toggleNegate ] = useToggle();
   const {
     quantity,

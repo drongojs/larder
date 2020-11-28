@@ -7,7 +7,7 @@ import { wrap } from 'ui/hocs';
 const ConnectedUpdate = wrap(UpdateScreen, () => {
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
-  const resource = useStock({ id });
+  const query = useStock({ id });
   const [ update, submitting ] = useUpdate();
   
   const handleSubmit = async(values: any) => {
@@ -19,7 +19,7 @@ const ConnectedUpdate = wrap(UpdateScreen, () => {
   };
 
   return {
-    resource,
+    query,
     submitting,
     onSubmit: handleSubmit,
   };

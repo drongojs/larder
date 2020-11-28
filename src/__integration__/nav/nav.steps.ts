@@ -3,9 +3,11 @@ import { Given, Then } from '@cucumber/cucumber';
 import { World } from '../world';
 import { expect } from 'chai';
 import { By, until } from 'selenium-webdriver';
+import { after } from 'crosscutting/utils';
 
-Given('I am on {string}', function(this: World, url: string) {
-  return this.driver.get(`${this.base}/iframe.html?id=routes--${url.substr(1).replace(/\//g, '-')}`);
+Given('I am on {string}', async function(this: World, url: string) {
+  await this.driver.get(`${this.base}/iframe.html?id=app--routes&url=${encodeURIComponent(url)}`);
+  await after(1000);
 });
 
 Then('I should be on {string}', async function(this: World, url: string) {

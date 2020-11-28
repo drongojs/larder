@@ -7,7 +7,6 @@ import { css } from 'linaria';
 import { useSpring, animated } from 'react-spring';
 import theme from 'ui/theme';
 import { Flex } from 'ui/elements/Flex';
-import PaddingBox from 'ui/elements/PaddingBox';
 import { toPrecision } from 'crosscutting/utils';
 
 type ListItemProps = Parameters<typeof ListItem>[0];
@@ -23,6 +22,9 @@ const styles = {
   subtitle: css`
     color: ${theme.palette.grey02.color};
     font-size: 1.5rem;
+  `,
+  content: css`
+    padding-left: 2rem;
   `,
 };
 
@@ -54,10 +56,10 @@ const Item = ({
         height={100}
       />
       <Flex
-        as={(props: any) => <PaddingBox left={2} {...props}/>}
         grow={true}
         direction="column"
         justify="space-around"
+        className={styles.content}
       >
         <span className={styles.title}>
           {name}

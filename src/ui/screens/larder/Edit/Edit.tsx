@@ -1,32 +1,51 @@
 import React, { Suspense } from 'react';
-import { Resource } from '@drongo/recess';
+import { Query } from '@drongo/respite';
 import { Stock, Category } from 'domain/core';
 import Page from 'ui/modules/Page';
 import EditForm from 'ui/forms/larder/Edit';
 import ImageField from 'ui/modules/larder/edit/ImageField';
-import PaddingBox from 'ui/elements/PaddingBox';
 import NameField from 'ui/modules/larder/edit/NameField';
 import AmountField from 'ui/modules/larder/edit/AmountField';
 import CategoryField from 'ui/modules/larder/edit/CategoryField';
 import { Spinner } from 'ui/elements/Progress';
+import { css, cx } from 'linaria';
+import { desktopUp } from 'ui/theme';
 
 interface Props {
-  stockResource: Resource<Stock>,
-  categoryResource: Resource<Category[]>,
+  stockQuery: Query<Stock>,
+  categoryQuery: Query<Category[]>,
   submitting: boolean,
   onSubmit: (...args: any[]) => any,
   onCreateCategory: (name: string) => any,
 }
 
+const styles = {
+  loader: css`
+    text-align: center;
+  `,
+  field: css`
+    padding-top: 1rem;
+
+    ${desktopUp()} {
+      width: 50%;
+      margin: auto;
+      padding-top: 2rem;
+    }
+  `,
+  trail: css`
+    padding-bottom: 2rem;
+  `,
+};
+
 const Loader = (props: Parameters<typeof Spinner>[0]) => (
-  <div style={{ textAlign: 'center' }}>
+  <div className={styles.loader}>
     <Spinner {...props}/>
   </div>
 );
 
 export default function Edit({
-  stockResource,
-  categoryResource,
+  stockQuery,
+  categoryQuery,
   submitting,
   onSubmit,
   onCreateCategory,
@@ -35,25 +54,25 @@ export default function Edit({
     <Page title="Edit">
       <Suspense fallback={<Loader/>}>
         <EditForm
-          stockResource={stockResource}
+          stockResource={stockQuery}
           submitting={submitting}
           onSubmit={onSubmit}
         >
           <ImageField/>
-          <PaddingBox top={1}>
+          <div className={styles.field}>
             <NameField/>
-          </PaddingBox>
-          <PaddingBox top={1}>
+          </div>
+          <div className={styles.field}>
             <AmountField/>
-          </PaddingBox>
-          <PaddingBox y={1}>
+          </div>
+          <div className={cx(styles.field, styles.trail)}>
             <Suspense fallback={<Loader size="small"/>}>
               <CategoryField
-                categoryResource={categoryResource}
+                query={categoryQuery}
                 onCreate={onCreateCategory}
               />
             </Suspense>
-          </PaddingBox>
+          </div>
         </EditForm>
       </Suspense>
     </Page>

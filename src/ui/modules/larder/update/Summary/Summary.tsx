@@ -24,7 +24,7 @@ const Summary = ({
   const spring = useSpring({ quantity });
 
   return (
-    <Flex align="center" className={styles.root}>
+    <Flex align="center" justify="center" className={styles.root}>
       <animated.span>
         {spring.quantity.interpolate(quantity => formatQuantity(toPrecision(quantity, 2), baseUnit))}
       </animated.span>

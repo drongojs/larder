@@ -1,20 +1,18 @@
 let type = 'stories';
 switch (process.env.STORY_MODE) {
-case 'STORYBOOK':
-  break;
 case 'INT':
   type = 'integration';
   break;
+case 'STORYBOOK':
 case 'BACKSTOP':
-  // type = 'backstop';
-  break;
 default:
-  throw new Error('Unspecified STORY_MODE');
+  break;
 }
 
 module.exports = {
   'stories': [
     `../src/**/__${type}__/**/*.stories.@(js|jsx|ts|tsx)`
+    // '../src/@drongo/respite/__stories__/*.stories.tsx',
   ],
   'addons': [
     '@storybook/addon-links',

@@ -1,6 +1,7 @@
 import { useResolve } from 'react-jpex';
 import { Read } from 'domain/core/stock';
-import { useResource } from '@drongo/recess';
+import { useQuery } from '@drongo/respite';
+import { Queries } from 'domain/constants';
 
 export const useStock = (
   {
@@ -11,7 +12,7 @@ export const useStock = (
 ) => {
   const fetch = useResolve<Read>();
 
-  return useResource(() => fetch({ id }), [ id ]);
+  return useQuery(() => fetch({ id }), [ Queries.STOCK, id ]);
 };
 
 export default useStock;

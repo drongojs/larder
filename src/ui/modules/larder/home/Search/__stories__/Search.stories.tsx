@@ -5,19 +5,30 @@ export default {
   title: 'modules/larder/home/Search',
 };
 
-export const basic = props => {
+export const basic = () => {
   const [ value, setValue ] = useState('');
   return (
     <div>
       <Search
+        submitting={false}
         value={value}
         onChange={setValue}
         onSubmit={e => e.preventDefault}
-        {...props}
       />
     </div>
   );
 };
-basic.args = {
-  submitting: false,
+
+export const submitting = () => {
+  const [ value, setValue ] = useState('');
+  return (
+    <div>
+      <Search
+        submitting={true}
+        value={value}
+        onChange={setValue}
+        onSubmit={e => e.preventDefault}
+      />
+    </div>
+  );
 };

@@ -56,7 +56,31 @@ const font = {
   size: 14,
 };
 
+const breakpoints = {
+  phone: {
+    max: 599,
+  },
+  tablet: {
+    min: 600,
+    max: 899,
+  },
+  tabletLandscape: {
+    min: 900,
+    max: 1199,
+  },
+  desktop: {
+    min: 1200,
+  },
+};
+
+export const tabletUp = () => `@media (min-width: ${breakpoints.tablet.min}px)`;
+
+export const tabletLandscapeUp = () => `@media (min-width: ${breakpoints.tabletLandscape.min}px)`;
+
+export const desktopUp = () => `@media (min-width: ${breakpoints.desktop.min}px)`;
+
 export default {
+  breakpoints,
   palette,
   curvature,
   font,

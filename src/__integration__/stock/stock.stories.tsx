@@ -1,13 +1,15 @@
 import React from 'react';
-import { Stock } from 'domain/core';
 import { parseSearch } from 'domain/selectors';
+import {
+  getStock,
+  setStock,
+} from './state';
 
 export default {
   title: 'larder/setup',
 };
 
 export const addToStock = () => {
-  const stock: Stock[] = JSON.parse(sessionStorage.getItem('stock') || '[]');
   const params = new URLSearchParams(window.location.search);
   const search = params.get('search');
   const {
@@ -15,6 +17,8 @@ export const addToStock = () => {
     quantity,
     unit,
   } = parseSearch(search);
+
+  const stock = getStock();
 
   stock.push({
     id: name.toLowerCase(),
@@ -24,7 +28,8 @@ export const addToStock = () => {
     unit,
     image: '',
   });
-  sessionStorage.setItem('stock', JSON.stringify(stock));
+
+  setStock(stock);
 
   return (
     <pre>
