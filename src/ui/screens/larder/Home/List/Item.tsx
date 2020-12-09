@@ -34,6 +34,7 @@ const Item = ({
   image,
   quantity,
   unit,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   categoryId,
   onClick,
   ...rest

@@ -59,7 +59,7 @@ export const Wrapper = (props: {
       inherit={false}
       onMount={jpex => {
         jpex.constant<Search>(() => Promise.resolve(stock.current));
-        jpex.constant<Create>((args) => {
+        jpex.constant<Create>(args => {
           const item = {
             id: args.name,
             categoryId: '',

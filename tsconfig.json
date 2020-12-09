@@ -17,5 +17,8 @@
     }
   },
   "include": [ "src/**/*", "@types/**/*" ],
-  "exclude": [ "node_modules/@cucumber/**/*" ]
+  "exclude": [
+    "node_modules/@cucumber/**/*",
+    "src/@drongo/**/*"
+  ]
 }

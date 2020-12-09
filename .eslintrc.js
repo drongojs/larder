@@ -18,6 +18,7 @@ module.exports = {
     'browser': true,
     'es6': true,
     'jsx-control-statements/jsx-control-statements': true,
+    'jest/globals': true,
   },
   'extends': [
     'eslint:recommended',
@@ -56,11 +57,5 @@ module.exports = {
     'react': {
       'version': 'detect',
     },
-  },
-  'globals': {
-    'test': 'readonly',
-    'describe': 'readonly',
-    'expect': 'readonly',
-    'jest': 'readonly',
   },
 };
