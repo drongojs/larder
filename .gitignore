@@ -1,8 +1,10 @@
 /public
 storybook-static
 backstop-static
-integration-static
+e2e-static
 bundle-report
+backstop_data/html_report/
+backstop_data/bitmaps_test/
 
 # Logs
 logs

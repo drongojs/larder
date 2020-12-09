@@ -3,7 +3,7 @@ import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { renderHook } from '@testing-library/react-hooks';
 import { useId } from '..';
 
-test('returns the id param', () => {
+it('returns the id param', () => {
   const wrapper = ({ children }: any) => (
     <Router
       initialEntries={[ '/larder/peas' ]}

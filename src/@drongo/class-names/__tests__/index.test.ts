@@ -1,11 +1,11 @@
 import { makeGetClassNames } from '../';
 
-test('returns a function', () => {
+it('returns a function', () => {
   expect(makeGetClassNames({})).toBeInstanceOf(Function);
 });
 
 describe('when there are no modifiers', () => {
-  test('returns default class names', () => {
+  it('returns default class names', () => {
     const getClassNames = makeGetClassNames({
       root: {
         default: 'd',
@@ -19,7 +19,7 @@ describe('when there are no modifiers', () => {
 });
 
 describe('when a modifier does not match', () => {
-  test('returns default class names', () => {
+  it('returns default class names', () => {
     const getClassNames = makeGetClassNames({
       root: {
         default: 'd',
@@ -35,7 +35,7 @@ describe('when a modifier does not match', () => {
 });
 
 describe('when modifier matches', () => {
-  test('returns default + modifier class names', () => {
+  it('returns default + modifier class names', () => {
     const getClassNames = makeGetClassNames({
       root: {
         default: 'd',

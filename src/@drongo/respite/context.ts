@@ -12,7 +12,13 @@ import useReducer from './reducer';
 
 export const context = createContext<Context<any>>(void 0);
 
-export const useContext = <T>(): Context<T> => useReactContext(context);
+export const useContext = <T>(): Context<T> => {
+  const result = useReactContext(context);
+  if (!result) {
+    throw new Error('You must wrap your app in @drongo/respite\'s <Provider>');
+  }
+  return result;
+};
 
 export const Provider = ({
   cacheTime = 1000 * 60 * 3,

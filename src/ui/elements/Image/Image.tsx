@@ -1,5 +1,5 @@
 import { styled } from 'linaria/react';
-import theme from 'ui/theme';
+import * as theme from 'ui/theme';
 
 interface Props {
   src: string,

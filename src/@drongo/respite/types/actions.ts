@@ -26,7 +26,7 @@ export interface ActionInvalidate {
   exact?: boolean,
   predicate?: (query: CachedQuery<any>, key: string) => boolean,
 }
-export interface ActionFetching<T> {
+export interface ActionFetching {
   type: ActionType.FETCHING,
   deps: Deps,
 }
@@ -42,4 +42,4 @@ export interface ActionFailure {
 }
 
 // eslint-disable-next-line max-len
-export type Action<T> = ActionSubscribe | ActionUnsubscribe | ActionInvalidate | ActionFetching<T> | ActionSuccess<T> | ActionFailure;
+export type Action<T> = ActionSubscribe | ActionUnsubscribe | ActionInvalidate | ActionFetching | ActionSuccess<T> | ActionFailure;

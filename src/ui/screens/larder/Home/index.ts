@@ -1,1 +1,1 @@
-export { default } from './ConnectedHome';
+export { default } from './Screen';

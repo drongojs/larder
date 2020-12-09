@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssLoader = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { DefinePlugin } = require('webpack');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -11,9 +12,20 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     filename: 'main.[hash].js',
-    chunkFilename: '[name].[hash].js',
+    chunkFilename: '[name].chunk.[hash].js',
     path: resolve('./public'),
     publicPath: '/',
+  },
+  optimization: {
+    runtimeChunk: true,
+    // splitChunks: {
+    //   chunks: 'all',
+    //   cacheGroups: {
+    //     vendor: {
+    //       test: /\/node_modules\//,
+    //     },
+    //   },
+    // },
   },
   resolve: {
     extensions: [ '.js', '.ts', '.tsx', '.css' ],
@@ -54,7 +66,11 @@ module.exports = {
       ],
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
+      analyzerMode: prod ? 'static' : 'disabled',
+    }),
+    new DefinePlugin({
+      SKIP_ANIMATIONS: 'false',
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     }),
   ],
   devServer: prod ? void 0 : {

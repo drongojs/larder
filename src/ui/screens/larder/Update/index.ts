@@ -1,1 +1,1 @@
-export { default } from './ConnectedUpdate';
+export { default } from './Screen';

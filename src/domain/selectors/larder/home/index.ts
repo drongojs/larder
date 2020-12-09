@@ -5,7 +5,7 @@ import {
 import { parseSearch } from 'domain/selectors';
 import { useCreate } from 'adapters/actions/stock';
 import { tuple } from 'crosscutting/utils';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 export const useOnClick = () => {
   const history = useHistory();
@@ -30,6 +30,7 @@ export const useOnSubmit = (
       quantity,
       unit,
     } = parseSearch(search);
+
     await create({
       name,
       quantity,

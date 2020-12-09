@@ -1,6 +1,6 @@
 import React, { LiHTMLAttributes } from 'react';
 import { css, cx } from 'linaria';
-import theme, { tabletLandscapeUp } from 'ui/theme';
+import { queries, palette } from 'ui/theme';
 import Color from 'color';
 import { withRipple } from 'ui/elements/Ripple';
 
@@ -11,18 +11,18 @@ const styles = {
     display: flex;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: ${theme.palette.white.color};
+    background-color: ${palette.white.color};
     cursor: pointer;
     outline: none;
 
     &:hover {
-      background-color: ${Color(theme.palette.white.color).darken(0.04).toString()};
+      background-color: ${Color(palette.white.color).darken(0.04).toString()};
     }
     &:focus {
-      background-color: ${Color(theme.palette.white.color).darken(0.03).toString()};
+      background-color: ${Color(palette.white.color).darken(0.03).toString()};
     }
 
-    ${tabletLandscapeUp()} {
+    ${queries.tabletUp} {
       padding-left: 1rem;
       padding-right: 1rem;
     }

@@ -20,7 +20,7 @@ const setup = () => {
 
 describe('get', () => {
 
-  test('sends a request to the url', async() => {
+  it('sends a request to the url', async() => {
     const { fetch, driver } = setup();
     const url = 'https://google.com';
 
@@ -28,7 +28,7 @@ describe('get', () => {
 
     expect(fetch.mock.calls[0][0]).toBe(url);
   });
-  test('appends data as query params', async() => {
+  it('appends data as query params', async() => {
     const { fetch, driver } = setup();
     const url = 'https://google.com';
     const data = { foo: 'bah' };
@@ -37,7 +37,7 @@ describe('get', () => {
 
     expect(fetch.mock.calls[0][0]).toBe('https://google.com?foo=bah');
   });
-  test('inserts params into url placeholders', async() => {
+  it('inserts params into url placeholders', async() => {
     const { fetch, driver } = setup();
     const url = 'https://google.com/:type/:id';
     const params = {
@@ -49,7 +49,18 @@ describe('get', () => {
 
     expect(fetch.mock.calls[0][0]).toBe('https://google.com/test/44');
   });
-  test('appends array data as query params', async() => {
+  it('throws for invalid query params', async() => {
+    const { driver } = setup();
+    const url = 'https://google.com/:type/:id';
+    const params = {
+      type: 'test',
+      id: 44,
+      foo: 'bah',
+    };
+
+    expect(() => driver({ url, params })).rejects.toThrowError();
+  });
+  it('appends array data as query params', async() => {
     const { fetch, driver } = setup();
     const url = 'https://google.com';
     const data = { foo: [ 'bah' ] };
@@ -58,7 +69,14 @@ describe('get', () => {
 
     expect(fetch.mock.calls[0][0]).toBe('https://google.com?foo%5B%5D=bah');
   });
-  test('returns response json', async() => {
+  it('throws if an invalid query param is sent', async() => {
+    const { driver } = setup();
+    const url = 'https://google.com';
+    const data = { foo: {} };
+
+    await expect(() => driver({ url, data })).rejects.toThrowError();
+  });
+  it('returns response json', async() => {
     const { driver, data } = setup();
     const url = 'https://google.com';
 
@@ -67,7 +85,7 @@ describe('get', () => {
     expect(result).toBe(data);
   });
   describe('when request fails', () => {
-    test('returns response text', async() => {
+    it('returns response text', async() => {
       const { driver, response, data } = setup();
       const url = 'https://google.com';
       response.ok = false;
@@ -83,7 +101,7 @@ describe('get', () => {
 });
 
 describe('post', () => {
-  test('sends content type header', async() => {
+  it('sends content type header', async() => {
     const { driver, fetch } = setup();
 
     await driver({
@@ -97,7 +115,7 @@ describe('post', () => {
     const header = fetch.mock.calls[0][1].headers[0];
     expect(header).toEqual([ 'Content-Type', 'application/json' ]);
   });
-  test('sends body content', async() => {
+  it('sends body content', async() => {
     const { driver, fetch } = setup();
 
     await driver({

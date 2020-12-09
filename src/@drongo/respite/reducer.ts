@@ -68,7 +68,7 @@ const invalidate = <T>(state: QueryCache<T>, action: ActionInvalidate) => {
     }, {});
 };
 
-const fetching = <T>(state: QueryCache<T>, action: ActionFetching<T>) => {
+const fetching = <T>(state: QueryCache<T>, action: ActionFetching) => {
   const { deps } = action;
   const [ key, query ] = getQuery(state, deps);
 

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { css } from 'linaria';
-import theme from 'ui/theme';
+import * as theme from 'ui/theme';
 
 interface Props { children: ReactNode }
 

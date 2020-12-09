@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { usePreview } from '..';
 
 describe('usePreview', () => {
-  test('returns the adjusted quantity', () => {
+  it('returns the adjusted quantity', () => {
     const { result } = renderHook(() => {
       return usePreview(250, 'g', false);
     }, {
@@ -18,7 +18,7 @@ describe('usePreview', () => {
     expect(result.current.quantity).toBe(750);
   });
   describe('when the unit is different', () => {
-    test('converts the amount to the base unit', () => {
+    it('converts the amount to the base unit', () => {
       const { result } = renderHook(() => {
         return usePreview(250, 'g', false);
       }, {
@@ -34,7 +34,7 @@ describe('usePreview', () => {
     });
   });
   describe('when negate is true', () => {
-    test('subtracts the adjustment', () => {
+    it('subtracts the adjustment', () => {
       const { result } = renderHook(() => {
         return usePreview(1000, 'g', true);
       }, {
@@ -49,7 +49,7 @@ describe('usePreview', () => {
       expect(result.current.quantity).toBe(500);
     });
   });
-  test('returns the unit', () => {
+  it('returns the unit', () => {
     const { result } = renderHook(() => {
       return usePreview(500, 'g', false);
     }, {

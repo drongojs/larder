@@ -10,7 +10,7 @@ export enum Kind {
 const BLACK = '#0E0E2C';
 const WHITE = '#FFF';
 
-const palette = {
+export const palette = {
   primary: {
     color: '#1D9FC1',
     contrast: WHITE,
@@ -49,22 +49,18 @@ const palette = {
   },
 };
 
-const curvature = 7;
+export const curvature = 7;
 
-const font = {
+export const font = {
   family: 'Open Sans',
   size: 14,
 };
 
-const breakpoints = {
+export const breakpoints = {
   phone: {
     max: 599,
   },
   tablet: {
-    min: 600,
-    max: 899,
-  },
-  tabletLandscape: {
     min: 900,
     max: 1199,
   },
@@ -73,15 +69,10 @@ const breakpoints = {
   },
 };
 
-export const tabletUp = () => `@media (min-width: ${breakpoints.tablet.min}px)`;
-
-export const tabletLandscapeUp = () => `@media (min-width: ${breakpoints.tabletLandscape.min}px)`;
-
-export const desktopUp = () => `@media (min-width: ${breakpoints.desktop.min}px)`;
-
-export default {
-  breakpoints,
-  palette,
-  curvature,
-  font,
+export const queries = {
+  phoneOnly: `@media(max-width: ${breakpoints.phone.max}px)`,
+  tabletDown: `@media(max-width: ${breakpoints.tablet.max}px)`,
+  tabletOnly: `@media(min-width: ${breakpoints.tablet.min}px) and (max-width: ${breakpoints.tablet.max}px)`,
+  tabletUp: `@media(min-width: ${breakpoints.tablet.min}px)`,
+  desktopOnly: `@media(min-width: ${breakpoints.desktop.min}px)`,
 };

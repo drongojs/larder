@@ -1,5 +1,5 @@
 import { styled } from 'linaria/react';
-import theme from 'ui/theme';
+import * as theme from 'ui/theme';
 
 export default styled.li`
   padding-top: 1.5rem;

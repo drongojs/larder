@@ -1,6 +1,6 @@
 import { parseSearch } from '../';
 
-test('parses a simple string', () => {
+it('parses a simple string', () => {
   const result = parseSearch('1kg peas');
 
   expect(result).toEqual({
@@ -11,7 +11,7 @@ test('parses a simple string', () => {
   });
 });
 
-test('parses a string with suffix text', () => {
+it('parses a string with suffix text', () => {
   const result = parseSearch('1kg tinned mushy peas');
 
   expect(result).toEqual({
@@ -22,7 +22,7 @@ test('parses a string with suffix text', () => {
   });
 });
 
-test('parses a string with prefix text', () => {
+it('parses a string with prefix text', () => {
   const result = parseSearch('mushy peas 500g');
 
   expect(result).toEqual({
@@ -33,7 +33,7 @@ test('parses a string with prefix text', () => {
   });
 });
 
-test('parses a string with no quantity or unit', () => {
+it('parses a string with no quantity or unit', () => {
   const result = parseSearch('mushy peas');
 
   expect(result).toEqual({
@@ -42,7 +42,7 @@ test('parses a string with no quantity or unit', () => {
   });
 });
 
-test('parses a string with no unit', () => {
+it('parses a string with no unit', () => {
   const result = parseSearch('5 peas');
 
   expect(result).toEqual({
@@ -52,7 +52,7 @@ test('parses a string with no unit', () => {
   });
 });
 
-test('parses a string with no name', () => {
+it('parses a string with no name', () => {
   const result = parseSearch('50kg');
 
   expect(result).toEqual({
@@ -62,7 +62,7 @@ test('parses a string with no name', () => {
   });
 });
 
-test('parses a string with a decimal amount', () => {
+it('parses a string with a decimal amount', () => {
   const result = parseSearch('0.5kg peas');
 
   expect(result).toEqual({
@@ -73,7 +73,7 @@ test('parses a string with a decimal amount', () => {
   });
 });
 
-test('parses a string with a fractional amount', () => {
+it('parses a string with a fractional amount', () => {
   const result = parseSearch('1/4kg peas');
 
   expect(result).toEqual({
@@ -84,7 +84,7 @@ test('parses a string with a fractional amount', () => {
   });
 });
 
-test('parses a string with a quantity in the wrong place', () => {
+it('parses a string with a quantity in the wrong place', () => {
   const result = parseSearch('500 mushy peas g');
 
   expect(result).toEqual({
@@ -94,7 +94,7 @@ test('parses a string with a quantity in the wrong place', () => {
   });
 });
 
-test('parses a string with multiple possible quantities', () => {
+it('parses a string with multiple possible quantities', () => {
   const result = parseSearch('500g 400g peas 1kg');
 
   expect(result).toEqual({

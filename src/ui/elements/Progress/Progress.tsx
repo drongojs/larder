@@ -1,5 +1,5 @@
 import React from 'react';
-import theme from 'ui/theme';
+import * as theme from 'ui/theme';
 
 export type SimpleSize = 'small' | 'medium' | 'large';
 
@@ -25,7 +25,7 @@ const getWidthFromSize = (size: number | SimpleSize) => {
 };
 
 const Progress = ({
-  value = 0,
+  value,
   total = 1,
   speed = 500,
   size = 'medium',

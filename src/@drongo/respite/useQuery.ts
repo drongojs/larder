@@ -18,7 +18,7 @@ const useQuery: UseQuery = <T>(
   }, setState ] = useState(query);
   const cb = useCallback(callback, deps);
 
-  const fetch = useCallback(() => {
+  const fetch = useCallback(() => {    
     if (cache.promise) {
       return cache.promise;
     }

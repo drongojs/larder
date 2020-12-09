@@ -5,6 +5,7 @@ export default {
   title: 'modules/Page',
 };
 
+// TODO: what's with this styles?
 export const Basic = () => (
   <div style={{ height: 700, backgroundColor: '#ccc' }}>
     <Page title="Page title">

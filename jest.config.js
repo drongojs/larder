@@ -24,9 +24,10 @@ module.exports = {
     "src/**/*.{ts,tsx}",
     "!**/__tests__/**",
     "!**/__stories__/**",
-    "!**/__integration__/**",
-    "!**/presentation/**",
-    "!**/@drongo/**"
+    "!**/__e2e__/**",
+    "!**/@drongo/**",
+    "!src/domain/core/**",
+    "!src/mocks/**"
   ],
 
   // The directory where Jest should output its coverage files
@@ -61,13 +62,15 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: undefined,
+  // globalSetup: './test-setup.js',
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
-  // globals: {},
+  // globals: {
+  //   SKIP_ANIMATIONS: true,
+  // },
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
@@ -132,7 +135,7 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
+  // setupFiles: [ './test-setup.js' ],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
@@ -153,10 +156,13 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: [
+    ...(
+      process.env.TEST_MODE === 'INTEGRATION' ? [ '**/__integration__/*.test.[jt]s?(x)' ] :
+      process.env.TEST_MODE === 'UNIT' ? [ '**/__tests__/**/*.test.[jt]s?(x)' ] :
+      [ '**/__{tests,integration}__/**/*.test.[jt]s?(x)' ]
+    ),
+  ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [

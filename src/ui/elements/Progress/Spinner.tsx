@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Progress, { SimpleSize } from './Progress';
-import { useToggle, useTimeoutEffect } from 'ui/hooks';
+import { useToggle, useTimeoutEffect } from 'ui/utils';
+
+declare const SKIP_ANIMATIONS: boolean;
 
 interface Props {
   speed?: number,
@@ -11,6 +13,15 @@ const Spinner = ({
   size,
   speed = 500,
 }: Props) => {
+  if (SKIP_ANIMATIONS) {
+    return (
+      <Progress
+        value={0.5}
+        total={1}
+        size={size}
+      />
+    );
+  }
   const [ value, setValue ] = useState(0);
   const [ key, toggleKey ] = useToggle();
 

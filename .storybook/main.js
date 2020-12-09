@@ -1,17 +1,21 @@
+const webpack = require('webpack');
+
 let type = 'stories';
 switch (process.env.STORY_MODE) {
-case 'INT':
-  type = 'integration';
+case 'E2E':
+  type = 'e2e';
+  break;
+case 'BACKSTOP':
+  type = 'backstop';
   break;
 case 'STORYBOOK':
-case 'BACKSTOP':
 default:
   break;
 }
 
 module.exports = {
   'stories': [
-    `../src/**/__${type}__/**/*.stories.@(js|jsx|ts|tsx)`
+    `../src/**/__stories__/**/*.${type}.@(js|jsx|ts|tsx)`
     // '../src/@drongo/respite/__stories__/*.stories.tsx',
   ],
   'addons': [
@@ -23,6 +27,9 @@ module.exports = {
       test: /\.tsx?/,
       use: [ 'babel-loader', 'linaria/loader' ],
     });
+    config.plugins.push(new webpack.DefinePlugin({
+      SKIP_ANIMATIONS: `${process.env.STORY_MODE === 'BACKSTOP'}`,
+    }))
     return config;
   },
 }

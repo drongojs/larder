@@ -1,7 +1,9 @@
 import React, { ReactNode, useState, useCallback, ComponentType } from 'react';
 import { css } from 'linaria';
-import theme from 'ui/theme';
-import { useTimeoutEffect } from 'ui/hooks';
+import * as theme from 'ui/theme';
+import { useTimeoutEffect } from 'ui/utils';
+
+declare const SKIP_ANIMATIONS: boolean;
 
 const DURATION = 1500;
 
@@ -54,6 +56,9 @@ function withRipple<P extends BaseProps>(C: ComponentType<P>) {
     const [ clicked, setClicked ] = useState(false);
 
     const handleClick = useCallback((e: any) => {
+      if (SKIP_ANIMATIONS) {
+        return onClick?.(e);
+      }
       setClicked(true);
       setTimeout(() => {
         onClick?.(e);

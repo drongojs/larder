@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import convert from 'convert-units';
-import { useRouteMatch } from 'react-router';
+import { useRouteMatch } from 'react-router-dom';
 import { toPrecision } from 'crosscutting/utils';
 
 export const useId = () => {

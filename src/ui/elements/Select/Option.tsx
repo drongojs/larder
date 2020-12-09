@@ -1,6 +1,6 @@
 import React, { ReactNode, KeyboardEvent } from 'react';
 import { css, cx } from 'linaria';
-import theme from 'ui/theme';
+import * as theme from 'ui/theme';
 
 const styles = {
   root: css`
@@ -20,6 +20,7 @@ interface Props {
   value: any,
   selected: boolean,
   onClick: () => void,
+  onKeyDown?: (e: any) => void,
   children: ReactNode,
 }
 
@@ -27,8 +28,11 @@ const Option = ({
   selected,
   children,
   onClick,
+  onKeyDown,
 }: Props) => {
   const handleKeyDown = (e: KeyboardEvent<HTMLLIElement>) => {
+    onKeyDown?.(e);
+
     switch (e.key) {
     case 'ArrowDown':
       // @ts-ignore

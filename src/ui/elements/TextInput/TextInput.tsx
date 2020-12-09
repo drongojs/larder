@@ -1,6 +1,6 @@
-import React, { InputHTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 import { css, cx } from 'linaria';
-import theme from 'ui/theme';
+import { palette, curvature } from 'ui/theme';
 import { makeGetClassNames } from '@drongo/class-names';
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
@@ -14,10 +14,10 @@ const getStyles = makeGetClassNames({
     default: css`
       display: flex;
       width: 100%;
-      border-color: ${theme.palette.grey01.color};
+      border-color: ${palette.grey01.color};
 
       &:focus-within > * {
-        border-color: ${theme.palette.primary.color};
+        border-color: ${palette.primary.color};
       }
 
       & button:last-child {
@@ -34,7 +34,7 @@ const getStyles = makeGetClassNames({
       }
     `,
     hasError: css`
-      border-color: ${theme.palette.danger.color};
+      border-color: ${palette.danger.color};
     `,
   },
   input: {
@@ -47,10 +47,10 @@ const getStyles = makeGetClassNames({
       padding-bottom: 0.75rem;
       border-style: solid;
       border-width: 2px;
-      border-radius: ${theme.curvature * 2}px;
+      border-radius: ${curvature * 2}px;
       border-color: inherit;
-      background-color: ${theme.palette.white.color};
-      color: ${theme.palette.white.contrast};
+      background-color: ${palette.white.color};
+      color: ${palette.white.contrast};
     `,
     hasSuffix: css`
       border-right-width: 0;
@@ -65,12 +65,12 @@ const getStyles = makeGetClassNames({
   },
 });
 
-const TextInput = ({
+const TextInput = forwardRef(({
   hasError,
   suffix = null,
   prefix = null,
   ...props
-}: Props) => {
+}: Props, ref: any) => {
   const styles = getStyles({
     hasError,
     hasSuffix: suffix != null,
@@ -83,10 +83,11 @@ const TextInput = ({
       <input
         {...props}
         className={cx(styles.input, props.className)}
+        ref={ref}
       />
       {suffix}
     </div>
   );
-};
+});
 
 export default TextInput;
