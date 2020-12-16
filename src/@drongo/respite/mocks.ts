@@ -5,24 +5,20 @@ import {
 
 interface StaticQueryConstructorArgs<T> {
   status?: Status,
-  fetching?: boolean,
   data?: T,
   error?: any,
 }
 export class StaticQuery<T> implements IQuery<T> {
   status: Status;
-  isFetching: boolean;
   _data: T;
   error: any;
 
   constructor({
     data,
     error,
-    fetching = false,
     status = data ? Status.SUCCESS : error ? Status.ERROR : Status.LOADING,
   }: StaticQueryConstructorArgs<T> = {}) {
     this.status = status;
-    this.isFetching = fetching;
     this.error = error;
     this._data = data;
   }
@@ -46,6 +42,6 @@ export class StaticQuery<T> implements IQuery<T> {
   }
 
   invalidate() {
-    this.isFetching = true;
+    this.status = Status.FETCHING;
   }
 }

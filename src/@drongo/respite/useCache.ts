@@ -4,7 +4,7 @@ import { getQuery, serialize } from './utils';
 import { useMemo, useCallback } from 'react';
 
 const useCache = <T>(deps: Deps) => {
-  const { cache, dispatch, promises } = useContext<T>();
+  const { cache, dispatch, promises, subscribers } = useContext<T>();
   const [ , query ] = getQuery<T>(cache, deps);
   const keys = serialize(deps);
 
@@ -39,15 +39,9 @@ const useCache = <T>(deps: Deps) => {
   }, deps);
 
   const subscribe = useCallback(() => {
-    dispatch({
-      type: ActionType.SUBSCRIBE,
-      deps,
-    });
+    subscribers.current[keys] = (subscribers.current[keys] ?? 0) + 1;
     return () => {
-      dispatch({
-        type: ActionType.UNSUBSCRIBE,
-        deps,
-      });
+      subscribers.current[keys] = (subscribers.current[keys] ?? 0) - 1;
     };
   }, deps);
 

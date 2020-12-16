@@ -7,7 +7,6 @@ export interface CachedQuery<T> {
   status: Status,
   data?: T,
   error?: any,
-  subscribers: number,
 }
 
 export interface QueryCache<T> {
@@ -20,8 +19,15 @@ export interface Promises<T> {
   },
 }
 
+export interface Subscribers {
+  current: {
+    [key: string]: number,
+  },
+}
+
 export interface Context<T> {
   promises: Promises<T>,
+  subscribers: Subscribers,
   cache: QueryCache<T>,
   dispatch: Dispatch<Action<T>>,
 }

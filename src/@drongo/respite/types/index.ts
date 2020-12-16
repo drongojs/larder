@@ -12,6 +12,7 @@ export * from './utils';
 export enum Status {
   IDLE = 'idle',
   LOADING = 'loading',
+  FETCHING = 'refetching',
   SUCCESS = 'success',
   ERROR = 'error',
 }
@@ -19,8 +20,9 @@ export enum Status {
 export interface Query<T = any> {
   data: T,
   status: Status,
-  isFetching: boolean,
   invalidate: Cache<T>['invalidate'],
+  prefetch: () => void,
+  reset: () => void,
 }
 
 export interface Cache<T> {

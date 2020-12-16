@@ -7,7 +7,7 @@ import {
   useRef,
   useEffect,
 } from 'react';
-import { Context, Promises, ActionType } from './types';
+import { Context, Promises, ActionType, Subscribers } from './types';
 import useReducer from './reducer';
 
 export const context = createContext<Context<any>>(void 0);
@@ -29,10 +29,12 @@ export const Provider = ({
 }) => {
   const [ cache, dispatch ] = useReducer();
   const promises = useRef<Promises<any>['current']>({});
+  const subscribers = useRef<Subscribers['current']>({});
   const value = useMemo(() => ({
     cache,
     dispatch,
     promises,
+    subscribers,
   }), [ cache, dispatch ]);
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export const Provider = ({
             if (promises.current[key]) {
               return false;
             }
-            if (query.subscribers > 0) {
+            if (subscribers.current[key] > 0) {
               return false;
             }
             return true;
@@ -56,6 +58,11 @@ export const Provider = ({
             delete promises.current[key];
           }
         });
+        Object.keys(subscribers.current).forEach(key => {
+          if (!subscribers.current[key]) {
+            delete subscribers.current[key];
+          }
+        })
       }, cacheTime);
       return () => clearInterval(handle);
     }

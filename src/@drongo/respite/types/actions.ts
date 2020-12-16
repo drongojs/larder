@@ -2,22 +2,10 @@ import { Deps } from './utils';
 import { CachedQuery } from './state';
 
 export enum ActionType {
-  SUBSCRIBE = 'SUBSCRIBE',
-  UNSUBSCRIBE = 'UNSUBSCRIBE',
   INVALIDATE = 'INVALIDATE',
   FETCHING = 'FETCHING',
   SUCCESS = 'SUCCESS',
   FAILURE = 'FAILURE',
-}
-
-export interface ActionSubscribe {
-  type: ActionType.SUBSCRIBE,
-  deps: Deps,
-}
-
-export interface ActionUnsubscribe {
-  type: ActionType.UNSUBSCRIBE,
-  deps: Deps,
 }
 
 export interface ActionInvalidate {
@@ -42,4 +30,4 @@ export interface ActionFailure {
 }
 
 // eslint-disable-next-line max-len
-export type Action<T> = ActionSubscribe | ActionUnsubscribe | ActionInvalidate | ActionFetching | ActionSuccess<T> | ActionFailure;
+export type Action<T> = ActionInvalidate | ActionFetching | ActionSuccess<T> | ActionFailure;

@@ -20,7 +20,6 @@ export const getQuery = <T>(cache: QueryCache<T>, deps: Deps): [ string, CachedQ
   const query = cache[keys] ?? {
     key: deps[0],
     status: Status.IDLE,
-    subscribers: 0,
   };
 
   return tuple([ keys, query ]);

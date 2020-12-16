@@ -2,6 +2,7 @@ import React, { Suspense, useState, useRef } from 'react';
 import { useAction, useQuery, Provider, Query, useContext } from '..';
 import { after } from 'crosscutting/utils';
 import { ErrorBoundary } from 'react-error-boundary';
+import { Status } from '../types';
 
 export default {
   title: 'respite',
@@ -11,7 +12,7 @@ export const basic = () => {
   const count = useRef(0);
   const Dumb = ({ query }: { query: Query<string> }) => {
     const value = query.data;
-    const fetching = query.isFetching;
+    const fetching = query.status === Status.FETCHING;
 
     return (
       <div>
@@ -63,7 +64,7 @@ export const parallel = () => {
   const count = useRef(0);
   const Dumb = ({ recess }: { recess: Query<string> }) => {
     const value = recess.data;
-    const fetching = recess.isFetching;
+    const fetching = recess.status === Status.FETCHING;
 
     return (
       <div>
@@ -107,7 +108,7 @@ export const invalidate = () => {
   const count = useRef(0);
   const Dumb = ({ recess }: { recess: Query<string> }) => {
     const value = recess.data;
-    const fetching = recess.isFetching;
+    const fetching = recess.status === Status.FETCHING;
 
     return (
       <div>
@@ -118,6 +119,7 @@ export const invalidate = () => {
   };
   const Smart = () => {
     const [ index, setIndex ] = useState(0);
+    const { cache, promises, subscribers } = useContext();
     const recess = useQuery(() => {
       return new Promise<string>(res => {
         console.log(++count.current);
@@ -136,14 +138,24 @@ export const invalidate = () => {
           <Dumb recess={recess}/>
           <div>
             <button onClick={() => recess.invalidate()}>Refresh</button>
+            <button onClick={() => recess.reset()}>Reset</button>
           </div>
         </Suspense>
+        <div>
+          <pre>
+            {JSON.stringify(cache, null, 2)}
+            <br/>
+            {JSON.stringify(Object.keys(promises.current), null, 2)}
+            <br/>
+            {JSON.stringify(subscribers.current, null, 2)}
+          </pre>
+        </div>
       </div>
     );
   };
 
   return (
-    <Provider>
+    <Provider cacheTime={15000}>
       <Smart/>
     </Provider>
   );
@@ -153,7 +165,7 @@ export const withActionRecess = () => {
   const count = useRef(0);
   const Dumb = ({ recess }: { recess: Query<string> }) => {
     const value = recess.data;
-    const fetching = recess.isFetching;
+    const fetching = recess.status === Status.FETCHING;
 
     return (
       <div>
@@ -200,7 +212,7 @@ export const withActionDeps = () => {
   const count = useRef(0);
   const Dumb = ({ recess }: { recess: Query<string> }) => {
     const value = recess.data;
-    const fetching = recess.isFetching;
+    const fetching = recess.status === Status.FETCHING;
 
     return (
       <div>
@@ -256,7 +268,7 @@ export const withActionKey = () => {
   const count = useRef(0);
   const Dumb = ({ recess }: { recess: Query<string> }) => {
     const value = recess.data;
-    const fetching = recess.isFetching;
+    const fetching = recess.status === Status.FETCHING;
 
     return (
       <div>
@@ -312,7 +324,7 @@ export const error = () => {
   const count = useRef(0);
   const Dumb = ({ recess }: { recess: Query<string> }) => {
     const value = recess.data;
-    const fetching = recess.isFetching;
+    const fetching = recess.status === Status.FETCHING;
 
     return (
       <div>
@@ -364,6 +376,60 @@ export const error = () => {
 
   return (
     <Provider>
+      <Smart/>
+    </Provider>
+  );
+};
+
+export const prefetch = () => {
+  const Dumb = ({ query }: { query: Query<string> }) => {
+    const value = query.data;
+    const fetching = query.status === Status.FETCHING;
+
+    return (
+      <div>
+        <span>{value}</span>
+        <span>{fetching ? '(fetching)' : ''}</span>
+      </div>
+    );
+  };
+  const Smart = () => {
+    const { cache, promises } = useContext();
+    const [ show, setShow ] = useState(false);
+
+    const query = useQuery(() => {
+      return new Promise<string>(res => {
+        setTimeout(() => {
+          res('I am loaded');
+        }, 2000);
+      });
+    }, [ 'test' ]);
+
+    query.prefetch();
+
+    return (
+      <div>
+        <div>
+          <button onClick={() => setShow(true)}>Show</button>
+        </div>
+        <If condition={show}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Dumb query={query}/>
+          </Suspense>
+        </If>
+        <div>
+          <pre>
+            {JSON.stringify(cache, null, 2)}
+            <br/>
+            {JSON.stringify(Object.keys(promises.current), null, 2)}
+          </pre>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <Provider cacheTime={10000}>
       <Smart/>
     </Provider>
   );
