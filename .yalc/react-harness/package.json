@@ -1,0 +1,28 @@
+{
+  "name": "react-harness",
+  "version": "0.0.0+903d3908",
+  "main": "dist/cjs/react-harness.js",
+  "module": "dist/es/react-harndess.js",
+  "types": "dist/ts/index.d.ts",
+  "repository": "git@github.com:jackmellis/react-harness.git",
+  "author": "Jack Ellis <jack.ellis@godaddy.com>",
+  "license": "MIT",
+  "sideEffects": true,
+  "scripts": {
+    "lint": "eslint --ext .ts,.tsx \"src\" && tsc --noEmit",
+    "test": "nyc ava",
+    "build:prepare": "rm -rf dist",
+    "build:js": "rollup -c",
+    "build:ts": "tsc -d --outDir dist/ts --emitDeclarationOnly",
+    "build:post": "node ./postbuild-checks.js",
+    "build": "yarn build:prepare && yarn build:js && yarn build:ts && yarn build:post",
+    "prepublishOnly": "yarn build",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0"
+  },
+  "dependencies": {},
+  "yalcSig": "903d3908b70c566071c8dcd1bab041df"
+}

@@ -1,8 +1,8 @@
-import { useParams, useHistory } from 'react-router-dom';
-import Screen from './Screen';
+import { useUpdate } from 'adapters/commands/stock';
 import { useStock } from 'adapters/queries/stock';
-import { useUpdate } from 'adapters/actions/stock';
+import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'ui/utils';
+import Screen from './Screen';
 
 const ConnectedScreen = connect(Screen, () => {
   const { id } = useParams<{ id: string }>();

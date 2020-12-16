@@ -15,8 +15,7 @@ default:
 
 module.exports = {
   'stories': [
-    `../src/**/__stories__/**/*.${type}.@(js|jsx|ts|tsx)`
-    // '../src/@drongo/respite/__stories__/*.stories.tsx',
+    `../src/**/*.${type}.@(js|jsx|ts|tsx)`
   ],
   'addons': [
     '@storybook/addon-links',

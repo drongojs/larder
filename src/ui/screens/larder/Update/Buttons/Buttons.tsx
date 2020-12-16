@@ -41,6 +41,7 @@ const Buttons = ({
         Ok
       </Button>
       <Button
+        role="button"
         kind={Kind.SECONDARY}
         pending={submitting}
         component={Link}

@@ -1,18 +1,10 @@
-import { useResolve } from 'react-jpex';
-import { Read } from 'domain/core/stock';
 import { useQuery } from '@drongo/respite';
 import { Queries } from 'domain/constants';
+import { IStockService } from 'ports/stock';
+import { encase } from 'react-jpex';
 
-export const useStock = (
-  {
-    id,
-  }: {
-    id: string,
-  },
-) => {
-  const fetch = useResolve<Read>();
-
-  return useQuery(() => fetch({ id }), [ Queries.STOCK, id ]);
+const useStock = (service: IStockService) => ({ id }: { id: string }) => {
+  return useQuery(() => service.read({ id }), [ Queries.STOCK, id ]);
 };
 
-export default useStock;
+export default encase(useStock);

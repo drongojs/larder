@@ -1,8 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, LabelHTMLAttributes } from 'react';
 import { css } from 'linaria';
 import * as theme from 'ui/theme';
 
-interface Props { children: ReactNode }
+interface Props extends LabelHTMLAttributes<HTMLLabelElement> {
+  htmlFor: string,
+  children: ReactNode,
+}
 
 const styles = {
   label: css`
@@ -14,14 +17,9 @@ const styles = {
 };
 
 const Label = ({ children }: Props) => {
-  const [ labelText, field ] = React.Children.toArray(children);
-
   return (
-    <label>
-      <div className={styles.label}>
-        {labelText}
-      </div>
-      {field}
+    <label className={styles.label}>
+      {children}
     </label>
   );
 };

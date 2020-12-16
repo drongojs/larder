@@ -1,11 +1,11 @@
-import { useParams, useHistory } from 'react-router-dom';
-import { useStock } from 'adapters/queries/stock';
+import { useCreate as useCreateCategory } from 'adapters/commands/categories';
+import { useUpdate as useUpdateStock } from 'adapters/commands/stock';
 import { useCategories } from 'adapters/queries/categories';
-import { useUpdate } from 'adapters/actions/stock';
-import { useCreate } from 'adapters/actions/categories';
-import Screen from './Screen';
-import { connect } from 'ui/utils';
+import { useStock } from 'adapters/queries/stock';
 import { parseSearch } from 'domain/selectors';
+import { useHistory, useParams } from 'react-router-dom';
+import { connect } from 'ui/utils';
+import Screen from './Screen';
 
 interface Values {
   amount: string,
@@ -19,8 +19,8 @@ export default connect(Screen, () => {
   const history = useHistory();
   const stockQuery = useStock({ id });
   const categoryQuery = useCategories();
-  const [ update, stockSubmitting ] = useUpdate([ stockQuery ]);
-  const [ create, categorySubmitting ] = useCreate();
+  const [ update, stockSubmitting ] = useUpdateStock([ stockQuery ]);
+  const [ create, categorySubmitting ] = useCreateCategory();
 
   const onCreateCategory = (name: string) => create({ name });
 

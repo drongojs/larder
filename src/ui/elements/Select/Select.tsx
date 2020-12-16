@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useState, useRef, useEffect } from 'react';
+import React, { KeyboardEvent, useState, useRef, useEffect, ReactNode } from 'react';
 import { css } from 'linaria';
 import * as theme from 'ui/theme';
 import Options from './Options';
@@ -24,24 +24,21 @@ const styles = {
 };
 
 interface Props {
+  id?: string,
   value?: any,
-  options?: any[],
-  getKey?: (obj: any) => string,
-  getText?: (obj: any) => string,
-  render?: (obj: any) => (JSX.Element | string),
+  children?: ReactNode,
+  getText?: (x: any) => string,
   onChange?: (e: any) => void,
-  onAdd?: (text: string) => any,
 }
 
 const Select = ({
-  getKey = (x: any) => `${x}`,
-  getText = getKey,
-  render = getText,
+  id,
   value,
+  getText = (x: any) => x.toString(),
   onChange,
-  onAdd,
-  ...props
+  children,
 }: Props) => {
+  const mountedRef = useRef(true);
   const [ search, setSearch ] = useState('');
   const [ focused, _setFocused ] = useState(false);
   const inputRef = useRef<HTMLInputElement>();
@@ -49,6 +46,9 @@ const Select = ({
   const blurHandleRef = useRef<any>();
 
   const setFocused = (value: boolean) => {
+    if (!mountedRef.current) {
+      return;
+    }
     _setFocused(value);
     if (!value) {
       setSearch('');
@@ -56,6 +56,7 @@ const Select = ({
   };
 
   useEffect(() => () => {
+    mountedRef.current = false;
     if (blurHandleRef.current != null) {
       clearTimeout(blurHandleRef.current);
     }
@@ -69,7 +70,7 @@ const Select = ({
       if (inputRef.current === active) {
         return;
       }
-      if (Array.from(listRef.current.children).includes(active)) {
+      if (listRef.current && Array.from(listRef.current.children).includes(active)) {
         return;
       }
       setFocused(false);
@@ -95,6 +96,7 @@ const Select = ({
       onBlur={onBlur}
     >
       <Input
+        id={id}
         focused={focused}
         getText={getText}
         search={search}
@@ -105,18 +107,15 @@ const Select = ({
       />
       <If condition={focused}>
         <Options
-          getKey={getKey}
-          getText={getText}
-          onAdd={onAdd}
           onChange={onChange}
-          options={props.options}
-          render={render}
           search={search}
           setFocused={setFocused}
           value={value}
           ref={listRef}
           onKeyDown={handleKeyUp}
-        />
+        >
+          {children}
+        </Options>
       </If>
     </div>
   );

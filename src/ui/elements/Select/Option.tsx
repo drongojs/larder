@@ -1,63 +1,41 @@
-import React, { ReactNode, KeyboardEvent } from 'react';
-import { css, cx } from 'linaria';
-import * as theme from 'ui/theme';
-
-const styles = {
-  root: css`
-    outline: none;
-    padding: 1rem;
-
-    &:hover, &:focus {
-      background-color: ${theme.palette.secondary.color};
-    }
-  `,
-  selected: css`
-    background-color: ${theme.palette.primary.color};
-  `,
-};
+import React, { useContext, ReactNode } from 'react';
+import { Context } from './context';
+import PureOption from './PureOption';
 
 interface Props {
   value: any,
-  selected: boolean,
-  onClick: () => void,
-  onKeyDown?: (e: any) => void,
+  search?: string,
   children: ReactNode,
 }
 
 const Option = ({
-  selected,
+  value,
+  search = value,
   children,
-  onClick,
-  onKeyDown,
 }: Props) => {
-  const handleKeyDown = (e: KeyboardEvent<HTMLLIElement>) => {
-    onKeyDown?.(e);
+  const {
+    onClick,
+    onKeyDown,
+    search: currentSearch,
+    value: currentValue,
+  } = useContext(Context);
 
-    switch (e.key) {
-    case 'ArrowDown':
-      // @ts-ignore
-      e.target.nextSibling?.focus();
-      break;
-    case 'ArrowUp':
-      // @ts-ignore
-      e.target.previousSibling?.focus();
-      break;
-    case 'Enter':
-      // @ts-ignore
-      e.target.click();
-      break;
-    }
-  };
+  if (currentSearch && currentSearch !== search && !search.includes(currentSearch)) {
+    return null;
+  }
+
+  const selected = value === currentValue;
+
+  const handleClick = () => onClick(value);
 
   return (
-    <li
-      tabIndex={-1}
-      className={cx(styles.root, selected && styles.selected)}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
+    <PureOption
+      selected={selected}
+      onClick={handleClick}
+      onKeyDown={onKeyDown}
     >
       {children}
-    </li>
+    </PureOption>
   );
 };
 

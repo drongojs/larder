@@ -1,5 +1,5 @@
-import { ComponentType, createElement, useEffect, useState, useCallback } from 'react';
 import { tuple } from 'crosscutting/utils';
+import { ComponentType, createElement, useCallback, useEffect, useState } from 'react';
 
 export const useToggle = (defaultValue = false) => {
   const [ value, setValue ] = useState(defaultValue);

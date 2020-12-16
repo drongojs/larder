@@ -4,6 +4,7 @@ import * as theme from 'ui/theme';
 import TextInput, { Suffix } from '../TextInput';
 
 interface Props {
+  id?: string,
   search: string,
   value: any,
   focused: boolean,
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const Input = forwardRef(({
+  id,
   search,
   value,
   getText,
@@ -24,6 +26,8 @@ const Input = forwardRef(({
 
   return (
     <TextInput
+      id={id}
+      aria-autocomplete="list"
       placeholder={valueText}
       value={focused ? search: valueText}
       suffix={(

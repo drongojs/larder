@@ -8,13 +8,13 @@ const NameField = () => {
 
   return (
     <div>
-      <Label>
+      <Label htmlFor="stock-name-input">
         Name
-        <TextInput
-          id="stock-name-input"
-          {...input}
-        />
       </Label>
+      <TextInput
+        id="stock-name-input"
+        {...input}
+      />
     </div>
   );
 };

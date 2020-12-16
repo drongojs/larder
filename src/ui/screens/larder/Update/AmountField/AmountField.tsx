@@ -51,16 +51,19 @@ const AmountField = ({
   );
 
   return (
-    <Label>
-      Amount
+    <>
+      <Label htmlFor="stock-amount-input">
+        Amount
+      </Label>
       <TextInput
+        aria-label="amount"
         id="stock-amount-input"
         prefix={prefix}
         suffix={suffix}
         readOnly={submitting}
         {...input}
       />
-    </Label>
+    </>
   );
 };
 

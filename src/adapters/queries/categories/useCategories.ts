@@ -1,11 +1,10 @@
-import { useResolve } from 'react-jpex';
-import { Read } from 'domain/core/categories';
 import { useQuery } from '@drongo/respite';
 import { Queries } from 'domain/constants';
+import { ICategoryService } from 'ports/categories';
+import { encase } from 'react-jpex';
 
-export const useCategories = () => {
-  const fetch = useResolve<Read>();
-  return useQuery(fetch, [ Queries.CATEGORIES ]);
+const useCategories = (service: ICategoryService) => () => {
+  return useQuery(service.readAll.bind(service), [ Queries.CATEGORIES ]);
 };
 
-export default useCategories;
+export default encase(useCategories);

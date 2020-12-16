@@ -1,14 +1,23 @@
-import { Jpex } from 'jpex';
-import create from './create';
-import kill from './delete';
-import read from './read';
-import search from './search';
-import update from './update';
+import { Stock } from 'domain/core';
+import jpex from 'jpex';
+import { Driver } from 'ports/driver';
+import { RestEntity, IEntity } from '../entity';
 
-export default (jpex: Jpex) => {
-  create(jpex);
-  kill(jpex);
-  read(jpex);
-  search(jpex);
-  update(jpex);
-};
+export interface IStockService extends IEntity<Stock> {
+  search(args: { search: string }): Promise<Array<Stock>>,
+}
+
+class StockService extends RestEntity<Stock> implements IStockService {
+  constructor(driver: Driver) {
+    super(driver, '/api/stock/item');
+  }
+
+  search({ search }: { search: string }) {
+    return this.driver<Stock[]>({
+      url: '/api/stock/items',
+      data: { q: search },
+    });
+  }
+}
+
+jpex.service(StockService);

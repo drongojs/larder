@@ -1,18 +1,13 @@
-import { useResolve } from 'react-jpex';
-import { useDebounce } from 'use-debounce';
-import { Search } from 'domain/core/stock';
 import { useQuery } from '@drongo/respite';
 import { Queries } from 'domain/constants';
+import { IStockService } from 'ports/stock';
+import { encase } from 'react-jpex';
+import { useDebounce } from 'use-debounce';
 
-export const useSearchStock = (
-  args: {
-    search: string,
-  },
-) => {
+const useSearchStock = (service: IStockService) => (args: { search: string }) => {
   const [ search ] = useDebounce(args.search, 250);
-  const fetch = useResolve<Search>();
 
-  return useQuery(() => fetch({ search }), [ Queries.SEARCH_STOCK, search ]);
+  return useQuery(() => service.search({ search }), [ Queries.SEARCH_STOCK, search ]);
 };
 
-export default useSearchStock;
+export default encase(useSearchStock);

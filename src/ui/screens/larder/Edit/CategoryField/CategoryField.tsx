@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { useField } from 'formik';
-import Select from 'ui/elements/Select';
+import { Select, AddOption, Option } from 'ui/elements/Select';
 import { Category } from 'domain/core';
 import Label from 'ui/elements/Label';
 import { Query } from '@drongo/respite';
 
 interface Props {
   query: Query<Category[]>,
-  onCreate: (name: string) => any,
+  onCreate: (name: string) => Promise<Category>,
 }
 
 const CategoryField = ({
@@ -33,20 +33,33 @@ const CategoryField = ({
 
   return (
     <div>
-      <Label>
+      <Label htmlFor="stock-edit-category">
         Category
-        <Select
-          options={options}
-          getKey={(id: string) => id}
-          getText={(id: string) => categoryMap[id]?.name}
-          {...input}
-          onChange={setValue}
-          onAdd={async name => {
+      </Label>
+      <Select
+        id="stock-edit-category"
+        getText={id => categoryMap[id]?.name || ''}
+        {...input}
+        value={input.value}
+        onChange={setValue}
+      >
+        {options.map(id => (
+          <Option
+            key={id}
+            value={id}
+            search={categoryMap[id]?.name.toLowerCase()}
+          >
+            {categoryMap[id]?.name}
+          </Option>
+        ))}
+        <AddOption
+          render={str => `create ${str}`}
+          onClick={async name => {
             const category = await onCreate(name);
-            return category.id;
+            setValue(category.id);
           }}
         />
-      </Label>
+      </Select>
     </div>
   );
 };

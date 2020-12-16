@@ -1,21 +1,23 @@
-import Screen from './Screen';
-import { useSearchStock } from 'adapters/queries/stock';
+import { useCreate } from 'adapters/commands/stock';
 import { useCategories } from 'adapters/queries/categories';
+import { useSearchStock } from 'adapters/queries/stock';
+import { parseSearch } from 'domain/selectors';
+import { useState } from 'react';
 import {
-  useOnClick,
   useOnSubmit,
-  useSearch,
-} from 'domain/selectors/larder/home';
+  useViewItem,
+} from 'ui/screens/larder/Home/Screen/hooks';
 import { connect } from 'ui/utils';
+import Screen from './Screen';
 
 const ConnectedScreen = connect(Screen, () => {
-  const [ search, setSearch, name ] = useSearch();
+  const [ search, setSearch ] = useState('');
+  const { name } = parseSearch(search);
   const stockQuery = useSearchStock({ search: name });
   const categoryQuery = useCategories();
-
-  const [ onSubmit, submitting ] = useOnSubmit(search, setSearch);
-
-  const onClick = useOnClick();
+  const [ create, submitting ] = useCreate();
+  const onSubmit = useOnSubmit(search, setSearch, create);
+  const viewItem = useViewItem();
   
   const onSearch = (v: string) => {
     if (!submitting) {
@@ -29,7 +31,7 @@ const ConnectedScreen = connect(Screen, () => {
     stockQuery,
     categoryQuery,
     onSubmit,
-    onClick,
+    onClick: viewItem,
     onSearch,
   };
 });

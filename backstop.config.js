@@ -2,9 +2,7 @@ const glob = require('glob');
 const fs = require('fs');
 
 // I can't be bothered to write a scenario for every single story so lets just grep for all stories
-const files = glob.sync('src/ui/**/__stories__/*.backstop.tsx');
-
-console.log(`Found ${files.length} scenarios`);
+const files = glob.sync('src/ui/**/*.backstop.tsx');
 
 const viewports = [
   {
@@ -17,34 +15,41 @@ const viewports = [
     width: 1280,
     height: 768,
   },
-]
+];
 
 const scenarios = files.reduce((acc, file) => {
+  const scenarios = [];
   const title = file
-    .replace(/^src\/ui\//, '')
-    .replace(/\/__stories__\/.*/, '')
-    .replace(/[\\/]/g, '-')
+    .match(/src\/ui\/(.+)\//)[1]
+    .replace(/[\\/ ]/g, '-')
     .toLowerCase();
-  const id = `${title}--backstop`;
+  let src = fs.readFileSync(file, 'utf8');
+  let match = src.match(/export const (.*?) = /);
+  
+  
+  while (match) {
+    src = src.replace(match[0], '');
+    const story = match[1].replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    const id = `${title}--${story}`;
 
-  console.log(id);
+    const scenario = {
+      label: id,
+      url: `http://localhost:6006/iframe.html?id=${encodeURIComponent(id)}`,
+      mergeImgHack: true,
+    };
 
-  const scenario = {
-    label: id,
-    url: `http://localhost:6006/iframe.html?id=${encodeURIComponent(id)}`,
-    mergeImgHack: true,
-    selectors: [ 'body' ],
-  };
-  if (file.includes('Screen')) {
-    scenario.viewports = viewports.map(x => ({
-      ...x,
-      height: 2000,
-    }));
+    scenarios.push(scenario);
+
+    match = src.match(/export const (.*?) = /);
   }
 
-  return acc.concat(scenario);
+  return acc.concat(scenarios);
 }, []);
 
+console.log(`Found ${files.length} files`);
+console.log(`Found ${scenarios.length} scenarios`);
+
+scenarios.forEach(x => console.log(x.url));
 
 module.exports = {
   id: 'backstop_default',
@@ -61,6 +66,7 @@ module.exports = {
   engine: 'puppeteer',
   engineOptions: {
     args: [ '--no-sandbox' ],
+    // headless: false,
   },
   asyncCaptureLimit: 5,
   asyncCompareLimit: 50,

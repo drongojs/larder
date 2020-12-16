@@ -6,6 +6,7 @@
     "target": "ESNext",
     "allowJs": false,
     "moduleResolution": "node",
+    "strictBindCallApply": true,
     "noEmit": true,
     "declaration": false,
     "esModuleInterop": true,

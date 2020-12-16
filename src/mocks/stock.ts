@@ -10,7 +10,7 @@ const stock: Stock[] = [
     quantity: 500,
     unit: 'g',
     name: 'Peas',
-    image: 'http://lorempixel.com/100/100/food/1',
+    image: 'https://picsum.photos/id/488/300/300',
   },
   {
     id: 'chips',
@@ -18,7 +18,7 @@ const stock: Stock[] = [
     quantity: 1,
     unit: 'kg',
     name: 'Chips',
-    image: 'http://lorempixel.com/100/100/food/1',
+    image: 'https://picsum.photos/id/488/300/300',
   },
 ];
 
@@ -61,7 +61,7 @@ const getAll = rest.get('/api/stock/items', (req, res, ctx) => {
 const post = rest.post<any>('/api/stock/items', (req, res, ctx) => {
   let {
     categoryId = '',
-    image = 'http://lorempixel.com/100/100/food/1',
+    image = 'https://picsum.photos/id/488/300/300',
     name = 'Unknown',
     quantity = 1,
     unit = null,

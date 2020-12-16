@@ -14,24 +14,23 @@ module.exports = {
   // cacheDirectory: "/tmp/jest_rs",
 
   // Automatically clear mock calls and instances between every test
-  clearMocks: true,
+  clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!**/__tests__/**",
-    "!**/__stories__/**",
-    "!**/__e2e__/**",
-    "!**/@drongo/**",
-    "!src/domain/core/**",
-    "!src/mocks/**"
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.{test,int,backstop,stories}{ts,tsx}',
+    '!**/__e2e__/**',
+    '!**/@drongo/**',
+    '!src/domain/core/**',
+    '!src/mocks/**',
   ],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -39,7 +38,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -158,9 +157,9 @@ module.exports = {
   // The glob patterns Jest uses to detect test files
   testMatch: [
     ...(
-      process.env.TEST_MODE === 'INTEGRATION' ? [ '**/__integration__/*.test.[jt]s?(x)' ] :
-      process.env.TEST_MODE === 'UNIT' ? [ '**/__tests__/**/*.test.[jt]s?(x)' ] :
-      [ '**/__{tests,integration}__/**/*.test.[jt]s?(x)' ]
+      process.env.TEST_MODE === 'INTEGRATION' ? [ '**/*.int.[jt]s?(x)' ] :
+        process.env.TEST_MODE === 'UNIT' ? [ '**/*.test.[jt]s?(x)' ] :
+          [ '**/*.{test,int}.[jt]s?(x)' ]
     ),
   ],
 

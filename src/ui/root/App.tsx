@@ -3,12 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider as JpexProvier } from 'react-jpex';
 import { Provider as Respite } from '@drongo/respite';
 import Routes from 'ui/root/routes/Routes';
-import ports from 'ports';
 
 const App = () => (
-  <JpexProvier
-    onMount={ports}
-  >
+  <JpexProvier>
     <Respite>
       <Router>
         <Routes/>

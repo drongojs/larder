@@ -8,13 +8,13 @@ const AmountField = () => {
 
   return (
     <div>
-      <Label>
+      <Label htmlFor="stock-amount-input">
         Amount
-        <TextInput
-          id="stock-amount-input"
-          {...input}
-        />
       </Label>
+      <TextInput
+        id="stock-amount-input"
+        {...input}
+      />
     </div>
   );
 };

@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "react-harness": {
+      "signature": "903d3908b70c566071c8dcd1bab041df",
+      "file": true
+    }
+  }
+}
