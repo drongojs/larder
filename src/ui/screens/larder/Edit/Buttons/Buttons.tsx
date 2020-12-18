@@ -3,7 +3,7 @@ import { css } from 'linaria';
 import Button from 'ui/elements/Button';
 import { Kind, queries } from 'ui/theme';
 import { Link } from 'react-router-dom';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 import { Stock } from 'domain/core';
 
 const styles = {

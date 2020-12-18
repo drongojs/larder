@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 import { Stock, Category } from 'domain/core';
 import Page from 'ui/modules/Page';
 import EditForm from '../Form';

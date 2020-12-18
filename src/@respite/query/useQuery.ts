@@ -1,17 +1,32 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
-import { UseQuery, CallbackType, Deps, Status, Query } from './types';
-import useCache from './useCache';
+import {
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
+import {
+  CallbackType,
+  Deps,
+  Query,
+  Status,
+  useCache,
+} from '@respite/core';
 
 // this looks like a lot of stuff but really all we're doing is syncing local state with the cache
-const useQuery: UseQuery = <T>(
+export default function useQuery<T>(
   callback: CallbackType<T>,
   deps: Deps,
-) => {
-  const cache = useCache<T>(deps);
-  const {
-    invalidate,
-    query,
-  } = cache;
+): Query<T> {
+  const cache = useCache<T>();
+  const [ , query ] = cache.getQuery(deps);
+
+  const invalidate = useCallback(({ exact }: { exact?: boolean } = {}) => {
+    cache.invalidate({
+      exact,
+      deps,
+    });
+  }, deps);
+
   const [ state, setState ] = useState(query);
   const {
     status,
@@ -22,26 +37,31 @@ const useQuery: UseQuery = <T>(
 
   const fetch = useCallback(() => {  
     // if there's already a promise then we're in the middle of fetching the data
-    // potentially from an identical query from another component  
-    if (cache.promise) {
-      return cache.promise;
+    // potentially from an identical query from another component
+    const existingPromise = cache.getPromise(deps);
+    if (existingPromise) {
+      return existingPromise;
     }
 
-    const p = cache.promise = Promise.resolve().then(async(): Promise<any> => {
-      cache.setFetching();
+    const p = Promise.resolve().then(async(): Promise<any> => {
+      cache.fetching({ deps });
 
       try {
-        // TODO: could we make the callback optional
-        const res = await cb();
-        cache.setData(res);
-        cache.promise = null;
+        const data = await cb();
+        cache.success({
+          deps,
+          data,
+        });
       } catch (e) {
-        cache.setError(e);
-        cache.promise = null;
+        cache.failure({
+          deps,
+          error: e,
+        });
       }
     });
+    cache.setPromise(deps, p);
     return p;
-  }, [ cache.setFetching, cache.setData, cache.setError, cb ]);
+  }, [ cb ]);
 
   const read = useCallback(() => {
     // if the query needs fetching but the local query has data, we just want to silently fetch in the background
@@ -53,23 +73,29 @@ const useQuery: UseQuery = <T>(
     case Status.IDLE:
       throw fetch();
     case Status.LOADING:
-      throw cache.promise;
+      throw cache.getPromise(deps);
     case Status.FETCHING:
     case Status.SUCCESS:
       return data;
     case Status.ERROR:
-      if (cache.promise) {
-        throw cache.promise;
+      if (cache.getPromise(deps)) {
+        throw cache.getPromise(deps);
       }
       throw error;
     }
   }, [ query.status, status, fetch, data, error ]);
 
-  const write = cache.setData;
+  const write = useCallback((data: T) => {
+    cache.success({
+      deps,
+      data,
+    });
+  }, deps);
 
   const prefetch = useCallback(() => {
+    const promise = cache.getPromise(deps);
     // prefetch but only if the query is idle
-    if (query.status === Status.IDLE && !cache.promise) {
+    if (query.status === Status.IDLE && !promise) {
       fetch();
     }
   }, [ query.status, fetch ]);
@@ -95,6 +121,9 @@ const useQuery: UseQuery = <T>(
       // we're already re-fetching so we don't need to do anything
       case Status.FETCHING:
         break;
+      case Status.ERROR:
+        setState(query);
+        break;
       // for anything else, we're in a non-fetching state and we need to transition to a fetching state
       default:
         setState({
@@ -112,7 +141,12 @@ const useQuery: UseQuery = <T>(
     }
   }, [ query.status, query.data, query.error ]);
 
-  useEffect(cache.subscribe, deps);
+  useEffect(() => {
+    cache.subscribe(deps);
+    return () => {
+      cache.unsubscribe(deps);
+    };
+  }, deps);
 
   return useMemo(() => {
     const r: Query<T> = {
@@ -129,6 +163,4 @@ const useQuery: UseQuery = <T>(
 
     return r;
   }, [ query.status, status, invalidate, read, write ]);
-};
-
-export default useQuery;
+}

@@ -1,3 +1,4 @@
+import { Status } from '@respite/core';
 import { useUpdate } from 'adapters/commands/stock';
 import { useStock } from 'adapters/queries/stock';
 import { useHistory, useParams } from 'react-router-dom';
@@ -8,19 +9,28 @@ const ConnectedScreen = connect(Screen, () => {
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
   const query = useStock({ id });
-  const [ update, submitting ] = useUpdate();
+  const {
+    action: update,
+    error,
+    submitting,
+  } = useUpdate([ query ]);
   
   const handleSubmit = async(values: any) => {
-    await update({
-      id,
-      quantity: values.quantity,
-    });
-    history.push('/larder');
+    try {
+      await update({
+        id,
+        quantity: values.quantity,
+      });
+      history.push('/larder');
+    } catch (e) {
+      // 
+    }
   };
 
   return {
     query,
     submitting,
+    error,
     onSubmit: handleSubmit,
   };
 });

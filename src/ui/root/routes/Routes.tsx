@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 // import { useTransition, animated } from 'react-spring';
-import Larder from './Larder';
+const Larder = lazy(() => import('./Larder'));
 
 const Routes = () => {
   // const location = useLocation();
@@ -47,14 +47,16 @@ const Routes = () => {
   // )) as any as JSX.Element;
 
   return (
-    <Switch>
-      <Route path="/" exact={true}>
-        <Redirect to="/larder"/>
-      </Route>
-      <Route path="/larder">
-        <Larder/>
-      </Route>
-    </Switch>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route path="/" exact={true}>
+          <Redirect to="/larder"/>
+        </Route>
+        <Route path="/larder">
+          <Larder/>
+        </Route>
+      </Switch>
+    </Suspense>
   );
 };
 

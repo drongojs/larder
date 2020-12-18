@@ -61,6 +61,7 @@ const AmountField = ({
         prefix={prefix}
         suffix={suffix}
         readOnly={submitting}
+        autoFocus={true}
         {...input}
       />
     </>

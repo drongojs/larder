@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from 'ui/screens/larder/Home';
-import Update from 'ui/screens/larder/Update';
-import Edit from 'ui/screens/larder/Edit';
+
+const Home = lazy(() => import('ui/screens/larder/Home'));
+const Update = lazy(() => import('ui/screens/larder/Update'));
+const Edit = lazy(() => import('ui/screens/larder/Edit'));
 
 const Larder = () => (
   <Switch>

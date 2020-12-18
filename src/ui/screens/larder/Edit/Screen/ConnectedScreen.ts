@@ -19,8 +19,14 @@ export default connect(Screen, () => {
   const history = useHistory();
   const stockQuery = useStock({ id });
   const categoryQuery = useCategories();
-  const [ update, stockSubmitting ] = useUpdateStock([ stockQuery ]);
-  const [ create, categorySubmitting ] = useCreateCategory();
+  const {
+    action: update,
+    submitting: stockSubmitting,
+  } = useUpdateStock([ stockQuery ]);
+  const {
+    action: create,
+    submitting: categorySubmitting,
+  } = useCreateCategory();
 
   const onCreateCategory = (name: string) => create({ name });
 

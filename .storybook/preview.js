@@ -1,6 +1,6 @@
 import React from 'react';
 import { Globals } from 'react-spring';
-import { Provider as Respite } from '../src/@drongo/respite';
+import { Provider as Respite } from '../src/@respite/query';
 
 if (SKIP_ANIMATIONS) {
   Globals.assign({

@@ -2,7 +2,7 @@ import React from 'react';
 import { Stock, Category } from 'domain/core';
 import { ListHeader } from 'ui/elements/List';
 import Items from './Items';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 
 interface Props {
   id: string,

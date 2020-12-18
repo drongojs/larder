@@ -24,7 +24,7 @@ module.exports = {
   webpackFinal: async(config) => {
     config.module.rules.push({
       test: /\.tsx?/,
-      use: [ 'babel-loader', 'linaria/loader' ],
+      use: [ 'linaria/loader' ],
     });
     config.plugins.push(new webpack.DefinePlugin({
       SKIP_ANIMATIONS: `${process.env.STORY_MODE === 'BACKSTOP'}`,

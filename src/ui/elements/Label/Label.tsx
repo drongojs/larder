@@ -9,6 +9,7 @@ interface Props extends LabelHTMLAttributes<HTMLLabelElement> {
 
 const styles = {
   label: css`
+    display: block;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     padding-left: 0.5rem;

@@ -7,15 +7,16 @@ import {
   useRef,
   useEffect,
 } from 'react';
-import { Context, Promises, ActionType, Subscribers } from './types';
+import { Context, Promises, Subscribers } from './types';
 import useReducer from './reducer';
+import { ActionType } from './constants';
 
 export const context = createContext<Context<any>>(void 0);
 
 export const useContext = <T>(): Context<T> => {
   const result = useReactContext(context);
   if (!result) {
-    throw new Error('You must wrap your app in @drongo/respite\'s <Provider>');
+    throw new Error('You must wrap your app in @respite/query\'s <Provider>');
   }
   return result;
 };
@@ -37,6 +38,7 @@ export const Provider = ({
     subscribers,
   }), [ cache, dispatch ]);
 
+  // TODO: abstract this effect
   useEffect(() => {
     if (cacheTime < Infinity) {
       const handle = setInterval(() => {
@@ -62,7 +64,7 @@ export const Provider = ({
           if (!subscribers.current[key]) {
             delete subscribers.current[key];
           }
-        })
+        });
       }, cacheTime);
       return () => clearInterval(handle);
     }

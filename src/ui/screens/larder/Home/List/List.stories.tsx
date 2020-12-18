@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import List from './List';
 import ListLoading from './ListLoading';
-import { useQuery } from '@drongo/respite';
+import { useQuery } from '@respite/query';
 import { Stock } from 'domain/core';
 
 export default {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StaticQuery } from '@drongo/respite/mocks';
+import { staticQuery } from '@respite/mocks';
 import { MemoryRouter } from 'react-router-dom';
 import Screen from './Screen';
 export { default } from './ConnectedScreen.stories';
@@ -12,7 +12,7 @@ export const populated = () => {
           onSubmit={() => {}}
           submitting={false}
           onCreateCategory={() => {}}
-          categoryQuery={new StaticQuery({
+          categoryQuery={staticQuery({
             data: [
               {
                 id: 'f',
@@ -20,7 +20,7 @@ export const populated = () => {
               },
             ],
           })}
-          stockQuery={new StaticQuery({
+          stockQuery={staticQuery({
             data: {
               id: 'p',
               categoryId: 'f',
@@ -44,7 +44,7 @@ export const submitting = () => {
           onSubmit={() => {}}
           submitting={true}
           onCreateCategory={() => {}}
-          categoryQuery={new StaticQuery({
+          categoryQuery={staticQuery({
             data: [
               {
                 id: 'f',
@@ -52,7 +52,7 @@ export const submitting = () => {
               },
             ],
           })}
-          stockQuery={new StaticQuery({
+          stockQuery={staticQuery({
             data: {
               id: 'p',
               categoryId: 'f',
@@ -76,7 +76,7 @@ export const loading = () => {
           onSubmit={() => {}}
           submitting={false}
           onCreateCategory={() => {}}
-          categoryQuery={new StaticQuery({
+          categoryQuery={staticQuery({
             data: [
               {
                 id: 'f',
@@ -84,7 +84,7 @@ export const loading = () => {
               },
             ],
           })}
-          stockQuery={new StaticQuery()}
+          stockQuery={staticQuery()}
         />
       </div>
     </MemoryRouter>
@@ -99,8 +99,8 @@ export const categoryLoading = () => {
           onSubmit={() => {}}
           submitting={false}
           onCreateCategory={() => {}}
-          categoryQuery={new StaticQuery()}
-          stockQuery={new StaticQuery({
+          categoryQuery={staticQuery()}
+          stockQuery={staticQuery({
             data: {
               id: 'p',
               categoryId: 'f',

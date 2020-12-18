@@ -1,7 +1,7 @@
 import React, { Suspense, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import CategoryField from './CategoryField';
-import { useQuery } from '@drongo/respite';
+import { useQuery } from '@respite/query';
 
 export default {
   title: 'screens/larder/Edit/CategoryField',
@@ -31,12 +31,13 @@ export const basic = () => {
     },
   ]);
   const query = useQuery(() => ref.current, [ 'categories' ]);
-  const onCreate = (name: string) => {
-    ref.current.push({
+  const onCreate = async(name: string) => {
+    const c = {
       id: name,
       name,
-    });
-    return name;
+    };
+    ref.current.push(c);
+    return c;
   };
   return (
     <CategoryField

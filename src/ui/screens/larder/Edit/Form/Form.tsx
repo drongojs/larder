@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Form, Formik } from 'formik';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 import { Stock } from 'domain/core';
 import { formatQuantity } from 'domain/selectors';
 

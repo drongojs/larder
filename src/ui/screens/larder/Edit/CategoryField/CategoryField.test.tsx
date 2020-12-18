@@ -3,7 +3,7 @@ import CategoryField from './CategoryField';
 import { Category } from 'domain/core';
 import { act, render, screen } from '@testing-library/react';
 import { Form, Formik } from 'formik';
-import { StaticQuery } from '@drongo/respite/mocks';
+import { staticQuery } from '@respite/mocks';
 import userEvent from '@testing-library/user-event';
 
 const wrapper = ({ children }: any) => (
@@ -31,7 +31,7 @@ it('renders each category option', async() => {
   render(
     <CategoryField
       onCreate={(): any => {}}
-      query={new StaticQuery({
+      query={staticQuery({
         data: categories,
       })}
     />,
@@ -60,7 +60,7 @@ it('renders the add option', async() => {
   render(
     <CategoryField
       onCreate={(): any => {}}
-      query={new StaticQuery({
+      query={staticQuery({
         data: categories,
       })}
     />,
@@ -97,7 +97,7 @@ describe('when clicking on the add option', () => {
             setCategories([ ...categories, category ]);
             return category;
           }}
-          query={new StaticQuery({
+          query={staticQuery({
             data: categories,
           })}
         />

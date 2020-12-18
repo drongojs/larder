@@ -1,4 +1,4 @@
-import { StaticQuery } from '@drongo/respite/mocks';
+import { staticQuery } from '@respite/mocks';
 import React from 'react';
 import { MemoryRouter } from 'react-router';
 import Screen from './Screen';
@@ -9,7 +9,8 @@ export const loading = () => (
     <div>
       <div style={{ height: 200 }}>
         <Screen
-          query={new StaticQuery()}
+          error={null}
+          query={staticQuery()}
           submitting={false}
           onSubmit={() => {}}
         />
@@ -22,7 +23,8 @@ export const populated = () => (
   <MemoryRouter>
     <div>
       <Screen
-        query={new StaticQuery({
+        error={null}
+        query={staticQuery({
           data: {
             id: 'peas',
             categoryId: 'frozen',
@@ -43,7 +45,8 @@ export const submitting = () => (
   <MemoryRouter>
     <div>
       <Screen
-        query={new StaticQuery({
+        error={null}
+        query={staticQuery({
           data: {
             id: 'peas',
             categoryId: 'frozen',

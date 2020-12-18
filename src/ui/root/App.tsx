@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider as JpexProvier } from 'react-jpex';
-import { Provider as Respite } from '@drongo/respite';
+import { Provider as Respite } from '@respite/query';
 import Routes from 'ui/root/routes/Routes';
 
 const App = () => (

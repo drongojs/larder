@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { Provider as Jpex } from 'react-jpex';
-import { Provider as Respite } from '@drongo/respite';
+import { Provider as Respite } from '@respite/query';
 import { createMemoryHistory } from 'history';
 import { Stock } from 'domain/core/stock';
 import { IStockService } from 'ports/stock';

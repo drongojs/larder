@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
-import { useQuery } from '@drongo/respite';
+import { useQuery } from '@respite/query';
 
 export default {
   title: 'screens/larder/Update/Header',

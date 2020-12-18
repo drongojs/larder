@@ -4,7 +4,8 @@ import AmountField from '../AmountField';
 import Buttons from '../Buttons';
 import Summary from '../Summary';
 import { css } from 'linaria';
-import { queries } from 'ui/theme';
+import { Kind, queries } from 'ui/theme';
+import Notice from 'ui/elements/Notice';
 
 interface Props {
   negate: boolean,
@@ -12,6 +13,7 @@ interface Props {
   unit: string,
   quantity: number,
   submitting: boolean,
+  error: any,
   onNegateClick: () => void,
 }
 
@@ -31,6 +33,9 @@ const styles = {
       margin-bottom: 8rem;
     }
   `,
+  formError: css`
+    margin-bottom: 1rem;
+  `,
 };
 
 const UpdateForm = ({
@@ -38,11 +43,17 @@ const UpdateForm = ({
   baseUnit,
   unit,
   submitting,
+  error,
   quantity,
   onNegateClick,
 }: Props) => {
   return (
     <Form className={styles.root}>
+      <If condition={error != null}>
+        <Notice kind={Kind.DANGER} className={styles.formError}>
+          {error.message}
+        </Notice>
+      </If>
       <div className={styles.fields}>
         <AmountField
           baseUnit={baseUnit}

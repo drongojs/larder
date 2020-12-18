@@ -1,18 +1,20 @@
 import React from 'react';
 import Update from './ConnectedUpdateForm';
 import { Formik } from 'formik';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 import { Stock } from 'domain/core';
 
 interface Props {
   query: Query<Stock>,
   submitting: boolean,
+  error: any,
   onSubmit: (...args: any[]) => any,
 }
 
 const Form = ({
   query,
   submitting,
+  error,
   onSubmit,
 }: Props) => (
   <Formik
@@ -20,6 +22,7 @@ const Form = ({
     onSubmit={onSubmit}
   >
     <Update
+      error={error}
       query={query}
       submitting={submitting}
     />

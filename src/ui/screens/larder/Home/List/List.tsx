@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Query } from '@drongo/respite';
+import { Query, Status } from '@respite/query';
 import { Stock, Category } from 'domain/core';
 import { List } from 'ui/elements/List';
 import Empty from './Empty';
@@ -44,7 +44,7 @@ const StockList = ({
   categoryQuery,
   onClick,
 }: Props) => {
-  const { data: stock, isFetching } = stockQuery;
+  const { data: stock, status } = stockQuery;
 
   // TODO: maybe extract this logic
   const categories = useMemo(() => {
@@ -65,7 +65,7 @@ const StockList = ({
 
   return (
     <div className={styles.root}>
-      <InlineLoader isFetching={isFetching}/>
+      <InlineLoader isFetching={status === Status.FETCHING}/>
       <List style={{ position: 'relative' }}>
         <Choose>
           <When condition={categories.length === 0}>

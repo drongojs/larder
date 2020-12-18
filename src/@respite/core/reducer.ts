@@ -1,13 +1,12 @@
 import { useReducer } from 'react';
+import { ActionType, Status } from './constants';
 import {
   Action,
   ActionFailure,
   ActionFetching,
   ActionInvalidate,
   ActionSuccess,
-  ActionType,
   QueryCache,
-  Status,
   CachedQuery,
 } from './types';
 import { getQuery, serialize } from './utils';

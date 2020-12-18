@@ -1,17 +1,6 @@
-import { useRef, useEffect } from 'react';
-import { QueryCache, Deps, CachedQuery, Status } from './types';
+import { QueryCache, Deps, CachedQuery } from './types';
 import { tuple } from 'crosscutting/utils';
-
-export const useEffectAfterMount = (cb: () => any, deps: any[]) => {
-  const mounted = useRef(false);
-  useEffect(() => {
-    if (mounted.current) {
-      return cb();
-    } else {
-      mounted.current = true;
-    }
-  }, deps);
-};
+import { Status } from './constants';
 
 export const serialize = (obj: any) => JSON.stringify(obj);
 

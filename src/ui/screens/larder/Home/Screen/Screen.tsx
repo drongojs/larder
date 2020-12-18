@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import Search from '../Search';
 import List, { ListLoading } from '../List';
 import Page from 'ui/modules/Page';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 import { Stock, Category } from 'domain/core';
 import { css } from 'linaria';
 import PaddingBox from 'ui/elements/PaddingBox';

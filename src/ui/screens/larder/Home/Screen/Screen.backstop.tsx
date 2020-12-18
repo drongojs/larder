@@ -1,4 +1,4 @@
-import { StaticQuery } from '@drongo/respite/mocks';
+import { staticQuery } from '@respite/mocks';
 import React from 'react';
 import Screen from './Screen';
 export { default } from './ConnectedScreen.stories';
@@ -8,8 +8,8 @@ export const loading = () => (
     <Screen
       search=""
       submitting={false}
-      stockQuery={new StaticQuery()}
-      categoryQuery={new StaticQuery()}
+      stockQuery={staticQuery()}
+      categoryQuery={staticQuery()}
       onSearch={() => {}}
       onSubmit={() => {}}
       onClick={() => {}}
@@ -22,8 +22,8 @@ export const submitting = () => (
     <Screen
       search=""
       submitting={true}
-      stockQuery={new StaticQuery()}
-      categoryQuery={new StaticQuery()}
+      stockQuery={staticQuery()}
+      categoryQuery={staticQuery()}
       onSearch={() => {}}
       onSubmit={() => {}}
       onClick={() => {}}
@@ -36,7 +36,7 @@ export const singleCategory = () => (
     <Screen
       search=""
       submitting={false}
-      stockQuery={new StaticQuery({
+      stockQuery={staticQuery({
         data: [
           {
             id: 'peas',
@@ -56,7 +56,7 @@ export const singleCategory = () => (
           },
         ],
       })}
-      categoryQuery={new StaticQuery()}
+      categoryQuery={staticQuery()}
       onSearch={() => {}}
       onSubmit={() => {}}
       onClick={() => {}}
@@ -70,7 +70,7 @@ export const multiCategories = () => (
     <Screen
       search=""
       submitting={false}
-      stockQuery={new StaticQuery({
+      stockQuery={staticQuery({
         data: [
           {
             id: 'peas',
@@ -90,7 +90,7 @@ export const multiCategories = () => (
           },
         ],
       })}
-      categoryQuery={new StaticQuery({
+      categoryQuery={staticQuery({
         data: [
           {
             id: 'veg',

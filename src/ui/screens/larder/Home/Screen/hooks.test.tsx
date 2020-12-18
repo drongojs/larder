@@ -1,9 +1,7 @@
-import { Provider as Respite } from '@drongo/respite';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { after } from 'crosscutting/utils';
 import { createMemoryHistory } from 'history';
-import React, { useEffect } from 'react';
-import { Provider as Jpex } from 'react-jpex';
+import { useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { useOnSubmit, useViewItem } from './hooks';
 

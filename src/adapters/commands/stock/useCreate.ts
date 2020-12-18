@@ -1,4 +1,4 @@
-import { useAction } from '@drongo/respite';
+import { useAction } from '@respite/action';
 import { Queries } from 'domain/constants';
 import { IStockService } from 'ports/stock';
 import { encase } from 'react-jpex';
@@ -8,7 +8,7 @@ import { encase } from 'react-jpex';
 // then it will actually "adjust" the quantity of that item
 // if it is definitely a brand new item, it creates it
 const useCreate = (service: IStockService) => () => {
-  return useAction(service.create.bind(service), [], Queries.SEARCH_STOCK);
+  return useAction(service.create.bind(service), Queries.SEARCH_STOCK);
 };
 
 export default encase(useCreate);

@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider as JpexProvider } from 'react-jpex';
-import { IStockService } from 'ports/stock';
-import ConnectedScreen from './ConnectedScreen';
+import React from 'react';
 import Screen from './Screen';
+import { staticQuery } from '@respite/mocks';
+import { MemoryRouter, Route } from 'react-router';
+import { Provider as JpexProvider } from 'react-jpex';
+import { Provider as Respite } from '@respite/query';
 import { Entity } from 'ports/entity';
 import { Stock } from 'domain/core';
+import { IStockService } from 'ports/stock';
 import { after } from 'crosscutting/utils';
-import { StaticQuery } from '@drongo/respite/mocks';
+import ConnectedScreen from './ConnectedScreen';
 
 export default {
   title: 'screens/larder/Update/Screen',
+  decorators: [
+    (Story: any) => (
+      <MemoryRouter>
+        <Story/>
+      </MemoryRouter>
+    ),
+  ],
 };
 
 export const basic = () => {
@@ -18,7 +26,8 @@ export const basic = () => {
     <Screen
       onSubmit={() => {}}
       submitting={false}
-      query={new StaticQuery({
+      error={null}
+      query={staticQuery({
         data: {
           id: 'peas',
           name: 'Peas',
@@ -35,9 +44,10 @@ export const basic = () => {
 export const loading = () => {
   return (
     <Screen
+      error={null}
       onSubmit={() => {}}
       submitting={false}
-      query={new StaticQuery()}
+      query={staticQuery()}
     />
   );
 };
@@ -45,7 +55,8 @@ export const loading = () => {
 export const submitting = () => {
   return (
     <Screen
-      query={new StaticQuery({
+      error={null}
+      query={staticQuery({
         data: {
           id: 'peas',
           name: 'Peas',
@@ -61,43 +72,79 @@ export const submitting = () => {
   );
 };
 
-// export const connected = () => {
-//   return (
-//     <JpexProvider
-//       onMount={jpex => {
-//         class StockService extends Entity<Stock> implements IStockService {
-//           stock: Stock = {
-//             id: 'peas',
-//             name: 'Peas',
-//             categoryId: '',
-//             image: 'https://picsum.photos/id/488/300/300',
-//             quantity: 500,
-//             unit: 'g',
-//           };
+export const error = () => {
+  return (
+    <Screen
+      query={staticQuery({
+        data: {
+          id: 'peas',
+          name: 'Peas',
+          categoryId: '',
+          image: 'https://picsum.photos/id/488/300/300',
+          quantity: 500,
+          unit: 'g',
+        },
+      })}
+      submitting={false}
+      error={new Error('it broke')}
+      onSubmit={() => {}}
+    />
+  );
+};
+
+export const connected = (props: { loadError: boolean, submitError: boolean }) => {
+  return (
+    <JpexProvider
+      onMount={jpex => {
+        class StockService extends Entity<Stock> implements IStockService {
+          stock: Stock = {
+            id: 'peas',
+            name: 'Peas',
+            categoryId: '',
+            image: 'https://picsum.photos/id/488/300/300',
+            quantity: 500,
+            unit: 'g',
+          };
         
-//           search(): any {}
-//           read() {
-//             return after(250, this.stock);
-//           }
-//           update() {
-//             return after(3000, this.stock);
-//           }
-//         }
-//         jpex.service(StockService);
-//       }}
-//     >
-//       <MemoryRouter
-//         initialEntries={[
-//           {
-//             pathname: '/larder/peas',
-//             state: {
-//               id: 'peas',
-//             },
-//           },
-//         ]}
-//       >
-//         <Update/>
-//       </MemoryRouter>
-//     </JpexProvider>
-//   );
-// };
+          search(): any {}
+          async read() {
+            await after(1000);
+            if (props.loadError) {
+              throw new Error('something went wrong');
+            }
+            return this.stock;
+          }
+          async update() {
+            await after(3000);
+            if (props.submitError) {
+              throw new Error('something went wrong');
+            }
+            return this.stock;
+          }
+        }
+        jpex.service(StockService);
+      }}
+    >
+      <MemoryRouter
+        initialEntries={[
+          {
+            pathname: '/larder/peas',
+            state: {
+              id: 'peas',
+            },
+          },
+        ]}
+      >
+        <Route path="/larder/:id">
+          <Respite key={JSON.stringify(props)}>
+            <ConnectedScreen/>
+          </Respite>
+        </Route>
+      </MemoryRouter>
+    </JpexProvider>
+  );
+};
+connected.args = {
+  loadError: false,
+  submitError: false,
+};

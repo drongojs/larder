@@ -3,7 +3,7 @@ import { useField } from 'formik';
 import { Select, AddOption, Option } from 'ui/elements/Select';
 import { Category } from 'domain/core';
 import Label from 'ui/elements/Label';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 
 interface Props {
   query: Query<Category[]>,

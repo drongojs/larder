@@ -12,7 +12,7 @@ export const useViewItem = () => {
 export const useOnSubmit = (
   search: string,
   setSearch: (v: string) => void,
-  create: ReturnType<typeof useCreate>[0],
+  create: ReturnType<typeof useCreate>['action'],
 ) => {
   const submit = async(e: any) => {
     e.preventDefault();

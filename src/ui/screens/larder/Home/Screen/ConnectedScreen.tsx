@@ -15,7 +15,10 @@ const ConnectedScreen = connect(Screen, () => {
   const { name } = parseSearch(search);
   const stockQuery = useSearchStock({ search: name });
   const categoryQuery = useCategories();
-  const [ create, submitting ] = useCreate();
+  const {
+    submitting,
+    action: create,
+  } = useCreate();
   const onSubmit = useOnSubmit(search, setSearch, create);
   const viewItem = useViewItem();
   

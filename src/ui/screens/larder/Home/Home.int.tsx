@@ -2,7 +2,7 @@ import React from 'react';
 import { render, act, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import Home from './';
-import { Wrapper, demoStock } from './__meta__/int-setup';
+import { Wrapper, demoStock } from './__tests__/int-setup';
 
 describe('when there are no stock items', () => {
   beforeEach(async() => {

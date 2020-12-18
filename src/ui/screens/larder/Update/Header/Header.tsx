@@ -4,7 +4,7 @@ import { css } from 'linaria';
 import Image from 'ui/elements/Image';
 import { palette, curvature, queries } from 'ui/theme';
 import Color from 'color';
-import { Query } from '@drongo/respite';
+import { Query } from '@respite/query';
 import { Stock } from 'domain/core';
 
 interface Props {

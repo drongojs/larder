@@ -1,4 +1,4 @@
-import { useQuery } from '@drongo/respite';
+import { useQuery } from '@respite/query';
 import { Queries } from 'domain/constants';
 import { IStockService } from 'ports/stock';
 import { encase } from 'react-jpex';
