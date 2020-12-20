@@ -1,6 +1,6 @@
 import { ActionType } from './constants';
 import { useContext } from './context';
-import { Deps } from './types';
+import { CachedQuery, Deps } from './types';
 import { getQuery, serialize } from './utils';
 
 export default function useCache<T>() {
@@ -17,11 +17,20 @@ export default function useCache<T>() {
     promises.current[keys] = promise;
   };
 
-  const invalidate = ({ exact, deps }: { exact?: boolean, deps: Deps }) => {
+  const invalidate = ({
+    exact,
+    deps,
+    predicate,
+  }: {
+    deps: Deps,
+    exact?: boolean,
+    predicate?: (query: CachedQuery<any>, key: string) => boolean,
+  }) => {
     dispatch({
       type: ActionType.INVALIDATE,
       deps,
       exact: Boolean(exact),
+      predicate,
     });
   };
 

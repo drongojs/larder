@@ -11,10 +11,10 @@ export interface Query<T = any> {
 
 export type CallbackType<T> = () => (Promise<T> | T);
 
-export type Deps = [ string, ...any[] ];
+export type Deps = [ any, ...any[] ];
 
 export interface CachedQuery<T> {
-  key: string,
+  key: any,
   status: Status,
   data?: T,
   error?: any,

@@ -8,17 +8,15 @@ import {
   ActionSuccess,
   QueryCache,
   CachedQuery,
+  Deps,
 } from './types';
 import { getQuery, serialize } from './utils';
 
 const initialState = {};
 
-// not sure if this is the best way to handle invalidation
-// right now it literally just wipes every query for the primary key
-// should we really just be invalidating the "exact" key passed in?
 const invalidate = <T>(state: QueryCache<T>, action: ActionInvalidate) => {
   const { deps, exact } = action;
-  const key = exact ? serialize(deps) : deps[0];
+  const key = action.predicate ? void 0 : exact ? serialize(deps) : deps[0];
   const predicate = action.predicate ?? ((query: CachedQuery<T>, queryKey) => {
     const comparitor = exact ? queryKey : query.key;
     return comparitor === key;
@@ -26,8 +24,10 @@ const invalidate = <T>(state: QueryCache<T>, action: ActionInvalidate) => {
 
   return Object
     .entries(state)
-    .filter(([ queryKey, query ]) => !predicate(query, queryKey))
     .reduce((acc, [ key, query ]) => {
+      if (!predicate(query, key)) {
+        return acc;
+      }
       return {
         ...acc,
         [key]: query,
@@ -35,47 +35,38 @@ const invalidate = <T>(state: QueryCache<T>, action: ActionInvalidate) => {
     }, {});
 };
 
-const fetching = <T>(state: QueryCache<T>, action: ActionFetching) => {
-  const { deps } = action;
+const updateQuery = <T>(state: QueryCache<T>, deps: Deps, props: Partial<CachedQuery<T>>) => {
   const [ key, query ] = getQuery(state, deps);
-
   return {
     ...state,
     [key]: {
       ...query,
-      status: Status.LOADING,
+      ...props,
     },
   };
+};
+
+const fetching = <T>(state: QueryCache<T>, action: ActionFetching) => {
+  const { deps } = action;
+  return updateQuery(state, deps, { status: Status.LOADING });
 };
 
 const success = <T>(state: QueryCache<T>, action: ActionSuccess<T>) => {
   const { deps, data } = action;
-  const [ key, query ] = getQuery(state, deps);
-
-  return {
-    ...state,
-    [key]: {
-      ...query,
-      status: Status.SUCCESS,
-      data,
-      error: void 0,
-    },
-  };
+  return updateQuery(state, deps, {
+    status: Status.SUCCESS,
+    data,
+    error: void 0,
+  });
 };
 
 const failure = <T>(state: QueryCache<T>, action: ActionFailure) => {
   const { deps, error } = action;
-  const [ key, query ] = getQuery(state, deps);
-
-  return {
-    ...state,
-    [key]: {
-      ...query,
-      status: Status.ERROR,
-      data: void 0,
-      error,
-    },
-  };
+  return updateQuery(state, deps, {
+    status: Status.ERROR,
+    data: void 0,
+    error,
+  });
 };
 
 const reducer = <T>(state: QueryCache<T>, action: Action<T>) => {

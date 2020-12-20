@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "yarn lint:js && yarn lint:ts",
-    "lint:js": "eslint src --ext ts,tsx",
+    "lint:js": "eslint src --ext ts,tsx --fix",
     "lint:ts": "tsc",
     "unit:test": "TEST_MODE=UNIT jest",
     "integration:test": "TEST_MODE=INTEGRATION jest",

@@ -1,6 +1,5 @@
 import {
   useState,
-  useCallback,
   useEffect,
   useMemo,
 } from 'react';
@@ -20,12 +19,12 @@ export default function useQuery<T>(
   const cache = useCache<T>();
   const [ , query ] = cache.getQuery(deps);
 
-  const invalidate = useCallback(({ exact }: { exact?: boolean } = {}) => {
+  const invalidate = ({ exact }: { exact?: boolean } = {}) => {
     cache.invalidate({
       exact,
       deps,
     });
-  }, deps);
+  };
 
   const [ state, setState ] = useState(query);
   const {
@@ -33,9 +32,8 @@ export default function useQuery<T>(
     data,
     error,
   } = state;
-  const cb = useCallback(callback, deps);
 
-  const fetch = useCallback(() => {  
+  const fetch = () => {  
     // if there's already a promise then we're in the middle of fetching the data
     // potentially from an identical query from another component
     const existingPromise = cache.getPromise(deps);
@@ -47,7 +45,7 @@ export default function useQuery<T>(
       cache.fetching({ deps });
 
       try {
-        const data = await cb();
+        const data = await callback();
         cache.success({
           deps,
           data,
@@ -61,9 +59,9 @@ export default function useQuery<T>(
     });
     cache.setPromise(deps, p);
     return p;
-  }, [ cb ]);
+  };
 
-  const read = useCallback(() => {
+  const read = () => {
     // if the query needs fetching but the local query has data, we just want to silently fetch in the background
     if (query.status === Status.IDLE && status !== Status.IDLE) {
       fetch();
@@ -83,30 +81,30 @@ export default function useQuery<T>(
       }
       throw error;
     }
-  }, [ query.status, status, fetch, data, error ]);
+  };
 
-  const write = useCallback((data: T) => {
+  const write = (data: T) => {
     cache.success({
       deps,
       data,
     });
-  }, deps);
+  };
 
-  const prefetch = useCallback(() => {
+  const prefetch = () => {
     const promise = cache.getPromise(deps);
     // prefetch but only if the query is idle
     if (query.status === Status.IDLE && !promise) {
       fetch();
     }
-  }, [ query.status, fetch ]);
+  };
 
-  const reset = useCallback(() => {
+  const reset = () => {
     invalidate({ exact: true });
     setState({
       ...state,
       status: Status.IDLE,
     });
-  }, [ invalidate, state ]);
+  };
 
   useEffect(() => {
     // this is where we determine when/what to update the local state with
@@ -162,5 +160,5 @@ export default function useQuery<T>(
     });
 
     return r;
-  }, [ query.status, status, invalidate, read, write ]);
+  }, [ status, query.status, state ]);
 }

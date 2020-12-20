@@ -5,11 +5,10 @@ import {
   ReactNode,
   useMemo,
   useRef,
-  useEffect,
 } from 'react';
 import { Context, Promises, Subscribers } from './types';
 import useReducer from './reducer';
-import { ActionType } from './constants';
+import useCleanup from './useCleanup';
 
 export const context = createContext<Context<any>>(void 0);
 
@@ -38,37 +37,7 @@ export const Provider = ({
     subscribers,
   }), [ cache, dispatch ]);
 
-  // TODO: abstract this effect
-  useEffect(() => {
-    if (cacheTime < Infinity) {
-      const handle = setInterval(() => {
-        dispatch({
-          type: ActionType.INVALIDATE,
-          deps: [ '' ],
-          predicate: (query, key) => {
-            if (promises.current[key]) {
-              return false;
-            }
-            if (subscribers.current[key] > 0) {
-              return false;
-            }
-            return true;
-          },
-        });
-        Object.keys(promises.current).forEach(key => {
-          if (!promises.current[key]) {
-            delete promises.current[key];
-          }
-        });
-        Object.keys(subscribers.current).forEach(key => {
-          if (!subscribers.current[key]) {
-            delete subscribers.current[key];
-          }
-        });
-      }, cacheTime);
-      return () => clearInterval(handle);
-    }
-  }, []);
+  useCleanup(dispatch, cacheTime, promises, subscribers);
 
   return createElement(
     context.Provider,
